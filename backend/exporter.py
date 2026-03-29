@@ -4,6 +4,7 @@ import shutil
 from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
 from backend import models
+from backend.matcher.engine import PROFILES
 
 # .env 파일에서 설정 로드
 def _load_env():
@@ -103,6 +104,7 @@ def export_to_html(db: Session, year: int, week: int) -> str:
             "url": jp.source_url,
             "score": m.match_score,
             "sub_group": m.sub_group,
+            "matched_keywords": m.matched_keywords or "",
             "deadline": deadline_str,
             "urgent": _is_deadline_soon(deadline_str)
         }
@@ -118,69 +120,26 @@ def export_to_html(db: Session, year: int, week: int) -> str:
     total_a = len(job_data_a)
     total_b = len(job_data_b)
     top_companies = ", ".join([s["name"] for s in stats_list[:3]])
-    og_description = f"프로필 A: {total_a}건, 프로필 B: {total_b}건 매칭 | {top_companies} 등"
+    og_description = f"웅키: {total_a}건, 쵸키: {total_b}건 매칭 | {top_companies} 등"
     report_filename = f"{year}-W{week}.html"
     og_url = f"{pages_url}/reports/{report_filename}"
     og_image_url = f"{pages_url}/og-image.png"
 
-    # 프리미엄 CSS
-    premium_css = """
-    :root {
-      --primary: #3182f6; --primary-light: #e8f3ff; --bg-color: #f2f4f6; --card-bg: #ffffff;
-      --text-main: #191f28; --text-sub: #4e5968; --text-mute: #8b95a1;
-      --radius-xl: 24px; --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      --urgent: #ff6b6b; --urgent-bg: #fff5f5;
-    }
-    * { box-sizing: border-box; }
-    body { font-family: -apple-system, 'Pretendard', sans-serif; background: var(--bg-color); color: var(--text-main); margin: 0; padding-bottom: 30px; -webkit-font-smoothing: antialiased; }
-    header { position: sticky; top: 0; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); z-index: 100; padding: 16px 20px; border-bottom: 1px solid #eceef0; }
-    .header-top { display: flex; justify-content: space-between; align-items: center; }
-    .header-title { font-weight: 700; font-size: 18px; }
-    .header-date { font-size: 13px; color: var(--text-mute); }
-    .tabs { display: flex; gap: 6px; margin-top: 12px; }
-    .tab { padding: 8px 16px; font-size: 14px; font-weight: 600; color: var(--text-mute); cursor: pointer; border-radius: 20px; border: none; background: transparent; transition: all 0.2s ease; }
-    .tab.active { color: #fff; background: var(--text-main); }
-    .tab:not(.active):hover { background: #eceef0; }
-    .tab .count { display: inline-block; margin-left: 4px; padding: 1px 6px; border-radius: 10px; font-size: 11px; font-weight: 700; background: var(--primary-light); color: var(--primary); }
-    .tab.active .count { background: rgba(255,255,255,0.2); color: #fff; }
-    .container { padding: 16px; max-width: 500px; margin: 0 auto; }
-    .card { background: var(--card-bg); border-radius: var(--radius-xl); padding: 20px; margin-bottom: 12px; box-shadow: var(--shadow); transition: transform 0.15s ease; }
-    .card:active { transform: scale(0.98); }
-    .card.urgent { border-left: 3px solid var(--urgent); }
-    .job-item { display: flex; align-items: flex-start; gap: 12px; }
-    .job-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--primary-light); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 18px; flex-shrink: 0; }
-    .card.urgent .job-icon { background: var(--urgent-bg); color: var(--urgent); }
-    .job-info { flex: 1; min-width: 0; }
-    .job-company { font-size: 13px; color: var(--text-sub); font-weight: 500; }
-    .job-title { font-weight: 600; font-size: 15px; margin-top: 2px; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-    .job-meta { display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
-    .badge { padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 600; text-decoration: none; }
-    .badge-score { background: var(--primary-light); color: var(--primary); }
-    .badge-group { background: #f2f4f6; color: var(--text-sub); }
-    .badge-urgent { background: var(--urgent-bg); color: var(--urgent); animation: pulse 2s infinite; }
-    .badge-deadline { background: #f2f4f6; color: var(--text-mute); font-weight: 500; }
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-    .card-actions { display: flex; justify-content: flex-end; margin-top: 12px; gap: 8px; }
-    .btn-view { display: inline-flex; align-items: center; gap: 4px; padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; background: var(--primary); color: #fff; text-decoration: none; border: none; cursor: pointer; transition: opacity 0.15s; }
-    .btn-view:hover { opacity: 0.85; }
-    .btn-share { display: inline-flex; align-items: center; padding: 6px 10px; border-radius: 8px; font-size: 16px; background: #fee500; color: #3c1e1e; border: none; cursor: pointer; transition: opacity 0.15s; }
-    .btn-share:hover { opacity: 0.85; }
-    .stats-item { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid #f2f4f6; }
-    .stats-item:last-child { border-bottom: none; }
-    .stats-bar { height: 4px; border-radius: 2px; background: var(--primary); margin-top: 6px; transition: width 0.5s ease; }
-    .empty-state { text-align: center; padding: 60px 20px; color: var(--text-mute); }
-    .empty-state i { font-size: 48px; margin-bottom: 16px; display: block; opacity: 0.3; }
-    .footer { text-align: center; padding: 20px; font-size: 12px; color: var(--text-mute); }
-    """
+    # 데이터에 matched_keyword 추가 (이미 위에서 수집됨)
+    data_a_json = json.dumps(job_data_a, ensure_ascii=False)
+    data_b_json = json.dumps(job_data_b, ensure_ascii=False)
+    stats_json  = json.dumps(stats_list, ensure_ascii=False)
+    profiles_json = json.dumps(PROFILES, ensure_ascii=False)
+
+    total_collected = sum(s["count"] for s in stats_list)
+    generated_at = datetime.utcnow().strftime('%Y.%m.%d %H:%M')
 
     html_content = f"""<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>{year}년 {week}주차 채용공고 매칭 리포트</title>
-    
-    <!-- SEO & OG 메타태그 (카카오톡/SNS 프리뷰용) -->
+    <title>웅키와 쵸키의 이직 프로젝트</title>
     <meta name="description" content="{og_description}">
     <meta property="og:title" content="📋 {year}년 {week}주차 채용공고 매칭 리포트" />
     <meta property="og:description" content="{og_description}" />
@@ -188,166 +147,220 @@ def export_to_html(db: Session, year: int, week: int) -> str:
     <meta property="og:url" content="{og_url}" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ko_KR" />
-    
-    <!-- 카카오톡 캐시 방지 -->
     <meta property="og:updated_time" content="{datetime.utcnow().isoformat()}" />
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>{premium_css}</style>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+* {{ box-sizing: border-box; margin: 0; padding: 0; }}
+body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: #fff; color: #111; }}
+
+.top-bar {{ display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid #111; max-width: 680px; margin: 0 auto; }}
+.logo {{ font-size: 13px; font-weight: 800; letter-spacing: -0.3px; }}
+.date-tag {{ font-size: 11px; color: #888; border: 1px solid #ddd; border-radius: 3px; padding: 2px 7px; }}
+
+.hero {{ max-width: 680px; margin: 0 auto; padding: 28px 24px 20px; border-bottom: 2px solid #111; }}
+.hero-label {{ font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #aaa; text-transform: uppercase; margin-bottom: 8px; }}
+.hero-title {{ font-size: 28px; font-weight: 800; letter-spacing: -1px; line-height: 1.2; }}
+.hero-sub {{ font-size: 13px; color: #888; margin-top: 10px; }}
+.hero-counts {{ display: flex; gap: 16px; margin-top: 16px; }}
+.count-chip {{ font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; cursor: pointer; border: 1.5px solid #ddd; color: #888; transition: all 0.15s; }}
+.count-chip.active {{ background: #111; color: #fff; border-color: #111; }}
+
+.content {{ max-width: 680px; margin: 0 auto; padding: 0 24px 60px; }}
+
+.keyword-panel {{ margin-top: 20px; border: 1px solid #ebebeb; border-radius: 8px; overflow: hidden; }}
+.keyword-panel-header {{ display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; cursor: pointer; background: #fafafa; user-select: none; }}
+.keyword-panel-header:hover {{ background: #f4f4f4; }}
+.keyword-panel-title {{ font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #888; text-transform: uppercase; }}
+.kw-toggle {{ font-size: 11px; color: #bbb; transition: transform 0.2s; display: inline-block; }}
+.kw-toggle.open {{ transform: rotate(180deg); }}
+.keyword-body {{ padding: 14px; border-top: 1px solid #ebebeb; display: none; }}
+.keyword-body.open {{ display: block; }}
+.kw-group {{ display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }}
+.kw-group:last-child {{ margin-bottom: 0; }}
+.kw-group-label {{ font-size: 10px; font-weight: 700; color: #bbb; letter-spacing: 0.5px; min-width: 32px; padding-top: 3px; flex-shrink: 0; }}
+.kw-chips {{ display: flex; flex-wrap: wrap; gap: 5px; }}
+.kw-chip {{ font-size: 11px; color: #555; background: #f2f2f2; border-radius: 4px; padding: 2px 7px; font-weight: 500; }}
+.kw-note {{ font-size: 11px; color: #bbb; margin-top: 10px; padding-top: 10px; border-top: 1px solid #f0f0f0; }}
+
+.list-header {{ display: flex; justify-content: space-between; align-items: center; padding: 16px 0 10px; border-bottom: 1px solid #111; margin-top: 20px; }}
+.list-header-left {{ font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #aaa; text-transform: uppercase; }}
+.list-header-right {{ font-size: 11px; color: #aaa; }}
+
+.job-row {{ display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }}
+.job-row:hover {{ background: #fafafa; margin: 0 -8px; padding: 14px 8px; border-radius: 4px; }}
+.job-name {{ font-size: 15px; font-weight: 700; color: #111; line-height: 1.3; word-break: keep-all; }}
+.job-meta {{ display: flex; gap: 8px; align-items: center; margin-top: 5px; flex-wrap: wrap; }}
+.meta-co {{ font-size: 12px; color: #aaa; }}
+.meta-sep {{ font-size: 12px; color: #ddd; }}
+.meta-dl {{ font-size: 12px; color: #bbb; }}
+.meta-dl.urgent {{ color: #e03131; font-weight: 600; }}
+.meta-keyword {{ font-size: 10px; color: #888; background: #f0f0f0; border-radius: 3px; padding: 1px 6px; font-weight: 600; }}
+.urgent-tag {{ font-size: 10px; font-weight: 800; color: #e03131; letter-spacing: 0.5px; padding: 2px 5px; border: 1.5px solid #e03131; border-radius: 3px; white-space: nowrap; }}
+.row-right {{ display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }}
+.go-link {{ font-size: 11px; font-weight: 700; color: #111; text-decoration: none; letter-spacing: 0.5px; white-space: nowrap; }}
+.go-link:hover {{ text-decoration: underline; }}
+
+.stats-section {{ margin-top: 20px; }}
+.stats-row {{ display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f0f0f0; }}
+.stats-bar-wrap {{ margin-top: 6px; height: 4px; background: #f0f0f0; border-radius: 2px; overflow: hidden; }}
+.stats-bar-fill {{ height: 100%; background: #111; border-radius: 2px; }}
+.empty-state {{ text-align: center; padding: 80px 0; color: #ccc; font-size: 14px; }}
+.footer {{ text-align: center; padding: 32px 20px; font-size: 12px; color: #ccc; border-top: 1px solid #f0f0f0; margin-top: 20px; }}
+    </style>
 </head>
 <body>
-    <header>
-        <div class="header-top">
-            <span class="header-title">📋 Job Finder Report</span>
-            <span class="header-date">{year}년 {week}주차</span>
-        </div>
-        <div class="tabs">
-            <button class="tab active" onclick="switchTab('A', this)">
-                프로필 A <span class="count" id="count-a">0</span>
-            </button>
-            <button class="tab" onclick="switchTab('B', this)">
-                프로필 B <span class="count" id="count-b">0</span>
-            </button>
-            <button class="tab" onclick="switchTab('STATS', this)">
-                📊 분석
-            </button>
-        </div>
-    </header>
 
-    <div class="container" id="content-area"></div>
-    
-    <div class="footer">
-        Job Finder Report · 자동 생성됨 · {datetime.utcnow().strftime('%Y.%m.%d %H:%M')} UTC
+<div class="top-bar">
+    <div class="logo">웅키와 쵸키의 이직 프로젝트</div>
+    <div class="date-tag">{year} W{week}</div>
+</div>
+
+<div class="hero">
+    <div class="hero-label">Weekly Job Report</div>
+    <div class="hero-title">이번 주<br>채용 매칭 결과</div>
+    <div class="hero-sub">총 {total_collected}건 수집 · 웅키 {total_a}건, 쵸키 {total_b}건 매칭</div>
+    <div class="hero-counts">
+        <div class="count-chip active" onclick="show('A', this)">웅키 {total_a}</div>
+        <div class="count-chip" onclick="show('B', this)">쵸키 {total_b}</div>
+        <div class="count-chip" onclick="show('S', this)">통계</div>
     </div>
+</div>
 
-    <script>
-        const dataA = {json.dumps(job_data_a, ensure_ascii=False)};
-        const dataB = {json.dumps(job_data_b, ensure_ascii=False)};
-        const stats = {json.dumps(stats_list, ensure_ascii=False)};
+<div class="content" id="content"></div>
 
-        // 카운트 표시
-        document.getElementById('count-a').textContent = dataA.length;
-        document.getElementById('count-b').textContent = dataB.length;
+<div class="footer">자동 생성됨 · {generated_at} UTC</div>
 
-        function switchTab(type, el) {{
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-            if (type === 'STATS') {{
-                renderStats();
-            }} else {{
-                renderJobs(type === 'A' ? dataA : dataB);
-            }}
-        }}
+<script>
+    const dataA = {data_a_json};
+    const dataB = {data_b_json};
+    const stats = {stats_json};
+    const profiles = {profiles_json};
 
-        function renderJobs(jobs) {{
-            const container = document.getElementById('content-area');
-            if (jobs.length === 0) {{
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fa-solid fa-inbox"></i>
-                        <p>매칭된 공고가 없습니다.</p>
-                    </div>`;
-                return;
-            }}
-            
-            // 긴급(마감 임박) 공고를 상단에 배치
-            const sorted = [...jobs].sort((a, b) => {{
-                if (a.urgent && !b.urgent) return -1;
-                if (!a.urgent && b.urgent) return 1;
-                return b.score - a.score;
-            }});
-            
-            container.innerHTML = sorted.map(job => `
-                <div class="card ${{job.urgent ? 'urgent' : ''}}">
-                    <div class="job-item">
-                        <div class="job-icon">
-                            <i class="fa-solid ${{job.urgent ? 'fa-fire' : 'fa-building'}}"></i>
-                        </div>
-                        <div class="job-info">
-                            <div class="job-company">${{job.company}}</div>
-                            <div class="job-title">${{job.title}}</div>
-                            <div class="job-meta">
-                                <span class="badge badge-score">${{job.score}}점</span>
-                                <span class="badge badge-group">${{job.sub_group}}</span>
-                                ${{job.urgent ? '<span class="badge badge-urgent">🔥 마감임박</span>' : ''}}
-                                <span class="badge badge-deadline">${{job.deadline}}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn-share" onclick="shareUrl('${{job.title}}', '${{job.company}}', '${{job.url}}')" title="공유">
-                            <i class="fa-solid fa-share-nodes"></i>
-                        </button>
-                        <a href="${{job.url}}" target="_blank" rel="noopener" class="btn-view">
-                            공고 보기 <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
+    let kwOpen = false;
+
+    function toggleKw() {{
+        kwOpen = !kwOpen;
+        const body = document.getElementById('kw-body');
+        const toggle = document.getElementById('kw-toggle');
+        if (body) body.classList.toggle('open', kwOpen);
+        if (toggle) toggle.classList.toggle('open', kwOpen);
+    }}
+
+    function renderKeywordPanel(profileKey) {{
+        const groups = profiles[profileKey]?.sub_groups || {{}};
+        const rows = Object.entries(groups).map(([label, kws]) => `
+            <div class="kw-group">
+                <span class="kw-group-label">${{label}}</span>
+                <div class="kw-chips">${{kws.map(k => `<span class="kw-chip">${{k}}</span>`).join('')}}</div>
+            </div>
+        `).join('');
+        return `
+            <div class="keyword-panel">
+                <div class="keyword-panel-header" onclick="toggleKw()">
+                    <span class="keyword-panel-title">매칭 키워드</span>
+                    <span class="kw-toggle" id="kw-toggle">▼</span>
+                </div>
+                <div class="keyword-body" id="kw-body">
+                    ${{rows}}
+                    <div class="kw-note">* 인턴 · Intern 공고는 제외됩니다</div>
+                </div>
+            </div>
+        `;
+    }}
+
+    function renderRows(list) {{
+        return list.map(j => `
+            <div class="job-row">
+                <div>
+                    <div class="job-name">${{j.title}}</div>
+                    <div class="job-meta">
+                        <span class="meta-co">${{j.company}}</span>
+                        <span class="meta-sep">·</span>
+                        <span class="meta-dl ${{j.urgent ? 'urgent' : ''}}">${{j.deadline}}</span>
+                        ${{j.matched_keywords ? `<span class="meta-keyword">${{j.matched_keywords.split(',')[0].trim()}}</span>` : ''}}
                     </div>
                 </div>
-            `).join('');
-        }}
+                <div class="row-right">
+                    ${{j.urgent ? '<span class="urgent-tag">URGENT</span>' : ''}}
+                    <a class="go-link" href="${{j.url}}" target="_blank" rel="noopener">보기 →</a>
+                </div>
+            </div>
+        `).join('');
+    }}
 
-        function renderStats() {{
-            const container = document.getElementById('content-area');
-            const total = stats.reduce((acc, curr) => acc + curr.count, 0);
+    function show(key, el) {{
+        document.querySelectorAll('.count-chip').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+        kwOpen = false;
+        const content = document.getElementById('content');
+
+        if (key === 'S') {{
+            const total = stats.reduce((acc, s) => acc + s.count, 0);
             const maxCount = stats.length > 0 ? stats[0].count : 1;
-            
-            container.innerHTML = `
-                <div class="card">
-                    <div style="font-weight:700; font-size:18px; margin-bottom:4px;">사이트별 수집 현황</div>
-                    <div style="font-size:14px; color:var(--text-sub); margin-bottom:20px;">
-                        이번 주 총 <span style="color:var(--primary); font-weight:700;">${{total}}</span>건의 공고를 수집했습니다.
+            content.innerHTML = `
+                <div class="stats-section">
+                    <div class="list-header" style="margin-top:0">
+                        <span class="list-header-left">사이트별 수집</span>
+                        <span class="list-header-right">총 ${{total}}건</span>
                     </div>
-                    <div>
-                        ${{stats.map(s => `
-                            <div class="stats-item">
-                                <div style="flex:1;">
-                                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                                        <span style="font-size:14px; font-weight:500;">${{s.name}}</span>
-                                        <span style="font-size:14px; font-weight:700; color:var(--primary);">${{s.count}}건</span>
-                                    </div>
-                                    <div class="stats-bar" style="width:${{Math.round(s.count / maxCount * 100)}}%;"></div>
+                    ${{stats.map(s => `
+                        <div class="stats-row">
+                            <div style="flex:1">
+                                <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600">
+                                    <span>${{s.name}}</span><span style="color:#aaa;font-weight:400">${{s.count}}건</span>
+                                </div>
+                                <div class="stats-bar-wrap">
+                                    <div class="stats-bar-fill" style="width:${{Math.round(s.count/maxCount*100)}}%"></div>
                                 </div>
                             </div>
-                        `).join('')}}
+                        </div>
+                    `).join('')}}
+                    <div class="list-header">
+                        <span class="list-header-left">프로필별 매칭</span>
                     </div>
-                </div>
-                <div class="card">
-                    <div style="font-weight:700; font-size:16px; margin-bottom:12px;">📊 프로필별 매칭 요약</div>
-                    <div class="stats-item">
-                        <span style="font-size:14px; font-weight:500;">프로필 A (마케팅)</span>
-                        <span style="font-size:14px; font-weight:700; color:var(--primary);">${{dataA.length}}건</span>
+                    <div class="stats-row">
+                        <span style="font-size:13px;font-weight:600">웅키 (마케팅)</span>
+                        <span style="font-size:13px;color:#aaa">${{dataA.length}}건</span>
                     </div>
-                    <div class="stats-item">
-                        <span style="font-size:14px; font-weight:500;">프로필 B (서비스 운영 기획)</span>
-                        <span style="font-size:14px; font-weight:700; color:var(--primary);">${{dataB.length}}건</span>
+                    <div class="stats-row">
+                        <span style="font-size:13px;font-weight:600">쵸키 (서비스 운영 기획)</span>
+                        <span style="font-size:13px;color:#aaa">${{dataB.length}}건</span>
                     </div>
                 </div>
             `;
+            return;
         }}
 
-        function shareUrl(title, company, url) {{
-            // Web Share API 시도 (모바일에서 카카오톡 등 선택 가능)
-            if (navigator.share) {{
-                navigator.share({{
-                    title: '[채용공고] ' + company,
-                    text: title,
-                    url: url
-                }}).catch(() => {{}});
-            }} else {{
-                // 데스크톱 폴백: 클립보드에 복사
-                navigator.clipboard.writeText(url).then(() => {{
-                    alert('URL이 클립보드에 복사되었습니다!');
-                }}).catch(() => {{
-                    prompt('URL을 복사하세요:', url);
-                }});
-            }}
+        const jobs = key === 'A' ? dataA : dataB;
+        const profileKey = key === 'A' ? '웅키' : '쵸키';
+        const urgent = jobs.filter(j => j.urgent);
+        const normal = jobs.filter(j => !j.urgent);
+
+        if (jobs.length === 0) {{
+            content.innerHTML = renderKeywordPanel(profileKey) + `<div class="empty-state">매칭된 공고가 없습니다.</div>`;
+            return;
         }}
 
-        // 초기 로드
-        window.onload = () => renderJobs(dataA);
-    </script>
+        content.innerHTML = `
+            ${{renderKeywordPanel(profileKey)}}
+            ${{urgent.length ? `
+                <div class="list-header">
+                    <span class="list-header-left">마감임박</span>
+                    <span class="list-header-right">${{urgent.length}}건</span>
+                </div>
+                ${{renderRows(urgent)}}
+            ` : ''}}
+            <div class="list-header" style="margin-top:${{urgent.length ? '12px' : '0'}}">
+                <span class="list-header-left">전체 공고</span>
+                <span class="list-header-right">${{normal.length}}건</span>
+            </div>
+            ${{renderRows(normal)}}
+        `;
+    }}
+
+    show('A', document.querySelector('.count-chip.active'));
+</script>
 </body>
 </html>"""
     
