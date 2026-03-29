@@ -62,7 +62,7 @@ async def trigger_crawl(db: Session = Depends(get_db)):
     
     results = await crawler.run()
     
-    matched_results_summary = {"A": 0, "B": 0}
+    matched_results_summary = {"웅키": 0, "쵸키": 0}
     now = datetime.utcnow()
     week_num = now.isocalendar()[1]
     year = now.year
@@ -85,12 +85,16 @@ async def trigger_crawl(db: Session = Depends(get_db)):
         db.add(db_job)
         db.flush() # id 할당
         
-        # 2. 매칭 수행
-        text_to_eval = f"{db_job.title} {db_job.position} {db_job.company}"
+        # 2. 인턴 공고 제외 (사용자 요청)
+        text_to_eval = f"{db_job.title} {db_job.position} {db_job.company}".lower()
+        if "인턴" in text_to_eval or "intern" in text_to_eval:
+            continue
+
+        # 3. 매칭 수행
         match_scores = matcher_engine.evaluate(text_to_eval)
         
         for match in match_scores:
-            profile_id = 1 if match["profile_id"] == "A" else 2
+            profile_id = 1 if match["profile_id"] == "웅키" else 2
             
             db_match = models.MatchResult(
                 job_posting_id=db_job.id,
@@ -103,18 +107,18 @@ async def trigger_crawl(db: Session = Depends(get_db)):
             )
             db.add(db_match)
             if profile_id == 1:
-                matched_results_summary["A"] += 1
+                matched_results_summary["웅키"] += 1
             else:
-                matched_results_summary["B"] += 1
+                matched_results_summary["쵸키"] += 1
                 
     db.commit()
     results["matched_summary"] = matched_results_summary
     return {"message": "success", "details": results}
 
 @app.get("/api/results")
-def get_results(profile: str = "A", week: int = None, year: int = None, db: Session = Depends(get_db)):
+def get_results(profile: str = "웅키", week: int = None, year: int = None, db: Session = Depends(get_db)):
     query = db.query(models.MatchResult).join(models.JobPosting)
-    if profile == "A":
+    if profile == "웅키":
         query = query.filter(models.MatchResult.profile_id == 1)
     else:
         query = query.filter(models.MatchResult.profile_id == 2)

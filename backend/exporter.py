@@ -67,17 +67,13 @@ def export_to_html(db: Session, year: int, week: int) -> str:
     주어진 주차(week)의 매칭 결과를 조회하여 프리미엄 모바일 디자인이 적용된
     단일 HTML 파일(CSS/JS 포함)로 렌더링 후 저장합니다.
     
-    - output/  : 기존 호환을 위한 로컬 출력
-    - deploy/reports/ : GitHub Pages 배포용 출력
+    - reports/ : HTML 리포트 출력 (GitHub Pages 서빙)
     """
     config = _load_env()
     pages_url = _get_pages_url(config)
-    kakao_js_key = config.get("KAKAO_JS_KEY", "YOUR_KAKAO_JS_KEY_HERE")
-    
-    output_dir = "output"
-    deploy_dir = os.path.join("deploy", "reports")
-    os.makedirs(output_dir, exist_ok=True)
-    os.makedirs(deploy_dir, exist_ok=True)
+
+    reports_dir = "reports"
+    os.makedirs(reports_dir, exist_ok=True)
     
     # 해당 주차의 매칭 결과 가져오기
     matches = db.query(models.MatchResult).filter(
@@ -364,25 +360,18 @@ body {{ font-family: 'Pretendard', -apple-system, sans-serif; background: #fff; 
 </body>
 </html>"""
     
-    # 1. 기존 output/ 에 저장 (호환성)
-    premium_filename = f"{year}-W{week}-Premium.html"
-    premium_path = os.path.join(output_dir, premium_filename)
-    with open(premium_path, "w", encoding="utf-8") as f:
+    # reports/ 에 저장
+    report_filename = f"{year}-W{week}.html"
+    report_path = os.path.join(reports_dir, report_filename)
+    with open(report_path, "w", encoding="utf-8") as f:
         f.write(html_content)
-    
-    # 2. deploy/reports/ 에 저장 (GitHub Pages 배포용)
-    deploy_filename = f"{year}-W{week}.html"
-    deploy_path = os.path.join(deploy_dir, deploy_filename)
-    with open(deploy_path, "w", encoding="utf-8") as f:
-        f.write(html_content)
-    
-    # 3. deploy/reports/latest.html 로 덮어쓰기 (항상 최신)
-    latest_path = os.path.join(deploy_dir, "latest.html")
-    shutil.copy2(deploy_path, latest_path)
-    
+
+    # latest.html 덮어쓰기 (항상 최신)
+    latest_path = os.path.join(reports_dir, "latest.html")
+    shutil.copy2(report_path, latest_path)
+
     print(f"✅ HTML 리포트 생성 완료:")
-    print(f"   로컬: {premium_path}")
-    print(f"   배포: {deploy_path}")
-    print(f"   최신: {latest_path}")
-        
-    return premium_path
+    print(f"   리포트: {report_path}")
+    print(f"   최신:   {latest_path}")
+
+    return report_path

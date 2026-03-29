@@ -3,14 +3,14 @@ from typing import List, Dict, Any
 
 # 정의된 키워드 (소문자 변환하여 비교 용이하게 함)
 PROFILES = {
-    "A": {
-        "name": "마케팅 (A)",
+    "웅키": {
+        "name": "웅키",
         "sub_groups": {
             "A-1": ["마케팅", "marketing", "프로모션", "promotion", "onsite"]
         }
     },
-    "B": {
-        "name": "서비스 운영 기획 (B)",
+    "쵸키": {
+        "name": "쵸키",
         "sub_groups": {
             "B-1": [
                 "서비스운영", "서비스 운영", "service operations", "operations manager",

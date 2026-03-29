@@ -67,8 +67,8 @@ def save_to_env(key, value):
 
 
 def get_report_summary(year, week):
-    """deploy/reports/ 에서 리포트 HTML을 읽어 요약 추출"""
-    report_path = os.path.join(PROJECT_ROOT, "deploy", "reports", f"{year}-W{week}.html")
+    """reports/ 에서 리포트 HTML을 읽어 요약 추출"""
+    report_path = os.path.join(PROJECT_ROOT, "reports", f"{year}-W{week}.html")
     
     if not os.path.exists(report_path):
         return None
