@@ -1,9 +1,8 @@
-name: Daily Job Crawl & Notify
+name: Triggered Job Crawl & Notify
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
   workflow_dispatch:
+    # 수동으로 버튼을 눌러서 실행하거나 gh-cli로만 작동합니다.
 
 jobs:
   crawl-and-notify:
@@ -31,7 +30,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          # 1. 크롤링 및 DB 업데이트 (PYTHONPATH 추가 필수)
+          # 1. 크롤링 및 DB 업데이트
           python3 backend/main.py --trigger
 
       - name: Generate HTML Report
@@ -51,14 +50,14 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          # 3. 텔레그램 알림 전송 (id 자동 탐색 결과 반영)
+          # 3. 텔레그램 알림 전송
           python3 scripts/notify_telegram.py
 
       - name: Commit and Push changes
         run: |
-          # 4. 업데이트된 DB 및 HTML 영구 저장
+          # 4. 결과 업데이트 후 저장
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
           git add data/jobs.db deploy/reports/ output/
-          git commit -m "📋 Daily Job Report Update ($(date +'%Y-%m-%d'))" || echo "No changes to commit"
+          git commit -m "📋 Manual Job Report Update ($(date +'%Y-%m-%d'))" || echo "No changes to commit"
           git push origin main
