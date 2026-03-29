@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Job Finder Mobile</title>
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="mobile.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Kakao SDK -->
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.0/kakao.min.js" integrity="sha384-l6+Y94+p90mH3M6uE9ZJt2A676P5o3Fp5X5f3f0k3P+a/x3R8+J7M" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <h1 class="header-title">
+                <i class="fa-solid fa-spider" style="color: var(--primary);"></i>
+                Job Finder
+            </h1>
+            <div style="display: flex; gap: 16px;">
+                <i class="fa-solid fa-plus" onclick="location.href='index.html#settings'" style="font-size: 20px; color: var(--text-sub);"></i>
+                <i class="fa-solid fa-ellipsis" style="font-size: 20px; color: var(--text-sub);"></i>
+            </div>
+        </div>
+        <div class="tabs" id="main-tabs">
+            <div class="tab active" data-tab="list">공고 리스트</div>
+            <div class="tab" data-tab="analysis">수집 분석</div>
+            <div class="tab" data-tab="matching">매칭 리포트</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- List View -->
+        <div id="view-list" class="fade-in">
+            <div class="card">
+                <div class="flex-row">
+                    <div>
+                        <div class="card-title" id="summary-title">이번 주 발견</div>
+                        <div class="card-desc" style="margin-bottom: 0;">총 <span id="job-count" style="color: var(--primary); font-weight: 700;">0</span>건의 새로운 기회</div>
+                    </div>
+                    <button id="btn-refresh" class="badge badge-primary" style="border:none; cursor:pointer; padding: 8px 12px;">
+                        <i class="fa-solid fa-rotate"></i> 갱신
+                    </button>
+                </div>
+            </div>
+
+            <div id="job-list">
+                <!-- Skeleton Loading -->
+                <div class="card skeleton" style="height: 100px;"></div>
+                <div class="card skeleton" style="height: 100px;"></div>
+            </div>
+        </div>
+
+        <!-- Analysis View -->
+        <div id="view-analysis" class="fade-in" style="display: none;">
+            <div class="card">
+                <div class="card-title">사이트별 공고 비중</div>
+                <div style="height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <canvas id="siteChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">주차별 수집 추이</div>
+                <div style="height: 200px;">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Matching View -->
+        <div id="view-matching" class="fade-in" style="display: none;">
+            <div class="card" style="background: linear-gradient(135deg, #3182f6 0%, #1c5fd1 100%); color: white;">
+                <div class="card-title" style="color: white;">나를 위한 맞춤 공고</div>
+                <p style="opacity: 0.9; font-size: 14px;">설정된 프로필(A, B) 기준으로 엄선된 목록입니다.</p>
+                <div id="profile-selector" style="margin-top: 16px; display: flex; gap: 8px;">
+                    <button class="badge" onclick="loadMatching('A')" id="btn-profile-A" style="background: white; color: var(--primary); border: none; padding: 8px 16px;">프로필 A</button>
+                    <button class="badge" onclick="loadMatching('B')" id="btn-profile-B" style="background: rgba(255,255,255,0.2); color: white; border: none; padding: 8px 16px;">프로필 B</button>
+                </div>
+            </div>
+            <div id="matching-list"></div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <div class="nav-item active" data-tab="list">
+            <i class="fa-solid fa-house"></i>
+            <span>홈</span>
+        </div>
+        <div class="nav-item" data-tab="matching">
+            <i class="fa-solid fa-bullseye"></i>
+            <span>매칭</span>
+        </div>
+        <div class="nav-item" data-tab="analysis">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>분석</span>
+        </div>
+        <div class="nav-item" onclick="location.href='index.html#settings'">
+            <i class="fa-solid fa-bars"></i>
+            <span>전체</span>
+        </div>
+    </nav>
+
+    <script src="mobile.js"></script>
+</body>
+</html>

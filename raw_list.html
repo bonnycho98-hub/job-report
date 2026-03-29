@@ -1,0 +1,3623 @@
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<title>CJ RECRUIT </title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+<meta name="description" content="세계를 향해 도약하는 글로벌 생활문화기업 CJ그룹 채용 사이트입니다." />
+<!-- SNS Meta tag -->
+<meta name="og:title" property="og:title" content="CJ채용" />
+<meta name="og:description" property="og:description" content="세계를 향해 도약하는 글로벌 생활문화기업 CJ그룹 채용 사이트입니다." >
+<meta name="og:url" property="og:url" content="http://recruit.cj.net/" />
+<meta name="og:image" property="og:image" content="https://imgrec.cj.net/recruit/ko/images/common/share_img.jpg" />
+
+<link rel="shortcut icon" href="https://imgrec.cj.net/recruit/images/favicon.ico" />
+<link rel="apple-touch-icon" href="https://imgrec.cj.net/recruit/ko/images/common/phone_icon.png" />  <!-- 모바일용 바탕화면 바로가기 아이콘(iOS) 114×114 -->
+<link rel="shortcut icon" href="https://imgrec.cj.net/recruit/ko/images/common/phone_icon.png" />  <!-- 모바일용 바탕화면 바로가기 아이콘(Android) -->
+<link rel="apple-touch-startup-image" href="https://imgrec.cj.net/recruit/ko/images/common/phone_icon.png" />  <!-- 스타트업 이미지 640×920(4), 640×1138(5) -->
+
+
+
+<link rel="stylesheet" type="text/css" href="https://imgrec.cj.net/recruit/ko/css/sub.css?1771659859196" />
+
+	
+	
+		<link rel="stylesheet" type="text/css" href="https://imgrec.cj.net/recruit/ko/css/cjRecruit.css?1771659859196" />
+	
+
+
+<script type="text/javascript">
+function fn_changeLocal(_localCode){
+	
+	var url = window.location.href;
+	$.ajax({
+		url : '/recruit/ko/common/common/setLocalLang.fo?localCode='+_localCode,
+		success : function(data) {
+			
+					window.location.href = url;
+			
+		}
+	});
+}
+
+</script>
+
+</head>
+<body>
+	<script type="text/javascript" src="https://imgrec.cj.net/recruit/ko/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/common/js/default.js"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/common/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/common/js/util.js"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/ko/js/jquery.inview.min.js"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/ko/js/ui.common.js"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/ko/js/needPopup.js"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/ko/js/json2.js"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/js/jqGrid/frameone.jquery.jqGrid.js"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/ko/js/jquery.common.js"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/ko/js/timer.js?201304181746"></script>
+<script type="text/javascript" src="https://imgrec.cj.net/recruit/ko/js/jquery.ui.datepicker.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-47052730-1', 'auto', {'allowLinker': true});
+ga('require', 'linker');
+ga('linker:autoLink', ['www.cj.net']);
+ga('send', 'pageview');
+
+ga('create', 'UA-48450551-1', {'name': 'secondTracker'});
+ga('secondTracker.send', 'pageview');
+</script>
+
+<!-- Google tag (gtag.js)  --> 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2DPG5PJL9P"></script><!-- 운영 -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-841QR38NQK"></script> --><!-- 개발 -->
+<script> 
+	window.dataLayer = window.dataLayer || []; 
+	function gtag(){dataLayer.push(arguments);} 
+	
+	gtag('consent', 'default', {
+		  'ad_storage': 'denied',
+		  'analytics_storage': 'denied',
+		  'functionality_storage': 'denied',
+		  'personalization': 'denied',
+		  'security_storage': 'denied'
+		});
+	
+	gtag('js', new Date()); 
+	gtag('config', "G-2DPG5PJL9P"); //운영
+	//gtag('config', "G-841QR38NQK"); //개발
+</script>
+
+<script>
+  function consentGranted(cookieLngSet) {
+	
+	gtag('consent', 'update', {
+	  'ad_storage': 'granted',
+	  'analytics_storage': 'granted',
+	  'functionality_storage': 'granted',
+	  'personalization': 'granted',
+	  'security_storage': 'granted'
+    });
+	
+	window.localStorage.setItem('consentGranted', 'ok');
+	//setHideCookie('hide_cookie', 'Y', 60*24);
+	setHideCookie(cookieLngSet, 'Y', 60*24);
+  }
+
+
+  function setHideCookie(cname, cvalue, min) { 
+	var d = new Date(); 
+    d.setTime(d.getTime() + (min*60*1000)); //시간설정 
+    //d.setTime(d.getTime() + (60000)); //시간설정
+    var expires = "expires="+d.toUTCString(); var temp = cname + "=" + cvalue + "; " + expires + ";path=/"; 
+    document.cookie = temp; 
+  } 
+
+</script>
+
+<script>
+	var delaySessionTimer;
+	var interTimer;
+
+	var minute = 1000 * 60;
+	var hour = minute * 60;
+	var day = hour * 24;
+	var date = new Date();
+	var getMonth = date.getMonth() + 1;
+	var getYear = date.getFullYear();
+	var time = date.getTime();
+
+	var xmlHttp;
+
+	// local인 경우
+	var protocol = window.location.protocol;
+	var host = document.location.host;
+
+	// ip로 오는거는 https가 안먹는거 같으니 이 처리에서 걸리버리자..
+	// ip로 URL이 들어왔는지 구분
+	var isIpConnect = function(domain) {
+		var ipformat = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+	    if (ipformat.test(domain)) { // ip로 접근이 맞다 (true)
+	        return true;
+	    } else { // 정상도메인(recruit.cj.net) 접근이다 (false);
+	        return false;
+	    }
+		return false;
+	}(document.location.hostname)
+
+	if( protocol === "http:" && !isIpConnect && host.indexOf('local.cj.net') == -1  && host.indexOf('localm.cj.net') == -1) { // http이면서 ip로 들어온거 아니면서 로컬이 아닌 경우에는 강제로 https로 점프
+		var offset=location.href.indexOf(location.host)+location.host.length;
+		var pathname = location.pathname;
+		var search = location.search;
+		var movePath = "https:" + "//" + host + pathname + search; // https도 동시에 대응이 되게
+// 		console.log("path : " , movePath);
+		location.href = movePath;
+	}
+
+	//title에 현재 메뉴 타이틀 출력
+	$(document).ready(function() {
+		menu_slider();
+		var sub_title = $(".mod_title_type h3").html();
+		if (sub_title !="null" && sub_title != null && sub_title !="") {
+			if (sub_title == "마이페이지") {
+				var mypage_title = $(".mod_tab .active a").html();
+				mypage_title = mypage_title.replace("&amp;", "&");
+				document.title = mypage_title + ' | ' + sub_title + ' | 인재채용 | CJ그룹';
+			} else if(sub_title == "지원자도우미") {
+				var helper_title = $(".mod_tab .active a").html();
+				helper_title = helper_title.replace("&amp;", "&");
+				document.title = helper_title + ' | ' + sub_title + ' | 인재채용 | CJ그룹';
+			} else if(sub_title == "Q&amp;A") {
+				var qna_title = $(".mod_tab .active a").html();
+				qna_title = qna_title.replace("&amp;", "&");
+				document.title = qna_title + ' | 인재채용 | CJ그룹';
+			} else {
+				document.title = sub_title + ' | 인재채용 | CJ그룹';
+			}
+			$("meta[name='description']").attr("content", "세계를 향해 도약하는 글로벌 생활문화기업 CJ그룹 채용, " + sub_title + " 입니다.");
+		} else {
+			document.title = "인재채용 | CJ그룹";
+			$("meta[name='description']").attr("content", "세계를 향해 도약하는 글로벌 생활문화기업 CJ그룹 채용 웹사이트 입니다.");
+		}
+
+		
+
+		document.onmousedown=right;
+
+		srvTime();
+
+		// (2021-11-22) 메뉴에 마우스를 올려놨을때 하위메뉴 호출
+		
+		/*
+		var $header = $('#header');
+		$('#gnb .gnb_menu ul li a').on('mouseover focusin', headerHoverOn);
+		$('.gnb_menu').on('mouseleave focusout', headerHoverOff);
+
+		function headerHoverOn(){
+			if(window.scrollbar)scrollbar.setMomentum(0,0);
+			$header.addClass('hover');
+		}
+
+		function headerHoverOff(){
+			var h = $header.hasClass('simple')?62:90;
+			$header.removeClass('hover');
+		}
+         */
+	});
+
+	//스크립트 방지
+	function right(e){
+		var msgRightMouse  = '보안상 이유로 마우스 오른쪽 버튼을 사용할수 없습니다.'; // 보안상 이유로 마우스 오른쪽 버튼을 사용할수 없습니다.
+
+		if (navigator.appName == 'Microsoft Internet Explorer' &&  (event.button == 2 || event.button == 3)){
+		 	//e.returnValue = false;
+		 	alert(msgRightMouse);
+			return false;
+		 }else if (navigator.appName == 'Netscape' && (e.which == 3 || e.which == 2)){
+			alert(msgRightMouse);
+			return false;
+		 }
+
+		return true;
+	}
+
+	function delaySessionTime() {
+		delaySessionTimer.l_m30Limit = delaySessionTimer.msecPerMinute * 30;
+		//needPopup.hide();
+		hideDelaySessionPopup();
+	}
+
+	function delaySessionTimeEnd(str) {
+		document.hLogoutForm.submit();
+		if (str == "") {
+			alert('로그인 유지 시간이 초과되어 로그아웃되었습니다.');
+		}
+		location.href = "https://recruit.cj.net/recruit/ko/main/main/main.fo";
+	}
+
+	function recruitLang(str) {
+		if (str == "usa") {
+			$("#a_recruit_usa").click();
+		} else {
+			$("#a_recruit_chn").click();
+		}
+	}
+
+	function srvTime(){
+		var today = '2026-02-21';
+
+		var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+		                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+		                ];
+
+		var serverToday = new Date(today);
+		var serverYear = serverToday.getFullYear();
+		var serverMonth = monthNames[serverToday.getMonth()];
+		var headerStr = '#' + serverMonth + serverYear;
+
+		$("#yearMonth").html(headerStr);
+	}
+
+	function checkContentLength(content, max_length, id){
+		  var text_tmp = content.value;
+
+		  // 전체길이를 초과하면
+		  if (text_tmp.length > max_length) {
+		    //alert(" 글자를 초과 입력할수 없습니다. \n 초과된 내용은 자동으로 삭제 됩니다. ");
+			alert('글자를 초과 입력할수 없습니다. \n 초과된 내용은 자동으로 삭제 됩니다.');
+		    content.value = text_tmp.substr(0, max_length);
+		  }
+		  if (text_tmp.length == 0) {
+		  	 document.getElementById(id).innerHTML = "0";
+		  } else {
+		   	  var tmpSize = content.value.length >= max_length ? max_length : content.value.length;
+		   	  document.getElementById(id).innerHTML = tmpSize;
+		  }
+	}
+
+	function pop_modal_02(wrap, kind,n){
+		var _message = {};
+
+
+		if(kind !="pop_common_lastSchool")
+		{
+			_message["date_error01"] 		= "입력하신 날짜가 형식에 맞지 않습니다.";
+			_message["date_error02"] 		= "종료일이 시작일보다 이전 날짜입니다.";
+			_message["pg_mlogin_error"]		= "아이디 또는 비밀번호를 확인 후\n다시 입력하여 주십시오.";
+			_message["login_error03"]		= "입력하신 데이터와 일치하는\n회원정보를 찾을 수 없습니다.";
+			_message["login_error04"] 		= "아이디 또는 비밀번호를 확인 후\n다시 입력하여 주십시오.";
+			_message["login_error05"] 		= "5회 이상 입력 오류로 계정이 잠깁니다.\n아이디/비밀번호 찾기를 통하여 임시 비밀번호를 재발급  받으시기 바랍니다.";
+			_message["pop_apply_ing"] 		= "작성 중인 이력서가 존재합니다.\n[마이페이지>지원정보/결과확인]에서 이전에 지원한 이력서를 삭제 후 지원가능합니다.";
+
+			_message["pop_number_error"]	 = "숫자형식의 글자만 입력 가능합니다.";
+			_message["pop_limit_text"] 		 = "입력 글자수를 초과하였습니다.";
+			_message["pop_jumin_error"] 	 = "주민등록번호가 올바르지 않습니다.\n확인 후 다시 입력해주세요.";
+			_message["pop_required_input"] 	 = "필수입력 항목을 모두 입력해주세요.";
+
+			_message["pop_file"] 			 = "등록 가능한 파일이 아닙니다.\n파일의 형식과 크기를 다시 확인해주세요.\n파일명은 최대90자까지 등록 가능합니다.";//등록 가능한 파일이 아닙니다.\n파일의 형식과 크기를 다시 확인해주세요.\n파일명은 최대 90자까지 등록 가능합니다.
+			_message["pop_file_size_err"] 	 = "파일의 크기가 허용된 최대 크기를 초과했습니다.\n파일의 크기를 다시 확인해주세요.";
+
+			if (n == "open")
+			{
+				if (typeof comm_message != "undefined" && typeof comm_message[kind] != "undefined") {
+				    /* 2013-06-13 다국어 적용을 위해 headScriptDefault.jspf 에서 loading시 메세지 변수에 담음. */
+					alert(comm_message[kind]);
+				} else {
+					alert(_message[kind]);
+				}
+				if(kind == 'date_error01' || kind == 'date_error02'){
+					try { $errorDateId.val("");}catch(e){}; // util.js에 정의되어 있는 글로변 변수
+					try { $clk_input.focus();}catch(e){};
+					try { $errorDateId.focus();}catch(e){};
+				}
+			}
+
+			return ;
+		}
+
+
+		$("."+wrap+" .bg").height($(document).height());
+		if (n == "close")
+		{
+			if(kind=="login_time_out")
+			{
+				try{window.close();}catch(e){}
+			}
+
+			$(".pop_area").stop().animate({ "top":"-100%"},{ duration:500, easing:"easeInOutQuint"});
+			$("."+wrap+" .bg").stop().delay(100).animate({ "top":"-100%"},{ duration:300, easing:"easeInOutQuint", complete:function(){$("."+wrap).hide();}});
+
+			if(kind == 'pop_email_reject')
+			{
+
+				$(".footer .company_info ul li:eq(6) a").focusCurrenttInputField(".footer .company_info");
+			}
+
+
+
+			if(kind == "pop_editor_message")
+			{
+				CrossEditor.SetFocusEditor();
+			}
+
+			if( typeof $clk_input !="undefined" && $clk_input != null)
+			{
+				$clk_input.focus();
+			}
+
+			$clk_input = null;
+
+
+		}
+		if (n == "open")
+		{
+			$(".pop_area").hide();
+			$("."+kind).show();
+
+
+			$("."+wrap).show();
+
+			var this_w = $("."+kind).width()/2;
+			var this_h = $("."+kind).height()/2;
+
+			$("."+kind).css({"margin-left":-this_w,"margin-top":-this_h});
+			$("."+wrap+" .bg").stop().animate({ "top":"0%"},{ duration:300, easing:"easeInOutQuint"});
+			$(".pop_area").stop().animate({ "top":"-100%"},{ duration:500, easing:"easeInOutQuint"});
+			$("."+kind).stop().delay(100).animate({ "top":"50%"},{ duration:500, easing:"easeInOutQuint"});
+
+
+			$("."+kind).css("border", "1px solid red").focus();
+		}
+
+	}
+
+	//테마 메뉴 슬라이드
+	function menu_slider(){
+		if($(".menu_slider").length > 0){
+			var $max = $(".menu_slider > li").size();
+			var $idx = $(".menu_slider").attr("idx");
+
+
+			$('.menu_slider li:nth-child('+$idx+')').fadeOut();
+
+			if($idx == $max){
+				$idx = 1;
+			} else {
+				$idx++;
+			}
+
+			$('.menu_slider li:nth-child('+$idx+')').fadeIn();
+			$('.menu_slider').attr('idx', $idx);
+
+			setTimeout('menu_slider()',5000);
+		}
+	}
+	</script>
+	<script type="text/javascript">
+
+	    
+$(document).ready(function(){
+	var langCh = "KOR";
+	
+	
+	if(langCh=="ENG"){
+		langCh = "en"
+	}else if(langCh=="ZHS"){
+		langCh = "cn"
+	}else{
+		langCh = "ko"
+	}
+	
+	$("html").attr("lang", langCh);
+});
+</script>
+<!-- id="skipnavigation" -->
+<div id="skipnavigation">
+	<ul>
+    <li><a href="#contents">본문 바로가기</a></li>
+    <li><a href="#gnb">대 메뉴 바로가기</a></li>
+    </ul>
+</div>
+<hr>
+<!-- id="wrap" -->
+<div id="wrap" class="main">
+	<form name="headerFrom" id="headerFrom"  method="post">
+		<input type="hidden" name="localCode" id="localCode" />
+	</form>
+	<!-- 230922 수정 -->
+	<!-- id="header" -->
+	<div id="header" class="hover">
+		<div class="inner_wrap">
+    	<div class="focus_line"></div>
+			<div class="inner">
+				<h1 class="logo">
+					<a href="https://www.cj.net" title="메인으로">
+						<img src="https://imgrec.cj.net/recruit/ko/images/common/logo_b.svg" alt="CJ그룹 로고">
+						<img src="https://imgrec.cj.net/recruit/ko/images/common/logo_w.svg" alt="CJ그룹 로고">
+					</a>
+				</h1>
+				<div class="gnb" id="gnb">
+					<div class="gnb_menu">
+						<ul>
+						   <!-- 
+							<li>
+								<a href="https://www.cj.net/thema/index.asp" target="_self" onclick="javascript:ga('send','event','GNB','월간테마','월간테마')">#LIVE NEW CJ</a>
+
+							</li>
+							
+							<li>
+								<a href="https://www.cj.net/cj_now/index.asp" target="_self" onclick="javascript:ga('send','event','GNB','CJ Now','CJ Now')">CJ Now</a>
+							</li>
+							 -->
+							
+							
+							<li>
+								<!--<a href="https://www.cj.net/brand/story/" target="_self" onclick="javascript:ga('send','event','GNB','Brand','브랜드 CJ')"></a> 브랜드 CJ -->
+								<a href="https://www.cj.net/brand-cj/brand-story" target="_self" onclick="javascript:ga('send','event','GNB','Brand','브랜드 CJ')">브랜드 CJ</a><!-- 브랜드 CJ -->
+								
+								<div class="depth2">
+									<ul>
+										<!--li -->
+										<li>
+											<!--<a href="https://www.cj.net/brand/content/" onclick="javascript:ga('send','event','GNB','Brand','브랜드 스토리')">브랜드 스토리</a> 브랜드 스토리 -->
+											<a href="https://www.cj.net/brand-cj/brand-story" onclick="javascript:ga('send','event','GNB','Brand','브랜드 스토리')">브랜드 스토리</a><!-- 브랜드 스토리 -->
+										</li>
+										<!--li -->
+										<li>
+											<!--<a href="https://www.cj.net/tomorrow/share/" onclick="javascript:ga('send','event','GNB','Brand','브랜드콘텐츠')">브랜드 콘텐츠</a> 브랜드콘텐츠 -->
+											<a href="https://www.cj.net/brand-cj/brand-content" onclick="javascript:ga('send','event','GNB','Brand','브랜드콘텐츠')">브랜드 콘텐츠</a><!-- 브랜드콘텐츠 -->
+										</li>
+										<!--li -->
+										<li>
+											<!-- <a href="https://www.cj.net/ko/brand/sport/" onclick="javascript:ga('send','event','GNB','Brand','스포츠 스폰서십')">스포츠</a>스포츠 스폰서십 -->
+											<a href="https://www.cj.net/brand-cj/sports-sponsorship/" onclick="javascript:ga('send','event','GNB','Brand','스포츠 스폰서십')">스포츠</a><!-- 스포츠 스폰서십 -->
+										</li>
+										<!--li -->
+										<!-- 
+										<li>
+											<a href="https://www.cj.net/brand/list_convenience.asp" onclick="javascript:ga('send','event','GNB','Brand','편리')">편리</a>
+										</li>
+										 -->
+
+									</ul>
+								</div>
+							</li>
+							<li>
+							<!-- <a href="https://www.cj.net/sustainability/index.asp" target="_self" onclick="javascript:ga('send','event','GNB','sustainability','지속 가능한 내일')"></a>지속 가능한 내일 -->
+							<a href="https://www.cj.net/sustainability/our-commitment" target="_self" onclick="javascript:ga('send','event','GNB','sustainability','지속 가능한 내일')">지속가능한 일상</a><!-- 지속 가능한 내일 -->
+							<div class="depth2">
+								<ul>
+									<li>
+									    <!--<a href="https://www.cj.net/sustainability/esgCommitments/index.asp" onclick="javascript:ga('send','event','GNB','sustainability','우리의 약속')">우리의 약속</a> 우리의 약속 -->
+									    <a href="https://www.cj.net/sustainability/our-commitment" onclick="javascript:ga('send','event','GNB','sustainability','우리의 약속')">우리의 약속</a><!-- 우리의 약속 -->
+									</li>
+									<li>
+										<!-- <a href="https://www.cj.net/sustainability/esgPerformance/environment.asp" onclick="javascript:ga('send','event','GNB','sustainability','ESG 활동과 성과')">ESG 활동과 성과</a>ESG 활동과 성과 -->
+										<a href="https://www.cj.net/sustainability/esg-achievements" onclick="javascript:ga('send','event','GNB','sustainability','ESG 활동과 성과')">ESG 활동과 성과</a><!-- ESG 활동과 성과 -->
+									</li>
+									<li>
+										<!-- <a href="https://www.cj.net/sustainability/shareGroup/shareGroup.asp" onclick="javascript:ga('send','event','GNB','sustainability','CJ나눔재단')">CJ나눔재단</a>CJ 나눔재단 -->
+										<a href="https://www.cj.net/sustainability/share-group" onclick="javascript:ga('send','event','GNB','sustainability','CJ나눔재단')">CJ나눔재단</a><!-- CJ 나눔재단 -->
+									</li>
+									<li>
+										<!-- <a href="https://www.cj.net/sustainability/cultureGroup/cultureGroup.asp" onclick="javascript:ga('send','event','GNB','sustainability','CJ문화재단')">CJ문화재단</a>CJ 문화재단 -->
+										<a href="https://www.cj.net/sustainability/culture-group" onclick="javascript:ga('send','event','GNB','sustainability','CJ문화재단')">CJ문화재단</a><!-- CJ 문화재단 -->
+									</li>
+									<li>
+										<!--<a href="https://www.cj.net/sustainability/ethics/ethics.asp" onclick="javascript:ga('send','event','GNB','sustainability','윤리경영')">윤리경영</a>윤리경영  -->
+										<a href="https://www.cj.net/sustainability/ethics" onclick="javascript:ga('send','event','GNB','sustainability','윤리경영')">윤리경영</a><!--윤리경영  -->
+									</li>
+								</ul>
+							</div>
+						</li>
+							
+						<li>
+							<!--<a href="https://www.cj.net/cj_introduction/index.asp" target="_self" onclick="javascript:ga('send','event','GNB','CJ소개','CJ그룹')">CJ그룹</a> CJ그룹 -->
+							<a href="https://www.cj.net/cj-introduction" target="_self" onclick="javascript:ga('send','event','GNB','CJ소개','CJ그룹')">CJ그룹</a><!-- CJ그룹 -->
+							<div class="depth2">
+								<ul>
+									<!--li -->
+									<li>
+										<!--<a href="https://www.cj.net/cj_introduction/index.asp" onclick="javascript:ga('send','event','GNB','CJ소개','소개')">소개</a>소개  -->
+										<a href="https://www.cj.net/cj-introduction" onclick="javascript:ga('send','event','GNB','CJ소개','소개')">소개</a><!--소개  -->
+									</li>
+									<!--li -->
+									<li>
+										<!--<a href="https://www.cj.net/cj_introduction/origin/origin.asp" onclick="javascript:ga('send','event','GNB','CJ소개','연혁')">연혁</a>연혁  -->
+										<a href="https://www.cj.net/cj-introduction/origin" onclick="javascript:ga('send','event','GNB','CJ소개','연혁')">연혁</a><!--연혁  -->
+									</li>
+									<!--li -->
+									<li>
+										<!-- <a href="https://www.cj.net/cj_introduction/affiliates/affiliates.asp" onclick="javascript:ga('send','event','GNB','CJ소개','계열사')">계열사</a>계열사 -->
+										<a href="https://www.cj.net/cj-introduction/affiliates/" onclick="javascript:ga('send','event','GNB','CJ소개','계열사')">계열사</a><!-- 계열사 -->
+									</li>
+									<!--li -->
+									<li>
+										<!-- <a href="https://www.cj.net/cj_introduction/global/global.asp" onclick="javascript:ga('send','event','GNB','CJ소개','글로벌')">글로벌</a>글로벌 -->
+										<a href="https://www.cj.net/cj-introduction/global" onclick="javascript:ga('send','event','GNB','CJ소개','글로벌')">글로벌</a><!-- 글로벌 -->
+									</li>
+									<!--li -->
+									<!-- 
+									<li>
+										<a href="https://www.cj.net/cj_introduction/sports/golf.asp" onclick="javascript:ga('send','event','GNB','CJ소개','스포츠')">스포츠</a>
+									</li>
+									 -->
+									<!--li -->
+									<!-- <li >
+										<a href="https://dev.cj.net/cj_introduction/ethics/ethics.asp" onclick="javascript:ga('send','event','GNB','CJ소개','윤리경영')">윤리경영</a>
+									</li> -->
+									<!--li -->
+									<li>
+										<!-- <a href="https://www.cj.net/ir/notice/notice/notice_list.asp" onclick="javascript:ga('send','event','GNB','CJ소개','투자정보')">투자정보</a>투자정보 -->
+										<a href="https://www.cj.net/cj-introduction/ir/finance/highlight" onclick="javascript:ga('send','event','GNB','CJ소개','투자정보')">투자정보</a><!-- 투자정보 -->
+									</li>
+
+								</ul>
+							</div>
+						</li>
+						
+							<li> <!-- 어짜피 인재채용에선 무조건 on인 상태일테니.. -->
+								<!-- <a href="https://recruit.cj.net/recruit/ko/main/main/main.fo" target="_self">인재채용</a> -->
+								<a href="https://recruit.cj.net/recruit/ko/main/main/main.fo" class="onFocus onOver" target="_self">인재채용</a>
+								<div class="depth2" id="depth2onOff">
+									<ul class="depth2List">
+										<li><a href="https://recruit.cj.net/recruit/ko/recruit/recruit/list.fo">채용공고</a></li><!-- 채용공고 -->
+										<li><a href="https://recruit.cj.net/recruit/ko/recruit/culture/culture.fo">
+											일하는 방식<!-- 일하는 방식 -->
+										</a></li>
+										<li><a href="https://recruit.cj.net/recruit/ko/recruit/people/people.fo">
+											직무 이야기<!-- 직무 이야기 -->
+										</a></li>
+										<li><a href="https://recruit.cj.net/recruit/ko/recruit/guide/guide.fo">
+											<!--채용공고 채용공고-->
+											채용 안내<!-- 채용 안내 -->
+										</a></li>
+										<li><a href="https://recruit.cj.net/recruit/ko/main/notice/notice.fo?">
+											<!--채용공고 채용공고-->
+											공지사항<!-- notice -->
+										</a></li>
+										
+											<!-- <li><a href="https://recruit.cj.net/recruit/ko/member/login/login.fo?returnUrl=/ko/mypage/support_info/support_info.fo">My Page</a></li> -->
+											<li><a href="https://recruit.cj.net/recruit/ko/member/login/login.fo?returnUrl=/ko/mypage/support_info/support_info.fo">My Page<!-- My Page --></a></li>
+	                                	
+	                                	
+	                                	
+		                                <!-- <li><a href="https://recruit.cj.net/recruit/ko/recruit/job_inside/job_preview.fo">직무정보</a></li>직무정보 -->
+		                                <!--<li><a href="https://recruit.cj.net/recruit/ko/recruit/job_inside/job_preview.fo">직무정보</a></li> -->
+		                                <!--<li><a href="https://recruit.cj.net/recruit/ko/recruit/job_inside/job_in_interview.fo">CJ인 인터뷰</a></li>--><!-- CJ인 인터뷰 -->
+		                                <!--<li><a href="https://recruit.cj.net/recruit/ko/recruit/helper/qna.fo">Q&amp;A</a></li>-->
+		                                <!--<li><a href="https://recruit.cj.net/recruit/ko/main/notice/list.fo">채용공지</a></li>--><!-- 공지사항 -->
+									</ul>
+								</div>
+							</li>
+							
+				
+							<li>
+							<!-- <a href="https://www.cj.net/cj_introduction/index.asp" target="_self" onclick="javascript:ga('send','event','GNB','뉴스룸','뉴스룸')">CJ뉴스룸</a>뉴스룸 -->
+							<a href="https://cjnews.cj.net" target="_blank" onclick="javascript:ga('send','event','GNB','뉴스룸','뉴스룸')">CJ뉴스룸
+								<span class="box-svg">
+								         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M1.0957 2.27759C1.0957 1.1621 1.99113 0.257812 3.0957 0.257812H18.4996C19.6042 0.257812 20.4996 1.1621 20.4996 2.27759V18.238C20.4996 19.3535 19.6042 20.2578 18.4996 20.2578C17.395 20.2578 16.4996 19.3535 16.4996 18.238V4.29736H3.0957C1.99113 4.29736 1.0957 3.39308 1.0957 2.27759Z" fill="black"/>
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M19.2998 0.831192C20.0908 1.60978 20.1071 2.88853 19.3361 3.68735L3.93224 19.6478C3.16127 20.4466 1.89504 20.463 1.10404 19.6844C0.31304 18.9058 0.296799 17.6271 1.06777 16.8283L16.4716 0.867827C17.2426 0.0690039 18.5088 0.052602 19.2998 0.831192Z" fill="black"/>
+										 </svg>
+							    </span>
+							</a><!-- 뉴스룸-->
+							<div class="depth2">
+								<ul>
+									<!--li -->
+									<li>
+										<!-- <a href="https://www.cj.net/cj_introduction/index.asp" onclick="javascript:ga('send','event','GNB','뉴스룸','보도자료')">보도자료</a>보도자료 -->
+										<a href="https://cjnews.cj.net/category/news/보도자료/" target="_blank" onclick="javascript:ga('send','event','GNB','뉴스룸','보도자료')">보도자료
+										<span class="box-svg">
+									         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+													<path fill-rule="evenodd" clip-rule="evenodd" d="M1.0957 2.27759C1.0957 1.1621 1.99113 0.257812 3.0957 0.257812H18.4996C19.6042 0.257812 20.4996 1.1621 20.4996 2.27759V18.238C20.4996 19.3535 19.6042 20.2578 18.4996 20.2578C17.395 20.2578 16.4996 19.3535 16.4996 18.238V4.29736H3.0957C1.99113 4.29736 1.0957 3.39308 1.0957 2.27759Z" fill="black"/>
+													<path fill-rule="evenodd" clip-rule="evenodd" d="M19.2998 0.831192C20.0908 1.60978 20.1071 2.88853 19.3361 3.68735L3.93224 19.6478C3.16127 20.4466 1.89504 20.463 1.10404 19.6844C0.31304 18.9058 0.296799 17.6271 1.06777 16.8283L16.4716 0.867827C17.2426 0.0690039 18.5088 0.052602 19.2998 0.831192Z" fill="black"/>
+											 </svg>
+							            </span>
+										</a><!-- 보도자료 -->
+									<!-- </li> -->
+									<!--li -->
+									<li>
+										<!-- <a href="https://www.cj.net/cj_introduction/origin/origin.asp" onclick="javascript:ga('send','event','GNB','뉴스룸','언론보도')">언론보도</a>언론보도 -->
+										<a href="https://cjnews.cj.net/언론보도/" target="_blank" onclick="javascript:ga('send','event','GNB','뉴스룸','언론보도')">언론보도
+											<span class="box-svg">
+										         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+														<path fill-rule="evenodd" clip-rule="evenodd" d="M1.0957 2.27759C1.0957 1.1621 1.99113 0.257812 3.0957 0.257812H18.4996C19.6042 0.257812 20.4996 1.1621 20.4996 2.27759V18.238C20.4996 19.3535 19.6042 20.2578 18.4996 20.2578C17.395 20.2578 16.4996 19.3535 16.4996 18.238V4.29736H3.0957C1.99113 4.29736 1.0957 3.39308 1.0957 2.27759Z" fill="black"/>
+														<path fill-rule="evenodd" clip-rule="evenodd" d="M19.2998 0.831192C20.0908 1.60978 20.1071 2.88853 19.3361 3.68735L3.93224 19.6478C3.16127 20.4466 1.89504 20.463 1.10404 19.6844C0.31304 18.9058 0.296799 17.6271 1.06777 16.8283L16.4716 0.867827C17.2426 0.0690039 18.5088 0.052602 19.2998 0.831192Z" fill="black"/>
+												 </svg>
+							              </span>
+										</a><!-- 언론보도 -->
+									</li>
+									<!--li -->
+									<li>
+										<!-- <a href="https://www.cj.net/cj_introduction/affiliates/affiliates.asp" onclick="javascript:ga('send','event','GNB','뉴스룸','이미지 라이브러리')">이미지 라이브러리</a>이미지 라이브러리 -->
+										<a href="https://cjnews.cj.net/medialibrary/albums" target="_blank" onclick="javascript:ga('send','event','GNB','뉴스룸','이미지 라이브러리')">이미지 라이브러리
+										<span class="box-svg">
+										         <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+														<path fill-rule="evenodd" clip-rule="evenodd" d="M1.0957 2.27759C1.0957 1.1621 1.99113 0.257812 3.0957 0.257812H18.4996C19.6042 0.257812 20.4996 1.1621 20.4996 2.27759V18.238C20.4996 19.3535 19.6042 20.2578 18.4996 20.2578C17.395 20.2578 16.4996 19.3535 16.4996 18.238V4.29736H3.0957C1.99113 4.29736 1.0957 3.39308 1.0957 2.27759Z" fill="black"/>
+														<path fill-rule="evenodd" clip-rule="evenodd" d="M19.2998 0.831192C20.0908 1.60978 20.1071 2.88853 19.3361 3.68735L3.93224 19.6478C3.16127 20.4466 1.89504 20.463 1.10404 19.6844C0.31304 18.9058 0.296799 17.6271 1.06777 16.8283L16.4716 0.867827C17.2426 0.0690039 18.5088 0.052602 19.2998 0.831192Z" fill="black"/>
+												 </svg>
+							              </span>
+										</a><!-- 이미지 라이브러리 -->
+									</li>
+                                </ul>
+							</div>
+						</li>
+			
+			
+						
+						</ul>
+					</div>
+				</div>
+				<ul class="util_top">
+					<li>
+						
+							
+							
+								<div class="util_wrap">
+								<p class="go_my">
+									<a href="https://recruit.cj.net/recruit/ko/member/login/login.fo?returnUrl=https://recruit.cj.net/recruit/ko/main/main/main.fo" id="btn_my">
+										LOGIN
+									</a>
+								</p>
+							</div>
+							
+						
+					</li>
+
+<!-- 					<li> -->
+<!-- 					<div class="util_wrap"> -->
+<!-- 						<p class="go_lang"> -->
+<!-- 							<a class="close" id="glyc" title="언어선택 열기"> -->
+
+
+								
+
+
+
+<!-- 										<span class="box-svg"> -->
+<!-- 											<svg width="100%" height="100%" viewBox="0 0 10 7" fill="none" xmlns="http://www.w3.org/2000/svg"> -->
+<!-- 												<path d="M8.42031 1.64209L4.87031 5.19209L1.32031 1.64209" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> -->
+<!-- 											</svg> -->
+<!-- 										</span> -->
+
+
+							    
+<!-- 							</a> -->
+<!-- 						</p> -->
+<!-- 						<div class="list_lang" id="list_lang"> -->
+<!-- 							<ul> -->
+
+
+								
+
+
+
+								
+
+								
+<!-- 							</ul> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					</li> -->
+					
+				</ul>
+			</div>
+        
+		</div>
+	</div>
+
+    <!-- // id="header" -->
+    <!-- id="container" -->
+    
+    
+    
+
+
+
+
+    <div id="container" class="">
+		<div class="container_wrap">
+        	<!-- 메뉴명:채용정보 -->
+			<div class="sec_top"><!-- [d] : top:48px를 만나면 fixed 추가 -->
+				<!-- area_top -->
+				<!-- // area_top -->
+				
+            	</div>
+				
+
+			<!-- // 메뉴명:채용정보 -->
+
+
+	<title>로딩이미지</title>
+<style>
+ .loading {position:fixed;left:50%;top:50%;transform:translate(-50%, -50%);z-index:9999;pointer-events:none;}
+ .loading img {width:80px;height:80px;transition:.2s;animation: loading 1s linear infinite;}
+ @keyframes loading {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+<div class="loading">
+  <img src="https://imgrec.cj.net/recruit/ko/images/cjRecruit/img-loading.png" alt="로딩중" />
+</div>
+	 	<!-- id="contents" -->
+	 	<div id="contents" class="revamp is-recruit">
+	 		<section class="title-area">
+	          <h2 class="page-title">채용공고</h2><!-- JOBS -->
+	          <h3 class="title">세계인의 문화를 함께 만들어갈 여러분의 도전을 기다립니다</h3><!-- 세계인의 문화를 함께 만들어갈 여러분의 도전을 기다립니다 -->
+	        </section>
+	        <!-- Search -->
+	        <div class="search-area">
+	          <input class="text-input" id="sch_gonggotitle" type="text" placeholder="관심 있는 공고를 편리하게 찾아보세요."><!-- 관심 있는 공고를 편리하게 찾아보세요. -->
+	          <button type="submit" class="search-submit" onclick="goRecGonggo('INIT');return false;">
+	            <span class="blind">검색하기</span>
+	            <i>
+	             <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none">
+	              <path d="M10.665 1C16.1411 1 20.5801 5.30516 20.5801 10.6152C20.58 12.7956 19.8299 14.8051 18.5684 16.418L23.043 20.7568C23.5719 21.2701 23.572 22.1021 23.043 22.6152C22.5137 23.1285 21.6553 23.1285 21.126 22.6152L16.6523 18.2773C14.9886 19.5016 12.9147 20.2295 10.665 20.2295C5.18927 20.2294 0.750271 15.925 0.75 10.6152C0.75 5.30521 5.1891 1.00009 10.665 1ZM10.665 3.62891C6.68614 3.62899 3.46094 6.75688 3.46094 10.6152C3.46121 14.4734 6.68631 17.6005 10.665 17.6006C14.6438 17.6006 17.8698 14.4734 17.8701 10.6152C17.8701 6.75683 14.644 3.62891 10.665 3.62891Z" fill="black"/>
+	              </svg>
+	            </i>
+	          </button>
+	        </div>
+	        <!-- // Search -->
+	        <div class="util-area">
+	            <h4 class="tit">현재<!-- 현재 --> 
+	              총<!-- 총 -->
+	             <em class="num" ><span id="totCnt">0</span></em>건의 채용이 진행중 입니다.</h4><!-- 건의 채용이 진행중 입니다. -->
+	            <div class="select-wrap">
+	              <select id="selectOrder"  onchange="javascript:onclk()">
+	                <option value="1">최신순</option><!-- 최신순 -->
+	                <option value="2">마감순</option><!-- 마감순 -->
+	              </select>
+	            </div>
+	        </div>
+	        <div class="flex-wrap">
+			
+	          <!-- Filter -->
+	          <div class="filter-wrap">
+	            <form id="searchNewFrm" name="searchNewFrm" method="post">
+	            <input type="hidden" name="pageVal" id="pageVal" class="pageVal" value="1" />
+    			<input type="hidden" name="pageIndex" id="pageIndex" class="pageIndex" value="10" />
+    			<input type="hidden" name="orderDesc" id="orderDesc" class="orderDesc" value="1" />
+    			<input type="hidden" name="sch_title" id="sch_title" class="sch_title" value="" />
+    			<input type="hidden" name="arrGubun" id="arrGubun" class="arrGubun" value="" />
+				<input type="hidden" name="arrRecBu" id="arrRecBu" class="arrRecBu" value="" />
+				<input type="hidden" name="arrRecJob" id="arrRecJob" class="arrRecJob" value="" />
+				<input type="hidden" name="arrRecArea" id="arrRecArea" class="arrRecArea" value="" />
+				<input type="hidden" name="schArea" id="schArea" class="schArea" value="N" />
+	            <div class="tit-wrap underline">
+	              <h3 class="tit">FILTER</h3>
+	              <button type="button" class="btn-clear" onclick="goClearFilter();return false;">
+	                초기화<!-- 초기화 -->
+	                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16" fill="none">
+	                  <path d="M0.375 8.09961C0.375 4.26336 3.39718 1.09981 7.19043 1.09961C9.39128 1.09961 11.3406 2.17136 12.5811 3.81543C12.9135 4.25629 12.8256 4.88325 12.3848 5.21582C11.9439 5.54815 11.3169 5.46029 10.9844 5.01953C10.0965 3.84284 8.72281 3.09961 7.19043 3.09961C4.56007 3.09981 2.375 5.30869 2.375 8.09961C2.375 10.8905 4.56007 13.0994 7.19043 13.0996C9.55132 13.0996 11.5516 11.3237 11.9395 8.93945C12.0281 8.39433 12.5418 8.02366 13.0869 8.1123C13.6318 8.20102 14.0015 8.71483 13.9131 9.25977C13.3779 12.5508 10.5929 15.0996 7.19043 15.0996C3.39718 15.0994 0.375 11.9359 0.375 8.09961Z" fill="#006ECD"/>
+	                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.1008 0.0996094C12.5992 0.0996094 13.0033 0.516448 13.0033 1.03064V5.16858C13.0033 5.68277 12.5992 6.09961 12.1008 6.09961H8.08995C7.59154 6.09961 7.1875 5.68277 7.1875 5.16858C7.1875 4.65438 7.59154 4.23754 8.08995 4.23754H11.1984V1.03064C11.1984 0.516448 11.6024 0.0996094 12.1008 0.0996094Z" fill="#006ECD"/>
+	                </svg>
+	              </button>
+	            </div>
+	            <ul class="filter-list">
+	              <li class="fold-box">
+	                <div class="tit-wrap">
+	                  <h3 class="tit">채용구분</h3><!-- 채용구분 -->
+	                  <button type="button" class="btn-fold">
+	                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+	                      <path d="M10.4697 9.53033C10.7626 9.82322 11.2373 9.82322 11.5302 9.53033C11.8231 9.23744 11.8231 8.76268 11.5302 8.46978L6.53022 3.46978C6.23732 3.17689 5.76256 3.17689 5.46967 3.46978L0.46967 8.46978C0.176777 8.76268 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23732 9.82322 1.53022 9.53033L5.99994 5.0606L10.4697 9.53033Z" fill="black"/>
+	                    </svg>
+	                  </button>
+	                </div>
+	                  
+	                <ul class="item-list">
+	                	
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recGubunbox recChk" name="recGubunbox" id="recGubunbox_0" value="A">
+			                      <label for="recGubunbox_0">신입</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recGubunbox recChk" name="recGubunbox" id="recGubunbox_1" value="B">
+			                      <label for="recGubunbox_1">경력</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recGubunbox recChk" name="recGubunbox" id="recGubunbox_2" value="C">
+			                      <label for="recGubunbox_2">인턴</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recGubunbox recChk" name="recGubunbox" id="recGubunbox_3" value="Z">
+			                      <label for="recGubunbox_3">기타</label>
+			                    </span>
+							</li>
+							
+						
+	                </ul>
+	              </li>
+	              <li class="fold-box">
+	                <div class="tit-wrap">
+	                  <h3 class="tit">주관사</h3> <!-- 주관사 -->
+	                  <button type="button" class="btn-fold">
+	                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+	                      <path d="M10.4697 9.53033C10.7626 9.82322 11.2373 9.82322 11.5302 9.53033C11.8231 9.23744 11.8231 8.76268 11.5302 8.46978L6.53022 3.46978C6.23732 3.17689 5.76256 3.17689 5.46967 3.46978L0.46967 8.46978C0.176777 8.76268 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23732 9.82322 1.53022 9.53033L5.99994 5.0606L10.4697 9.53033Z" fill="black"/>
+	                    </svg>
+	                  </button>
+	                </div>
+	                <ul class="item-list">
+	                	
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_0" value="A10">
+			                      <label for="recBubox_0">CJ주식회사</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_1" value="B10">
+			                      <label for="recBubox_1">CJ제일제당</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_2" value="B14">
+			                      <label for="recBubox_2">CJ Feed&Care</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_3" value="B40">
+			                      <label for="recBubox_3">CJ푸드빌</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_4" value="B50">
+			                      <label for="recBubox_4">CJ프레시웨이</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_5" value="J10">
+			                      <label for="recBubox_5">CJ ENM</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_6" value="MAD">
+			                      <label for="recBubox_6">스튜디오드래곤</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_7" value="M20">
+			                      <label for="recBubox_7">CJ CGV</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_8" value="M24">
+			                      <label for="recBubox_8">CJ 4DPLEX</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_9" value="C53">
+			                      <label for="recBubox_9">CJ대한통운</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_10" value="E10">
+			                      <label for="recBubox_10">CJ올리브네트웍스</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_11" value="F97">
+			                      <label for="recBubox_11">CJ올리브영</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_12" value="MAK">
+			                      <label for="recBubox_12">CJ LiveCity</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_13" value="MAB">
+			                      <label for="recBubox_13">CJ메조미디어</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_14" value="B15">
+			                      <label for="recBubox_14">CJ씨푸드</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_15" value="B17">
+			                      <label for="recBubox_15">삼해상사(주)</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_16" value="B18">
+			                      <label for="recBubox_16">(주)원지</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_17" value="B52">
+			                      <label for="recBubox_17">프레시원</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_18" value="B60">
+			                      <label for="recBubox_18">CJ Wellcare</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_19" value="B61">
+			                      <label for="recBubox_19">CJ바이오사이언스</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_20" value="B80">
+			                      <label for="recBubox_20">CJ엠디원</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_21" value="C56">
+			                      <label for="recBubox_21">BND</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_22" value="C60">
+			                      <label for="recBubox_22">한국복합물류</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_23" value="C80">
+			                      <label for="recBubox_23">CJ텔레닉스</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_24" value="F10">
+			                      <label for="recBubox_24">CJ나눔재단</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_25" value="J12">
+			                      <label for="recBubox_25">TVING</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_26" value="J13">
+			                      <label for="recBubox_26">다다엠앤씨</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_27" value="J14">
+			                      <label for="recBubox_27">CJ ENM Studios</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recBubox recChk" name="recBubox" id="recBubox_28" value="MAT">
+			                      <label for="recBubox_28">디엑스이</label>
+			                    </span>
+							</li>
+							
+						
+	                </ul>
+	              </li>
+	              <li class="fold-box">
+	                <div class="tit-wrap">
+	                  <h3 class="tit">직무</h3><!-- 직무 -->
+	                  <button type="button" class="btn-fold">
+	                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+	                      <path d="M10.4697 9.53033C10.7626 9.82322 11.2373 9.82322 11.5302 9.53033C11.8231 9.23744 11.8231 8.76268 11.5302 8.46978L6.53022 3.46978C6.23732 3.17689 5.76256 3.17689 5.46967 3.46978L0.46967 8.46978C0.176777 8.76268 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23732 9.82322 1.53022 9.53033L5.99994 5.0606L10.4697 9.53033Z" fill="black"/>
+	                    </svg>
+	                  </button>
+	                </div>
+	                <ul class="item-list">
+	                	
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_0" value="AA">
+			                      <label for="recJobbox_0">인사</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_1" value="AB">
+			                      <label for="recJobbox_1">사업관리/재무</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_2" value="AC">
+			                      <label for="recJobbox_2">전략</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_3" value="AD">
+			                      <label for="recJobbox_3">경영지원</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_4" value="BE">
+			                      <label for="recJobbox_4">영업</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_5" value="CF">
+			                      <label for="recJobbox_5">마케팅</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_6" value="DG">
+			                      <label for="recJobbox_6">서비스</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_7" value="EI">
+			                      <label for="recJobbox_7">콘텐츠제작</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_8" value="EJ">
+			                      <label for="recJobbox_8">콘텐츠사업</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_9" value="EK">
+			                      <label for="recJobbox_9">콘텐츠기술</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_10" value="FM">
+			                      <label for="recJobbox_10">제조</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_11" value="GN">
+			                      <label for="recJobbox_11">건설/개발</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_12" value="HP">
+			                      <label for="recJobbox_12">연구개발</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_13" value="IR">
+			                      <label for="recJobbox_13">IT</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_14" value="JS">
+			                      <label for="recJobbox_14">디자인</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recJobbox recChk" name="recJobbox" id="recJobbox_15" value="KT">
+			                      <label for="recJobbox_15">물류</label>
+			                    </span>
+							</li>
+							
+						
+	                </ul>
+	              </li>
+<!-- ---------------------------------------------------------------------------------------------- -->
+<!-- 	              <li class="fold-box"> -->
+<!-- 	                <div class="tit-wrap"> -->
+<!-- 	                  <h3 class="tit">고용형태</h3> -->
+<!-- 	                  <button class="btn-fold"> -->
+<!-- 	                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"> -->
+<!-- 	                      <path d="M10.4697 9.53033C10.7626 9.82322 11.2373 9.82322 11.5302 9.53033C11.8231 9.23744 11.8231 8.76268 11.5302 8.46978L6.53022 3.46978C6.23732 3.17689 5.76256 3.17689 5.46967 3.46978L0.46967 8.46978C0.176777 8.76268 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23732 9.82322 1.53022 9.53033L5.99994 5.0606L10.4697 9.53033Z" fill="black"/> -->
+<!-- 	                    </svg> -->
+<!-- 	                  </button> -->
+<!-- 	                </div> -->
+<!-- 	                <ul class="item-list"> -->
+<!-- 	                  <li> -->
+<!-- 	                    <span class="iCheck small"> -->
+<!-- 	                      <input type="checkbox" id="filter0401" name="checkbox"> -->
+<!-- 	                      <label for="filter0401">정규</label> -->
+<!-- 	                    </span> -->
+<!-- 	                  </li> -->
+<!-- 	                  <li> -->
+<!-- 	                    <span class="iCheck small"> -->
+<!-- 	                      <input type="checkbox" id="filter0402" name="checkbox"> -->
+<!-- 	                      <label for="filter0402">계약</label> -->
+<!-- 	                    </span> -->
+<!-- 	                  </li> -->
+<!-- 	                  <li> -->
+<!-- 	                    <span class="iCheck small"> -->
+<!-- 	                      <input type="checkbox" id="filter0403" name="checkbox"> -->
+<!-- 	                      <label for="filter0403">아르바이트</label> -->
+<!-- 	                    </span> -->
+<!-- 	                  </li> -->
+<!-- 	                  <li> -->
+<!-- 	                    <span class="iCheck small"> -->
+<!-- 	                      <input type="checkbox" id="filter0404" name="checkbox"> -->
+<!-- 	                      <label for="filter0404">기타</label> -->
+<!-- 	                    </span> -->
+<!-- 	                  </li> -->
+<!-- 	                </ul> -->
+<!-- 	              </li> -->
+	              <li class="fold-box">
+	                <div class="tit-wrap">
+	                  <h3 class="tit">지역</h3><!-- 지역 -->
+	                  <button type="button" class="btn-fold">
+	                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+	                      <path d="M10.4697 9.53033C10.7626 9.82322 11.2373 9.82322 11.5302 9.53033C11.8231 9.23744 11.8231 8.76268 11.5302 8.46978L6.53022 3.46978C6.23732 3.17689 5.76256 3.17689 5.46967 3.46978L0.46967 8.46978C0.176777 8.76268 0.176777 9.23744 0.46967 9.53033C0.762563 9.82322 1.23732 9.82322 1.53022 9.53033L5.99994 5.0606L10.4697 9.53033Z" fill="black"/>
+	                    </svg>
+	                  </button>
+	                </div>
+	                <ul class="item-list">
+	                    
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_0" value="KR00">
+			                      <label for="recAreabox_0">전국</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_1" value="KR11">
+			                      <label for="recAreabox_1">서울</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_2" value="KR26">
+			                      <label for="recAreabox_2">부산</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_3" value="KR27">
+			                      <label for="recAreabox_3">대구</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_4" value="KR28">
+			                      <label for="recAreabox_4">인천</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_5" value="KR29">
+			                      <label for="recAreabox_5">광주</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_6" value="KR30">
+			                      <label for="recAreabox_6">대전</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_7" value="KR31">
+			                      <label for="recAreabox_7">울산</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_8" value="KR36">
+			                      <label for="recAreabox_8">세종</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_9" value="KR41">
+			                      <label for="recAreabox_9">경기</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_10" value="KR42">
+			                      <label for="recAreabox_10">강원</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_11" value="KR43">
+			                      <label for="recAreabox_11">충청</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_12" value="KR45">
+			                      <label for="recAreabox_12">전라</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_13" value="KR47">
+			                      <label for="recAreabox_13">경상</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_14" value="KR49">
+			                      <label for="recAreabox_14">제주</label>
+			                    </span>
+							</li>
+							
+						
+	                  		<li>
+			                    <span class="iCheck small">
+			                      <input type="checkbox" class="recAreabox recChk" name="recAreabox" id="recAreabox_15" value="FO00">
+			                      <label for="recAreabox_15">해외</label>
+			                    </span>
+							</li>
+							
+						
+	                </ul>
+	              </li>
+	            </ul>
+	            <div class="btn-area">
+					<button type="button" class="btn-dark full" onclick="schFilter(); return false;">필터적용</button><!-- 필터적용 -->
+				</div>
+	            </form>
+	          </div>
+	          <!-- //Filter -->
+	          <!-- Recruit List -->
+	          <div class="inner-wrap">
+	            <!-- 진행중인 공고 -->
+	            <ul class="support-list" id="recruitBody">
+					<li class="item empty">
+						<h4 class="tit">
+							진행중인 채용공고가 없습니다<br>
+						</h4>
+					</li>
+	            </ul>
+	            <!-- Pagination -->
+	            <div class="pagination" id="recruitPageArea">
+	                
+	            </div>
+	            <!-- Pagination -->   
+	            <!-- //진행중인 공고 -->
+	            <!-- 추천 공고 -->
+	            <div class="tit-wrap" id="recruitMark">
+	              <h3 class="title recommend">추천 공고</h3><!-- 추천 공고 -->
+	            </div>
+	            <ul class="support-list" id="recruitMarkBody" >
+	              
+	            </ul>
+	            <!-- //추천 공고 -->
+	            <!-- //진행중인 공고 없음 -->
+	          </div>
+	          <!-- //Recruit List -->
+	        </div>
+	        <!-- 관심채용공고 팝업 -->
+	        <div id="popBookmark" class="popup popup_bookmark" style="width:580px;margin-left:-290px">
+	          <span tabindex="0" class="tab_span"></span>
+	          <div class="popup_inner">
+	            <div class="popup_header">
+	              <div class="mod_title pop_title_type">
+	                  <h1 class="title">관심 채용 공고 등록</h1><!-- 관심 채용 공고 등록 -->
+	              </div>
+	            </div>
+	            <div class="popup_content">
+	              <div style="max-height:500px;"><!-- 스크롤 필요시 class="iscroll" -->
+	              관심 채용 공고로 등록되었습니다.</br>마이페이지에서 '관심공고' 탭에서 확인 하실 수 있습니다.<!-- 관심 채용 공고로 등록되었습니다.<br> 마이페이지에서 ‘관심공고’ 탭에서 확인 하실 수 있습니다. -->
+			                
+	              </div>
+	            </div>
+	            <div class="popup_footer">
+	              <button type="button" class="btn-line" onclick="needPopup.hide(); return false;">닫기</button><!-- 닫기 -->
+	              <button type="button" class="btn-dark" onclick="myPage(); return false;">마이페이지로 이동</button><!-- 마이페이지 이동 -->
+	            </div>
+	          </div>
+	        </div>
+	        <!-- // 관심채용공고 팝업 -->
+
+			<!-- 동의서 -->
+			<div href="#popAgree" data-popup-show="#popAgree" id="agreePop" >
+				<div class="popup" style="display:none;width:1200px;margin-left:-576px;max-height:910px;overflow: auto;" id="popAgree">
+					<div class="item_group item_info item_first">
+						<div class="mod_title mod_title_type2">
+							<h4 class="title">개인정보 수집 및 활용 동의 <!-- 개인정보 수집 활용 동의 -->
+							<div id="reqFlag">
+								<em class="required">(필수항목)</em><!-- (필수항목) -->
+							</div>
+							</h4>
+						</div>
+						<div class="area_agree recruitAgree">
+							<div class="agree_inner" id="perbody">
+							</div>
+						</div>	
+						<div class="sec_btns sec_btns_type">
+							<span class="btn_pack btn_large btn_type"><button type="button" onclick="goSubmitAgree();return false;">확인</button></span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- //동의서 -->
+			<!-- //이전 소스 -->
+		</div>
+		<!-- // id="contents" -->
+        
+        
+        
+<!-- 카카오 SDK -->
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script>
+if (typeof Kakao !== 'undefined') {
+    try {
+        // 카카오 초기화 (발급받은 JavaScript 키로 교체 필요)
+        Kakao.init('346b4896b0b748413152265a80124a9e');
+    } catch (error) {
+    	// shareToKakao 함수에서 처리 
+//         console.error('Kakao initialization error:', error);
+    }
+}
+</script>
+<script type="text/javascript">
+	var orgSeq = "";
+	var orgTasYn = "";
+	var orgAgrYn = "";
+	var schFlag = "N";
+	var totalCnt = 0;
+	var firstSch = "N";
+	$(document).ready(function() {
+		// 메뉴 활성화
+		menu_active(0, 0);
+
+		// 탭 메뉴 활성화
+		var zz_target_1 = $("input[name='zz_target_1']").val();
+		if (zz_target_1 != "") {
+			$("li[id^='liTabActive']").removeClass("active");
+			$("#liTabActive" + zz_target_1).addClass("active");
+		} else {
+			$("li[id^='liTabActive']").removeClass("active");
+			$("#liTabActive").addClass("active");
+		}
+		
+		//정렬 활성화
+		var orderDesc = $("input[name='orderDesc']").val();
+		if (orderDesc != ""){    
+			$("li[id^='orderDesc1']").removeClass("active");    
+			$("#orderDesc" + orderDesc).addClass("on");    
+		}else{  
+			$("li[id^='orderDesc1']").removeClass("active");   
+			$("#orderDesc1").addClass("on");    
+		}
+		
+		// 리스트 호출
+		goRecGonggo('INIT');
+		
+		$("#sch_gonggotitle").keydown(function(key) {
+	        if (key.keyCode == 13) {
+	        	goRecGonggo('INIT');
+	        }
+	    });
+	});
+	
+	function schFilter(){
+		goRecGonggo('INIT');
+	}
+	// 마이페이지 이동
+	function myPage(){
+		location.href = "https://recruit.cj.net/recruit/ko/mypage/support_info/support_info.fo";
+	}
+	
+	// 동의서 확인
+	function goSubmitAgree(){
+		var chkReg = "";
+		
+		var cnt = 0;
+		for(var i = 0; i < $(".chkInfo").length; i++){
+			
+			if($("#perInfo_1"+i).val() != "" && $("#flagInfoChk_"+i).val() == "Y"){	
+				if($("#perInfo_1"+i).val() == "N"){
+					chkReg = "C";
+				}
+			}
+			if($("#perInfo_1"+i).val() == "" && $("#flagInfoChk_"+i).val() == "Y"){
+				chkReg = "N";
+			}
+			if($("#perInfo_1"+i).val() == "" && $("#flagInfoChk_"+i).val() == "N"){
+				chkReg = "A";
+			}
+			if(chkReg == "C"){
+				alert('필수 항목 약관 비동의 시 지원이 불가합니다.'); //필수 항목 약관 비동의 시 지원이 불가합니다.
+				return;
+			}else if(chkReg == "N"){
+				alert('필수 항목 약관 동의 여부를 선택해주세요.'); //필수 항목 약관 동의 여부를 선택해주세요.
+				return;
+			}else if(chkReg == "A"){
+				alert('선택 항목 약관 동의 여부를 선택해주세요.'); //선택 항목 약관 동의 여부를 선택해주세요.
+				return;
+			}
+		}
+		$("#popAgree").find('.popup_cls').trigger("click");
+		
+		var agreeData = [];
+		var id = "";
+		var value="";
+		for(var i = 0; i < $(".chkInfo").length; i++){
+			value = $("#perInfo_1"+i).val();
+			agreeData.push(value);
+		}
+				
+		if(orgTasYn == "ghr"){ // 기존 공채
+			var options = {
+			    svcId : status,
+			    strUrl : "https://recruit.cj.net/recruit/ko/resume/resume/agreeGhrSave.fo?zz_jo_num=" + orgSeq,
+			    inDs	 : {
+			    	agreeData : JSON.stringify(agreeData)
+				},
+			    pCall : callbackAgreeSave
+			};
+			transaction(options);
+		}else if(orgTasYn == "tas"){ // 타스 
+			var options = {
+			    svcId : status,
+			    strUrl : "https://recruit.cj.net/recruit/ko/resume/resume/agreeBestSave.fo?zz_jo_num=" + orgSeq,
+			    inDs	 : {
+			    	agreeData : JSON.stringify(agreeData)
+				},
+			    pCall : callbackAgreeSave
+			};
+			transaction(options);
+		}
+	}
+	
+	function callbackAgreeSave(svcId, data, errCd, msgTp, msgCd, msgText){
+		if(orgTasYn == "ghr"){ // 기존 공채
+			window.location.href = "https://recruit.cj.net/recruit/ko/resume/resume/resume.fo?zz_jo_num=" + orgSeq + "&zz_page_seq=1";
+		}else if(orgTasYn == "tas"){ // 타스 
+			window.location.href = "https://recruit.cj.net/recruit/ko/resume/resume/bestResume.fo?zz_jo_num=" + orgSeq;
+		}
+	}
+	
+	// 검색
+	function goSearch(zz_target_1, orderDesc) {
+		$("input[name='zz_target_1']").val(zz_target_1);
+		$("input[name='zz_title']").val("");
+		$("select[name='company']").val("");
+		$("select[name='zz_job_cd']").val("");
+		$("input[name='orderDesc']").val(orderDesc);
+
+		$("#searchForm").submit();
+	}
+
+	// 검색조건 초기화
+	function resetSearchForm(reset, orderDesc) {
+		if (reset != "") {  
+			window.location.href = "https://recruit.cj.net/recruit/ko/recruit/recruit/list.fo?zz_target_1=";
+		} else {  
+			window.location.href = "https://recruit.cj.net/recruit/ko/recruit/recruit/list.fo?orderDesc=" + orderDesc;
+		}
+	}
+
+	// 공채 지원하기
+	function applyRecruit(seq, mthrYn, agrYn) {
+		
+		orgSeq = seq;
+		orgTasYn = "ghr";
+		orgAgrYn = agrYn;
+		var w_ko_g_user_seq = "";
+
+		if(mthrYn == "Y") {
+			location.href = "https://recruit.cj.net/recruit/ko/recruit/recruit/detail.fo?zz_jo_num=" + seq;
+		} else {
+			if (w_ko_g_user_seq == "") {
+				window.location.href = "https://recruit.cj.net/recruit/ko/member/login/login.fo?returnUrl=https://recruit.cj.net/recruit/ko/recruit/recruit/list.fo";
+			}else{
+				// 기 제출여부 확인
+				var options = {
+				    svcId : status,
+				    strUrl : "https://recruit.cj.net/recruit/ko/resume/resume/search_final_submit_data.fo?zz_jo_num=" + seq,
+				    pCall : callbackApplyRecruit
+				};
+				transaction(options);
+			}
+		}
+	}
+
+	// 최고인재 지원하기
+	function bestApplyRecruit(seq, mthrYn, agrYn) {
+		
+		orgSeq = seq;
+		orgTasYn = "tas";
+		orgAgrYn = agrYn;
+		var w_ko_g_user_seq = "";
+
+		if(mthrYn == "Y") {
+			location.href = "https://recruit.cj.net/recruit/ko/recruit/recruit/bestDetail.fo?direct=N&zz_jo_num=" + seq;
+		} else {
+			if (w_ko_g_user_seq == "") {
+				window.location.href = "https://recruit.cj.net/recruit/ko/member/login/login.fo?returnUrl=https://recruit.cj.net/recruit/ko/recruit/recruit/list.fo";
+			}else{
+				// 기 제출여부 확인
+				var options = {
+				    svcId : status,
+				    strUrl : "https://recruit.cj.net/recruit/ko/resume/resume/bestSearch_final_submit_data.fo?zz_jo_num=" + seq,
+				    pCall : callbackBestApplyRecruit
+				};
+				transaction(options);
+			}
+		}
+	}
+	
+	// 동의서 팝업 호출
+	function callbackAgree(svcId, data, errCd, msgTp, msgCd, msgText) {
+		
+		if (data) {
+			
+			var htmlStr = '';
+			var flagStr = '';
+			
+				$.each(data.ds_per_list.data, function(i, obj) {
+					htmlStr += '<form name="agreeForm" id="agreeForm">';
+					htmlStr += '<div id="divPerInfo'+i+'" class="box_policy fold-box" >';
+					
+					$("#reqFlag").css("display","none");
+					if(obj.zz_req_flag== "Y"){
+					htmlStr += '	<h5 class="title"><em class="required spr">필수</em>'+obj.descr50;
+					htmlStr +='<div style="margin-left:7px; font-size:13px; color:#dd343a">(필수)</div>';
+						}else{
+					htmlStr += '	<h5 class="title">'+obj.descr50;
+					htmlStr +='<div style="margin-left:7px; font-size:13px; color:#dd343a">(선택)</div>';
+						}
+					
+					
+					htmlStr += '		<input type="text" id="flagInfoChk_'+i+'" style="display:none;" value="'+obj.zz_req_flag+'">';
+					htmlStr += '		<button onclick="javascript:divPer('+i+');" class="btn_pack btn-fold"><i class="icon"></i></button>';
+					htmlStr += '	</h5>';
+					htmlStr += '	<div class="box_agree iScroll fold-content" tabindex="0">'+obj.descrlong+'</div>';
+					htmlStr += '	<p class="agree">';
+					htmlStr += '		<span class="inCheck chkInfoSpan" onclick="perChange1('+i+');">';
+					htmlStr += '			<label for="perInfo_1'+i+'"> 동의</label>';
+					htmlStr += '			<span class="iradio" style="position: relative;" id="rdoInfo_1'+i+'">';	
+					htmlStr += '				<input type="radio" class="chkInfo perInfoChk" name="perInfoChk'+i+'" id="perInfo_1'+i+'" value="" style="position: absolute; opacity:0;"></input>';
+					htmlStr += '				<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>';
+					htmlStr += '			</span>';
+					htmlStr += '		</span>';
+					htmlStr += '		<span class="inCheck chkInfoSpan" onclick="perChange2('+i+');">';
+					htmlStr += '			<label for="perInfo_2'+i+'"> 비동의</label>';
+					htmlStr += '			<span class="iradio" style="position: relative;" id="rdoInfo_2'+i+'">';
+					htmlStr += '				<input type="radio" class="perInfoChk" name="perInfoChk'+i+'" id="perInfo_2'+i+'" value="N" style="position: absolute; opacity:0;"></input>';
+					htmlStr += '				<ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>';
+					htmlStr += '			</span>';
+					htmlStr += '		</span>';
+					htmlStr += '	</p>';
+					htmlStr += '</div>';
+					htmlStr += '</form>';
+				});	
+
+				
+				
+			$("#agreePop").trigger("click");
+			$("#perbody").html(htmlStr);
+			$("#popAgree").addClass("stacked");
+		}
+		
+	}
+	function perChange1(str){
+		$("#rdoInfo_1"+str).addClass("checked");
+		$("#rdoInfo_2"+str).removeClass("checked");
+		$("#perInfo_1"+str).val("Y");
+		
+	}
+	
+	function perChange2(str){
+		$("#rdoInfo_2"+str).addClass("checked");
+		$("#rdoInfo_1"+str).removeClass("checked");
+		$("#perInfo_1"+str).val("N");
+	}
+	function divPer(seq){
+		var classVal = $('#divPerInfo'+seq).attr('class');
+		if(classVal == "box_policy fold-box"){
+			$('#divPerInfo'+seq).removeClass("box_policy fold-box");
+			$('#divPerInfo'+seq).addClass("box_policy fold-box fold");
+		}else{
+			$('#divPerInfo'+seq).removeClass("box_policy fold-box fold");
+			$('#divPerInfo'+seq).addClass("box_policy fold-box");
+		}
+	}
+	
+	// 공채 이력 콜백
+	function callbackApplyRecruit(svcId, data, errCd, msgTp, msgCd, msgText) {
+		var result = data.result;
+
+		if (result == "01") {
+			window.location.href = "https://recruit.cj.net/recruit/ko/member/login/login.fo?returnUrl=https://recruit.cj.net/recruit/ko/recruit/recruit/list.fo";
+		} else if (result == "11") {
+			alert('지원 가능한 공고가 아닙니다.'); //지원 가능한 공고가 아닙니다.
+		} else if (result == "12") {
+			alert('지원이 마감된 공고입니다.'); //지원이 마감된 공고입니다.
+			window.location.reload();
+		} else if (result == "22") {
+			alert('이미 지원이 완료된 공고입니다.'); //이미 지원이 완료된 공고입니다.
+			window.location.reload();
+		} else if (result == "24") {
+			alert('작성중인 이력서가 존재합니다.\n[My Page > 지원결과확인]에서 지원한 이력서를 삭제 후 지원 가능합니다.'); //작성중인 이력서가 존재합니다.\n[My Page > 지원결과확인]에서 지원한 이력서를 삭제 후 지원 가능합니다.
+		} else {
+
+			if(orgAgrYn == "Y"){
+				if (data.imsiYn == "Y") { // 임시저장일땐 바로 지원하기
+					window.location.href = "https://recruit.cj.net/recruit/ko/resume/resume/resume.fo?zz_jo_num=" + data.zz_jo_num + "&zz_page_seq=1";
+				}else{
+					// 동의서 팝업 호출
+					var options = {
+						    svcId : status,
+						    strUrl : "https://recruit.cj.net/recruit/ko/resume/resume/searchAgree.fo?agrYn=ghr&zz_jo_num=" + data.zz_jo_num,
+						    param : getMergedObject( $("#agreeForm").serializeObject()),
+						    pCall : callbackAgree
+						};
+					transaction(options);
+				}
+				
+			}else{
+				window.location.href = "https://recruit.cj.net/recruit/ko/resume/resume/resume.fo?zz_jo_num=" + data.zz_jo_num + "&zz_page_seq=1";
+			}
+		}
+	}
+	
+	// 최고인재 이력 콜백
+	function callbackBestApplyRecruit(svcId, data, errCd, msgTp, msgCd, msgText) {
+		var result = data.result;
+
+		if (result == "01") {
+			window.location.href = "https://recruit.cj.net/recruit/ko/member/login/login.fo?returnUrl=https://recruit.cj.net/recruit/ko/recruit/recruit/list.fo";
+		} else if (result == "11") {
+			alert('지원 가능한 공고가 아닙니다.'); //지원 가능한 공고가 아닙니다.
+		} else if (result == "12") {
+			alert('지원이 마감된 공고입니다.'); //지원이 마감된 공고입니다.
+			window.location.reload();
+		} else if (result == "22") {
+			alert('이미 지원이 완료된 공고입니다.'); //이미 지원이 완료된 공고입니다.
+			window.location.reload();
+		} else if (result == "24") {
+			alert('작성중인 이력서가 존재합니다.\n[My Page > 지원결과확인]에서 지원한 이력서를 삭제 후 지원 가능합니다.'); //작성중인 이력서가 존재합니다.\n[My Page > 지원결과확인]에서 지원한 이력서를 삭제 후 지원 가능합니다.
+		} else if (result == "99") {
+			alert('불합격 이력이 있는 공고에는 재지원 할 수 없습니다.'); // 불합격 이력이 있는 공고에는 재지원 할 수 없습니다.
+			window.location.reload();
+		} else {
+
+			if(orgAgrYn == "Y"){
+				if (data.imsiYn == "Y") { // 임시저장일땐 바로 지원하기
+					window.location.href = "https://recruit.cj.net/recruit/ko/resume/resume/bestResume.fo?zz_jo_num=" + data.zz_jo_num;
+				}else{
+					// 동의서 팝업 호출
+					var options = {
+						    svcId : status,
+						    strUrl : "https://recruit.cj.net/recruit/ko/resume/resume/searchAgree.fo?agrYn=tas&zz_jo_num=" + data.zz_jo_num,
+						    param : getMergedObject( $("#agreeForm").serializeObject()),
+						    pCall : callbackAgree
+						};
+					transaction(options);
+				}
+			}else{
+				window.location.href = "https://recruit.cj.net/recruit/ko/resume/resume/bestResume.fo?zz_jo_num=" + data.zz_jo_num;
+			}
+		}
+	}
+	
+	//마이페이지 이동
+// 	$(document).on("click", ".btn-dark", function(e) {
+// 		location.href='https://recruit.cj.net/recruit/ko/mypage/interest/interest.fo';
+// 	})
+	
+	//Share
+	$(document)
+	.on("click", ".btn-share", function(e){
+	  e.stopPropagation();
+	  $(this).next(".share-option").toggleClass("active");
+	})
+	.on("click", ".share-option", e => e.stopPropagation())
+	.on("click", () => $(".share-option").removeClass("active"));
+	
+	//  필터 초기화
+	function goClearFilter(){
+		$(".icheckbox").removeClass("checked"); 
+		$("input[type='checkbox']").prop("checked", false);
+		
+		$("#arrGubun").val("");
+		$("#arrRecBu").val("");
+		$("#arrRecJob").val("");
+		$("#arrRecArea").val("");
+	}
+	
+	// 공고 검색
+	function goRecGonggo(gbn){
+		
+		if(gbn == "INIT"){
+			$("#pageVal").val("1");
+		}
+		
+		$('.loading').show();
+		
+		if(gbn != "PAGE"){
+			// 채용구분
+			var gubunArr = "";
+			$(".recGubunbox").each(function(){
+				if($(this).prop("checked")){
+					var thisVal = $(this).val(); 
+					
+					if(thisVal == "Z"){ // 기타 조건 
+						thisVal = "K";
+					}else{
+						thisVal = $(this).val();
+					}
+					if(gubunArr == ""){
+						gubunArr = "'" + thisVal + "'";
+					}else{
+						gubunArr = gubunArr + ",'" + thisVal + "'";
+					}
+				}
+			});
+			
+			// 주관사
+			var recBuArr = "";
+			$(".recBubox").each(function(){
+				if($(this).prop("checked")){
+					if(recBuArr == ""){
+						recBuArr = "'" + $(this).val() + "'";
+					}else{
+						recBuArr = recBuArr + ",'" + $(this).val() + "'";
+					}
+				}
+			});
+			
+			// 직무
+			var recJobArr = "";
+			$(".recJobbox").each(function(){
+				if($(this).prop("checked")){
+					if(recJobArr == ""){
+						recJobArr = "'" + $(this).val() + "'";
+					}else{
+						recJobArr = recJobArr + ",'" + $(this).val() + "'";
+					}
+				}
+			});
+			
+			// 직무
+			var recAreaArr = "";
+			$(".recAreabox").each(function(){
+				if($(this).prop("checked")){
+					if(recAreaArr == ""){
+						recAreaArr =  "'" + $(this).val() + "'";
+					}else{
+						recAreaArr = recAreaArr + ",'" + $(this).val() + "'";
+					}
+				}
+			});
+			
+			$("#arrGubun").val(gubunArr);
+			$("#arrRecBu").val(recBuArr);
+			$("#arrRecJob").val(recJobArr);
+			$("#arrRecArea").val(recAreaArr);
+			var recTitle = "";
+			if($("#sch_gonggotitle").val() == ""){
+				if("" != ""){
+					if(firstSch == "N"){
+						recTitle = ""; // 공고명 넣기
+						firstSch = "Y";
+					}else{
+						recTitle = ""; // 공고명 넣기
+					}
+				}
+			}else{
+				recTitle = $("#sch_gonggotitle").val();
+			}
+			$("#sch_title").val(recTitle);
+		}
+		// 
+		if($("#arrGubun").val() == "" && $("#arrRecBu").val() == "" && $("#arrRecJob").val() == "" && $("#arrRecArea").val() == "" && $("#sch_title").val() == ""){
+			$("#schArea").val("N");
+		}else{
+			$("#schArea").val("Y");
+		}
+		
+		// 공고검색 호출
+		var options = {
+			    svcId : "searchNewGonggoList",
+			    strUrl : "https://recruit.cj.net/recruit/ko/recruit/recruit/searchNewGonggoList.fo",
+			    param : getMergedObject( $("#searchNewFrm").serializeObject()),
+			    pCall : tranCallBack
+			};
+		transaction(options);
+	}
+	
+	function tranCallBack(svcId, data, errCd, msgTp, msgCd, msgText){
+		if(errCd != ERR_CD_SUCCESS){
+			alert(msgText);
+			return;
+		}
+		if(svcId=="searchNewGonggoList"){
+			//검색조건 변경에 따른 페이지가 없는경우
+			if($("#pageVal").val() != "1"){
+				var startNum = (parseInt($("#pageIndex").val()) * parseInt($("#pageVal").val())) - parseInt($("#pageIndex").val());
+				if(parseInt(totalCnt) <= parseInt(startNum)){
+					$("#pageVal").val("1");
+					goRecGonggo('INIT');
+					return;
+				}
+			}
+			
+			var ds_newRecruitList = data["ds_newRecruitList"]; // 채용리스트
+			var ds_myMarkList = data["ds_myMarkList"]; // 내 관심리스트
+
+			let sub = new Set(); // 기본값
+			
+			if(data.myMarkCnt > 0){
+				sub = new Set(ds_myMarkList.filter(v => v.zz_jo_num && v.zz_jo_num != null).map(v => v.zz_jo_num));
+			}
+			
+			var htmlStr = "";
+			for(var i = 0; i < ds_newRecruitList.length; i++){
+				  
+				totalCnt = ds_newRecruitList[i].tot_cnt;
+				htmlStr = htmlStr + '<li>';
+			
+				htmlStr = htmlStr + '	<a onclick="goNewDetail(\''+ds_newRecruitList[i].gubun+'\', \''+ds_newRecruitList[i].zz_jo_num+'\', \''+ds_newRecruitList[i].zz_mthr_yn+'\', \''+ds_newRecruitList[i].dday+'\');return false;" class="item link">';
+				htmlStr = htmlStr + '		<div class="tit-wrap">';
+				htmlStr = htmlStr + '			<p class="title">';
+				if(ds_newRecruitList[i].many_lng_zz_title == null){
+					if(ds_newRecruitList[i].zz_mthr_yn == "Y"){
+						htmlStr = htmlStr + '			<strong>'+ds_newRecruitList[i].zz_title+'</strong>';
+					}else{
+						htmlStr = htmlStr +  ds_newRecruitList[i].zz_title;
+					}
+				}else{
+					if(ds_newRecruitList[i].zz_mthr_yn == "Y"){
+						htmlStr = htmlStr + '			<strong>'+ds_newRecruitList[i].many_lng_zz_title+'</strong>';
+					}else{
+						htmlStr = htmlStr + ds_newRecruitList[i].many_lng_zz_title;
+					}
+				}
+				
+				if( ds_newRecruitList[i].zz_new_time < 48 ){
+					htmlStr = htmlStr + '  				<span class="spr ico_new">New</span>';
+				}
+				htmlStr = htmlStr + '			</p>'; 
+				htmlStr = htmlStr + '			<p class="company">'+ds_newRecruitList[i].compnm+'</p>';
+				htmlStr = htmlStr + '		</div>';
+				htmlStr = htmlStr + '		<ul class="meta-info">';
+				htmlStr = htmlStr + '			<li>';
+				if( ds_newRecruitList[i].zz_till_hire == "Y"){
+					htmlStr = htmlStr + '  				<span class="box-txt">상시</span>'; 
+					htmlStr = htmlStr + ds_newRecruitList[i].zz_str_dt_str + ' ~ 채용시까지'; // 채용시까지
+				}else{
+					if( ds_newRecruitList[i].dday == "99999"){
+						htmlStr = htmlStr + '  				<span class="box-txt">D-DAY</span>'; // D-day
+					}else if( ds_newRecruitList[i].dday == "00000"){
+						htmlStr = htmlStr + '  				<span class="box-txt">마감</span>'; // 마감
+					}else{
+						htmlStr = htmlStr + '  				<span class="box-txt">D-'+ds_newRecruitList[i].dday+'</span>'; // D-
+					}
+					htmlStr = htmlStr + ds_newRecruitList[i].zz_str_dt_str + ' ~ ' + ds_newRecruitList[i].zz_end_dt_str;
+					if( ds_newRecruitList[i].dday == "99999"){
+						htmlStr = htmlStr + '  				<span class="color-red">( '+ds_newRecruitList[i].zz_end_hh+':'+ds_newRecruitList[i].zz_end_mi+' 까지 )</span>'; // 
+					}
+				}
+				htmlStr = htmlStr + '			</li>';
+				
+				// 채용구분
+				if( ds_newRecruitList[i].zz_target_1 == "A"){
+					htmlStr = htmlStr + '			<li>신입</li>'; // 신입
+				}else if( ds_newRecruitList[i].zz_target_1 == "B"){
+					htmlStr = htmlStr + '			<li>경력</li>'; // 경력
+				}else if( ds_newRecruitList[i].zz_target_1 == "C"){	
+					htmlStr = htmlStr + '			<li>인턴</li>'; // 인턴
+				}else if( ds_newRecruitList[i].zz_target_1 == "E"){	
+					htmlStr = htmlStr + '			<li>신입·경력</li>';	// 신입경력
+				}else if( ds_newRecruitList[i].zz_target_1 == "K"){	
+					htmlStr = htmlStr + '			<li>기타</li>';	//기타
+				}
+			
+				// 고용형태
+				if( ds_newRecruitList[i].gubun == "2"){ // 타스 일때만
+					if( ds_newRecruitList[i].zz_jo_type == "A"){
+						htmlStr = htmlStr + '			<li>정규직</li>'; // 정규직
+					}else if( ds_newRecruitList[i].zz_jo_type == "B"){
+						htmlStr = htmlStr + '			<li>계약직</li>'; // 계약직
+					}else if( ds_newRecruitList[i].zz_jo_type == "C"){
+						htmlStr = htmlStr + '			<li>기타</li>'; // 기타
+					}else if( ds_newRecruitList[i].zz_jo_type == "D"){
+						htmlStr = htmlStr + '			<li>파견직</li>'; // 파견직	
+					}
+				}
+				
+				htmlStr = htmlStr + '			<li>'+ds_newRecruitList[i].location_cd_nm+'</li>';
+				htmlStr = htmlStr + '			<li>'+ds_newRecruitList[i].job_cd_nm+'</li>';  
+				
+				htmlStr = htmlStr + '		</ul>';
+				htmlStr = htmlStr + '	</a>';
+				
+				htmlStr = htmlStr + '<div class="post-actions ">';
+				htmlStr = htmlStr + '  <!-- 선택시 active 추가 -->';
+				htmlStr = htmlStr + '<input type="hidden" id="bookmarkPop" href="#popBookmark" data-popup-show="#popBookmark"/>';
+				if(data.myMarkCnt > 0){
+					if (sub.has(ds_newRecruitList[i].zz_jo_num)) {
+						htmlStr = htmlStr + '<button type="button" class="btn-bookmark active" onclick="bookmarkGonggo(\''+ds_newRecruitList[i].zz_jo_num+'\',\''+ds_newRecruitList[i].dday+'\');return false;">';
+					}else{
+						htmlStr = htmlStr + '<button type="button" class="btn-bookmark" onclick="bookmarkGonggo(\''+ds_newRecruitList[i].zz_jo_num+'\',\''+ds_newRecruitList[i].dday+'\');return false;">';
+					}
+				}else{
+					htmlStr = htmlStr + '<button type="button" class="btn-bookmark" onclick="bookmarkGonggo(\''+ds_newRecruitList[i].zz_jo_num+'\',\''+ds_newRecruitList[i].dday+'\');return false;">';
+				}
+				
+				htmlStr = htmlStr + '  <span class="blind"></span>';
+				htmlStr = htmlStr + '   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="19" viewBox="0 0 14 19" fill="none">';
+				htmlStr = htmlStr + '    <path d="M1 0.75H13C13.1381 0.75 13.25 0.861929 13.25 1V17.2617C13.2499 17.4544 13.0406 17.5744 12.874 17.4775L7.87988 14.5732C7.33598 14.2569 6.66402 14.2569 6.12012 14.5732L1.12598 17.4775C0.959361 17.5744 0.750122 17.4544 0.75 17.2617V1C0.75 0.861929 0.861928 0.75 1 0.75Z" stroke="#97999B" stroke-width="1.5"/>';
+				htmlStr = htmlStr + '  </svg>';
+				htmlStr = htmlStr + '</button>';
+				htmlStr = htmlStr + '<button type="button" class="btn-share">';
+				htmlStr = htmlStr + '  <span class="blind"></span>';
+				htmlStr = htmlStr + '  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">';
+				htmlStr = htmlStr + '    <path d="M17.7256 3.60449C17.7254 2.44219 16.7825 1.5 15.6201 1.5C14.4579 1.50014 13.5158 2.44227 13.5156 3.60449C13.5156 4.76683 14.4578 5.70982 15.6201 5.70996V7.20996L15.4346 7.20508C13.5301 7.10839 12.0156 5.53303 12.0156 3.60449C12.0158 1.61385 13.6295 0.000137729 15.6201 0C17.6109 0 19.2254 1.61376 19.2256 3.60449L19.2207 3.79004C19.1243 5.69478 17.5488 7.20996 15.6201 7.20996V5.70996C16.7825 5.70996 17.7256 4.76691 17.7256 3.60449Z" fill="#97999B"/>';
+				htmlStr = htmlStr + '    <path d="M13.6338 5.43066L6.42383 10.2373L5.5918 8.98926L12.8018 4.18262L13.6338 5.43066Z" fill="#97999B"/>';
+				htmlStr = htmlStr + '    <path d="M13.6338 16.1982L6.42383 11.3916L5.5918 12.6396L12.8018 17.4463L13.6338 16.1982Z" fill="#97999B"/>';
+				htmlStr = htmlStr + '    <path d="M17.7256 18.0244C17.7254 16.8621 16.7825 15.9199 15.6201 15.9199C14.4579 15.9201 13.5158 16.8622 13.5156 18.0244C13.5156 19.1867 14.4578 20.1297 15.6201 20.1299V21.6299L15.4346 21.625C13.5301 21.5283 12.0156 19.953 12.0156 18.0244C12.0158 16.0338 13.6295 14.4201 15.6201 14.4199C17.6109 14.4199 19.2254 16.0337 19.2256 18.0244L19.2207 18.21C19.1243 20.1147 17.5488 21.6299 15.6201 21.6299V20.1299C16.7825 20.1299 17.7256 19.1868 17.7256 18.0244Z" fill="#97999B"/>';
+				htmlStr = htmlStr + '    <path d="M5.70996 10.8135C5.70982 9.65117 4.76683 8.70898 3.60449 8.70898C2.44227 8.70912 1.50014 9.65126 1.5 10.8135C1.5 11.9758 2.44219 12.9188 3.60449 12.9189V14.4189L3.41895 14.4141C1.51444 14.3174 0 12.742 0 10.8135C0.000137729 8.82283 1.61385 7.20912 3.60449 7.20898C5.59525 7.20898 7.20982 8.82275 7.20996 10.8135L7.20508 10.999C7.10864 12.9038 5.5332 14.4189 3.60449 14.4189V12.9189C4.76691 12.9189 5.70996 11.9759 5.70996 10.8135Z" fill="#97999B"/>';
+				htmlStr = htmlStr + '  </svg>';
+				htmlStr = htmlStr + '</button>';
+				htmlStr = htmlStr + '<ul class="share-option">';
+				htmlStr = htmlStr + '  <li><a href="#" onclick="shareToKakao(\''+ds_newRecruitList[i].gubun+'\',\''+ds_newRecruitList[i].zz_jo_num+'\');"><img src="https://imgrec.cj.net/recruit/ko/images/common/btn-share-kakao.png" alt="카카오톡 채널" /></a></li>';
+				htmlStr = htmlStr + '  <li><a href="#" onclick="shareToLinkedIn(\''+ds_newRecruitList[i].gubun+'\',\''+ds_newRecruitList[i].zz_jo_num+'\'); return false;"><img src="https://imgrec.cj.net/recruit/ko/images/common/btn-share-in.png" alt="링크드인" /></a></li>';
+// 				htmlStr = htmlStr + '  <li><a href="#"><img src="https://imgrec.cj.net/recruit/ko/images/common/btn-share-face.png" alt="facebook" /></a></li>';
+// 				htmlStr = htmlStr + '  <li><a href="#"><img src="https://imgrec.cj.net/recruit/ko/images/common/btn-share-x.png" alt="x" /></a></li>';
+				htmlStr = htmlStr + '  <li><button onclick="copyUrl(\''+ds_newRecruitList[i].gubun+'\',\''+ds_newRecruitList[i].zz_jo_num+'\'); return false;" type="button" class="btn-copy"><img src="https://imgrec.cj.net/recruit/ko/images/common/btn-share-link.png" alt="link copy" /></button></li>';
+// 				htmlStr = htmlStr + '  <li><a href="mailto:"><img src="https://imgrec.cj.net/recruit/ko/images/common/btn-share-letter.png" alt="email" /></a></li>';
+				htmlStr = htmlStr + '</ul>';
+				htmlStr = htmlStr + '</div>';
+				htmlStr = htmlStr + '</li>';
+				 
+			}
+			if(ds_newRecruitList.length == 0){
+				htmlStr = htmlStr + '<ul class="support-list">';
+				htmlStr = htmlStr + '	<li class="item empty">';
+				htmlStr = htmlStr + '		<h4 class="tit">';
+				htmlStr = htmlStr + '			진행 중인 공고가 없습니다.'; // 진행 중인 공고가 없습니다.</br>원하는 공고가 없다면 인재 DB에 등록해 보세요.
+				htmlStr = htmlStr + '		</h4>';
+				htmlStr = htmlStr + '	</li>';
+				htmlStr = htmlStr + '</ul>';
+				totalCnt = 0;
+			}
+			var recruitTotCnt = totalCnt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+			pageCommonEvent(parseInt(totalCnt), parseInt($("#pageIndex").val()), parseInt($("#pageVal").val()), "recruitPageArea");
+			$("#totCnt").html(totalCnt); 
+			$("#recruitBody").html(htmlStr);
+			
+			$('.loading').hide();
+			
+			var ds_markRecruitList = data["ds_markRecruitList"]; // 추천공고리스트
+			
+			htmlStr = "";
+			if(ds_markRecruitList != null){
+				for(var i = 0; i < ds_markRecruitList.length; i++){
+					htmlStr = htmlStr + '<li >';
+				
+					htmlStr = htmlStr + '	<a onclick="goNewDetail(\''+ds_markRecruitList[i].GUBUN+'\', \''+ds_markRecruitList[i].ZZ_JO_NUM+'\', \''+ds_markRecruitList[i].ZZ_MTHR_YN+'\', \''+ds_markRecruitList[i].dday+'\');return false;" class="item link">';
+					htmlStr = htmlStr + '		<div class="tit-wrap">';
+					htmlStr = htmlStr + '			<p class="title">'+ds_markRecruitList[i].ZZ_TITLE;
+					htmlStr = htmlStr + '			</p>'; 
+					htmlStr = htmlStr + '			<p class="company">'+ds_markRecruitList[i].COMPNM+'</p>';
+					htmlStr = htmlStr + '		</div>';
+					htmlStr = htmlStr + '		<ul class="meta-info">';
+					htmlStr = htmlStr + '			<li>';
+					
+					if( ds_markRecruitList[i].ZZ_TILL_HIRE == "Y"){
+						htmlStr = htmlStr + '  				<span class="box-txt">상시</span>'; // 상시
+						htmlStr = htmlStr + ds_markRecruitList[i].ZZ_STR_DT_STR + ' ~ 채용시까지'; // 채용시까지
+					}else{
+						if( ds_markRecruitList[i].DDAY == "99999"){
+							htmlStr = htmlStr + '  				<span class="box-txt">D-DAY</span>'; // D-day
+						}else if( ds_markRecruitList[i].DDAY == "00000"){
+							htmlStr = htmlStr + '  				<span class="box-txt">마감</span>'; // 마감
+						}else{
+							htmlStr = htmlStr + '  				<span class="box-txt">D-'+ds_markRecruitList[i].DDAY+'</span>'; // D-
+						}
+						htmlStr = htmlStr + ds_markRecruitList[i].ZZ_STR_DT_STR + ' ~ ' + ds_markRecruitList[i].ZZ_END_DT_STR;
+						if( ds_newRecruitList[i].dday == "99999"){
+							htmlStr = htmlStr + '  				<span class="color-red">( '+ds_markRecruitList[i].ZZ_END_HH+':'+ds_markRecruitList[i].ZZ_END_MI+' 까지 )</span>'; // 
+						}
+					}
+					htmlStr = htmlStr + '			</li>';
+					
+					// 채용구분
+					if( ds_markRecruitList[i].ZZ_TARGET_1 == "A"){
+						htmlStr = htmlStr + '			<li>신입</li>'; // 신입
+					}else if( ds_markRecruitList[i].ZZ_TARGET_1 == "B"){
+						htmlStr = htmlStr + '			<li>경력</li>'; // 경력
+					}else if( ds_markRecruitList[i].ZZ_TARGET_1 == "C"){	
+						htmlStr = htmlStr + '			<li>인턴</li>'; // 인턴
+					}else if( ds_markRecruitList[i].ZZ_TARGET_1 == "E"){	
+						htmlStr = htmlStr + '			<li>신입·경력</li>';	// 신입경력
+					}else if( ds_markRecruitList[i].ZZ_TARGET_1 == "K"){	
+						htmlStr = htmlStr + '			<li>기타</li>';	//기타
+					}
+				
+					// 고용형태
+					if( ds_markRecruitList[i].GUBUN == "2"){//TAS 공고 일때만
+						if( ds_markRecruitList[i].ZZ_JO_TYPE == "A"){
+							htmlStr = htmlStr + '			<li>정규직</li>'; // 정규직
+						}else if( ds_markRecruitList[i].ZZ_JO_TYPE == "B"){
+							htmlStr = htmlStr + '			<li>계약직</li>'; // 계약직
+						}else if( ds_markRecruitList[i].ZZ_JO_TYPE == "C"){
+							htmlStr = htmlStr + '			<li>기타</li>'; // 기타
+						}else if( ds_markRecruitList[i].ZZ_JO_TYPE == "D"){
+							htmlStr = htmlStr + '			<li>파견직</li>';	// 파견직
+						}
+					}
+					htmlStr = htmlStr + '			<li>'+ds_markRecruitList[i].LOCATION_CD_NM+'</li>';  
+					htmlStr = htmlStr + '			<li>'+ds_markRecruitList[i].JOB_CD_NM+'</li>';  
+					
+					htmlStr = htmlStr + '		</ul>';
+					htmlStr = htmlStr + '	</a>';
+					
+					htmlStr = htmlStr + '<div class="post-actions ">';
+					htmlStr = htmlStr + '  <!-- 선택시 active 추가 -->';
+					htmlStr = htmlStr + '<input type="hidden" id="bookmarkPop" href="#popBookmark" data-popup-show="#popBookmark"/>';
+					if(ds_markRecruitList[i].bookmark_cnt > 0){
+						htmlStr = htmlStr + '<button type="button"  class="btn-bookmark active" onclick="bookmarkGonggo(\''+ds_markRecruitList[i].ZZ_JO_NUM+'\',\''+ds_markRecruitList[i].dday+'\');return false;">';
+					}else{
+						htmlStr = htmlStr + '<button type="button"  class="btn-bookmark" onclick="bookmarkGonggo(\''+ds_markRecruitList[i].ZZ_JO_NUM+'\',\''+ds_markRecruitList[i].dday+'\');return false;">';
+					}
+					
+					htmlStr = htmlStr + '  <span class="blind"></span>';
+					htmlStr = htmlStr + '   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="19" viewBox="0 0 14 19" fill="none">';
+					htmlStr = htmlStr + '    <path d="M1 0.75H13C13.1381 0.75 13.25 0.861929 13.25 1V17.2617C13.2499 17.4544 13.0406 17.5744 12.874 17.4775L7.87988 14.5732C7.33598 14.2569 6.66402 14.2569 6.12012 14.5732L1.12598 17.4775C0.959361 17.5744 0.750122 17.4544 0.75 17.2617V1C0.75 0.861929 0.861928 0.75 1 0.75Z" stroke="#97999B" stroke-width="1.5"/>';
+					htmlStr = htmlStr + '  </svg>';
+					htmlStr = htmlStr + '</button>';
+					htmlStr = htmlStr + '<button type="button" class="btn-share">';
+					htmlStr = htmlStr + '  <span class="blind"></span>';
+					htmlStr = htmlStr + '  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">';
+					htmlStr = htmlStr + '    <path d="M17.7256 3.60449C17.7254 2.44219 16.7825 1.5 15.6201 1.5C14.4579 1.50014 13.5158 2.44227 13.5156 3.60449C13.5156 4.76683 14.4578 5.70982 15.6201 5.70996V7.20996L15.4346 7.20508C13.5301 7.10839 12.0156 5.53303 12.0156 3.60449C12.0158 1.61385 13.6295 0.000137729 15.6201 0C17.6109 0 19.2254 1.61376 19.2256 3.60449L19.2207 3.79004C19.1243 5.69478 17.5488 7.20996 15.6201 7.20996V5.70996C16.7825 5.70996 17.7256 4.76691 17.7256 3.60449Z" fill="#97999B"/>';
+					htmlStr = htmlStr + '    <path d="M13.6338 5.43066L6.42383 10.2373L5.5918 8.98926L12.8018 4.18262L13.6338 5.43066Z" fill="#97999B"/>';
+					htmlStr = htmlStr + '    <path d="M13.6338 16.1982L6.42383 11.3916L5.5918 12.6396L12.8018 17.4463L13.6338 16.1982Z" fill="#97999B"/>';
+					htmlStr = htmlStr + '    <path d="M17.7256 18.0244C17.7254 16.8621 16.7825 15.9199 15.6201 15.9199C14.4579 15.9201 13.5158 16.8622 13.5156 18.0244C13.5156 19.1867 14.4578 20.1297 15.6201 20.1299V21.6299L15.4346 21.625C13.5301 21.5283 12.0156 19.953 12.0156 18.0244C12.0158 16.0338 13.6295 14.4201 15.6201 14.4199C17.6109 14.4199 19.2254 16.0337 19.2256 18.0244L19.2207 18.21C19.1243 20.1147 17.5488 21.6299 15.6201 21.6299V20.1299C16.7825 20.1299 17.7256 19.1868 17.7256 18.0244Z" fill="#97999B"/>';
+					htmlStr = htmlStr + '    <path d="M5.70996 10.8135C5.70982 9.65117 4.76683 8.70898 3.60449 8.70898C2.44227 8.70912 1.50014 9.65126 1.5 10.8135C1.5 11.9758 2.44219 12.9188 3.60449 12.9189V14.4189L3.41895 14.4141C1.51444 14.3174 0 12.742 0 10.8135C0.000137729 8.82283 1.61385 7.20912 3.60449 7.20898C5.59525 7.20898 7.20982 8.82275 7.20996 10.8135L7.20508 10.999C7.10864 12.9038 5.5332 14.4189 3.60449 14.4189V12.9189C4.76691 12.9189 5.70996 11.9759 5.70996 10.8135Z" fill="#97999B"/>';
+					htmlStr = htmlStr + '  </svg>';
+					htmlStr = htmlStr + '</button>';
+					htmlStr = htmlStr + '<ul class="share-option">';
+					htmlStr = htmlStr + '  <li><a href="#" onclick="shareToKakao(\''+ds_newRecruitList[i].gubun+'\',\''+ds_newRecruitList[i].zz_jo_num+'\');"><img src="https://imgrec.cj.net/recruit/ko/images/common/btn-share-kakao.png" alt="카카오톡 채널" /></a></li>';
+					htmlStr = htmlStr + '  <li><a href="#" onclick="shareToLinkedIn(\''+ds_markRecruitList[i].GUBUN+'\',\''+ds_markRecruitList[i].ZZ_JO_NUM+'\'); return false;"><img src="https://imgrec.cj.net/recruit/ko/images/common/btn-share-in.png" alt="링크드인" /></a></li>';
+					htmlStr = htmlStr + '  <li><button onclick="copyUrl(\''+ds_markRecruitList[i].GUBUN+'\',\''+ds_markRecruitList[i].ZZ_JO_NUM+'\'); return false;" type="button" class="btn-copy"><img src="https://imgrec.cj.net/recruit/ko/images/common/btn-share-link.png" alt="link copy" /></button></li>';
+					htmlStr = htmlStr + '</ul>';
+					htmlStr = htmlStr + '</div>';
+					htmlStr = htmlStr + '</li>';
+					
+				}
+			}
+			
+			if(ds_markRecruitList != null){
+				$('#recruitMark').show();
+				$('#recruitMarkBody').show();
+				$("#recruitMarkBody").html(htmlStr);
+			}else{
+				$('#recruitMark').hide();
+				$('#recruitMarkBody').hide();
+			}
+			
+			if(ds_markRecruitList == ''){
+				$('#recruitMark').hide();
+				$('#recruitMarkBody').hide();
+			}
+			
+		}else if(svcId=="saveBookmark"){
+			if(data.bookCnt > 0 ){
+				alert('삭제되었습니다.'); // 삭제 되었습니다.
+			}else{
+				$("#bookmarkPop").trigger("click");
+			}
+			// 리스트 호출
+			goRecGonggo('PAGE');
+		}
+	}
+
+	// url복사
+	function copyUrl(gubun, joNum) {
+		var pageUrl = "";
+		
+		if(gubun == "1"){ // 공채
+			pageUrl = "https://recruit.cj.net/recruit/ko/recruit/recruit/detail.fo?zz_jo_num=" + joNum;
+		}else if(gubun == "2"){ // 타스
+			pageUrl = "https://recruit.cj.net/recruit/ko/recruit/recruit/bestDetail.fo?direct=N&zz_jo_num=" + joNum;
+		}
+		
+		// 클립보드 API를 사용하여 직접 복사
+		if (navigator.clipboard && window.isSecureContext) {
+			//클립보드 API 사용
+			navigator.clipboard.writeText(pageUrl).then(function() {
+				alert('URL이 클립보드에 복사되었습니다.');//URL이 클립보드에 복사되었습니다.
+			}).catch(function(err) {
+				// 클립보드 사용이 안되는 경우 프롬프트
+				prompt('Ctrl+C를 눌러 복사하세요.', pageUrl);
+			});
+		} else {
+			// 구형 브라우저나 비보안 컨텍스트에서 폴백
+			try {
+				// 임시 textarea 생성하여 복사
+				var textArea = document.createElement('textarea');
+				textArea.value = pageUrl;
+				textArea.style.position = 'fixed';
+				textArea.style.left = '-999999px';
+				textArea.style.top = '-999999px';
+				document.body.appendChild(textArea);
+				textArea.focus();
+				textArea.select();
+				
+				var successful = document.execCommand('copy');
+				document.body.removeChild(textArea);
+				
+				if (successful) {
+					alert('URL이 클립보드에 복사되었습니다.');//URL이 클립보드에 복사되었습니다.
+				} else {
+					// 클립보드 사용이 안되는 경우 프롬프트
+					prompt('Ctrl+C를 눌러 복사하세요.', pageUrl);
+				}
+			} catch (err) {
+				// 클립보드 사용이 안되는 경우 프롬프트
+				prompt('Ctrl+C를 눌러 복사하세요.', pageUrl);
+			}
+		}
+	}
+	
+	// 링크드인 공유 기능
+	function shareToLinkedIn(gubun, joNum) {
+		var pageUrl = "";
+		
+		if(gubun == "1"){ // 공채
+			pageUrl = "https://recruit.cj.net/recruit/ko/recruit/recruit/detail.fo?zz_jo_num=" + joNum;
+		}else if(gubun == "2"){ // 타스
+			pageUrl = "https://recruit.cj.net/recruit/ko/recruit/recruit/bestDetail.fo?direct=N&zz_jo_num=" + joNum;
+		}
+		
+		// 링크드인 크롤러가 접근 가능하도록 개발서버인 경우 운영 도메인으로 변경
+		var currentHost = window.location.hostname;
+		var linkedInPageUrl = pageUrl;
+		
+		// 서버 도메인 변경 
+		if (currentHost.indexOf('recdev') >= 0 || currentHost.indexOf('amsdev') >= 0 || currentHost.indexOf('recqa') >= 0) {
+			//pc 도메인 변경 
+			linkedInPageUrl = pageUrl.replace(/https?:\/\/[^\/]+/, 'https://recruit.cj.net');
+		}else if(currentHost.indexOf('recmdev') >= 0 || currentHost.indexOf('amsqa') >= 0 || currentHost.indexOf('recmqa') >= 0){
+			//mo 도메인 변경 
+			linkedInPageUrl = pageUrl.replace(/https?:\/\/[^\/]+/, 'https://mrecruit.cj.net');
+		}
+		
+		// og:url 메타 태그 업데이트 (링크드인 크롤러가 읽을 수 있도록)
+		if($("meta[property='og:url']").length > 0) {
+			$("meta[property='og:url']").attr("content", linkedInPageUrl);
+		} else if($("meta[name='og:url']").length > 0) {
+			$("meta[name='og:url']").attr("content", linkedInPageUrl);
+		} else {
+			$("head").append('<meta name="og:url" property="og:url" content="' + linkedInPageUrl + '" />');
+		}
+		
+		// 링크드인 공유 URL 생성
+		var linkedinUrl = "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(linkedInPageUrl);
+		
+		// 모바일 감지
+		var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+		var isAndroid = /Android/i.test(navigator.userAgent);
+		var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+		
+		if (isMobile) {
+			if (isAndroid) {
+				// Android: Intent URL로 앱 열기 시도, 실패 시 웹으로 폴백
+				var intentUrl = "intent://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(linkedInPageUrl) + "#Intent;scheme=https;package=com.linkedin.android;S.browser_fallback_url=" + encodeURIComponent(linkedinUrl) + ";end";
+				window.location.href = intentUrl;
+			} else if (isIOS) {
+				// iOS: 앱 딥링크 스킴으로 직접 시도
+				// 링크드인 앱의 공유 딥링크 스킴 사용
+				var linkedinAppUrl = "linkedin://share?url=" + encodeURIComponent(linkedInPageUrl);
+				var appOpened = false;
+				var fallbackTimer;
+				
+				// 페이지 blur 이벤트로 앱 열림 감지
+				var blurHandler = function() {
+					appOpened = true;
+					if (fallbackTimer) {
+						clearTimeout(fallbackTimer);
+					}
+					window.removeEventListener('blur', blurHandler);
+					window.removeEventListener('pagehide', blurHandler);
+				};
+				
+				// blur와 pagehide 이벤트 모두 감지 (Safari에서 더 확실)
+				window.addEventListener('blur', blurHandler);
+				window.addEventListener('pagehide', blurHandler);
+				
+				// 앱 스킴으로 직접 이동 시도
+				window.location.href = linkedinAppUrl;
+				
+				// 일정 시간(1.5초) 후에도 앱이 열리지 않았으면 웹으로 폴백
+				fallbackTimer = setTimeout(function() {
+					if (!appOpened) {
+						window.removeEventListener('blur', blurHandler);
+						window.removeEventListener('pagehide', blurHandler);
+						// 앱이 없으므로 웹으로 이동
+						window.location.href = linkedinUrl;
+					}
+				}, 1500);
+			} else {
+				// 기타 모바일: 웹 URL 사용
+				window.location.href = linkedinUrl;
+			}
+		} else {
+			// 데스크톱에서는 팝업 창으로 열기
+			window.open(linkedinUrl, '_blank', 'width=600,height=400');
+		}
+	}
+	
+	// 카카오톡 공유 기능
+	function shareToKakao(gubun, joNum) {
+		var pageUrl = "";
+		
+		if(gubun == "1"){ // 공채
+			pageUrl = "https://recruit.cj.net/recruit/ko/recruit/recruit/detail.fo?zz_jo_num=" + joNum;
+		}else if(gubun == "2"){ // 타스
+			pageUrl = "https://recruit.cj.net/recruit/ko/recruit/recruit/bestDetail.fo?direct=N&zz_jo_num=" + joNum;
+		}
+		
+		// 카카오톡 크롤러가 접근 가능하도록 개발서버인 경우 운영 도메인으로 변경
+		var currentHost = window.location.hostname;
+		var kakaoPageUrl = pageUrl;
+		
+		// 서버 도메인 변경 
+		if (currentHost.indexOf('recdev') >= 0 || currentHost.indexOf('amsdev') >= 0 || currentHost.indexOf('recqa') >= 0) {
+			//pc 도메인 변경 
+			kakaoPageUrl = pageUrl.replace(/https?:\/\/[^\/]+/, 'https://recruit.cj.net');
+		}else if(currentHost.indexOf('recmdev') || currentHost.indexOf('amsqa') >= 0 || currentHost.indexOf('recmqa') >= 0){
+			//mo 도메인 변경 
+			kakaoPageUrl = pageUrl.replace(/https?:\/\/[^\/]+/, 'https://mrecruit.cj.net');
+		}
+		
+		// og:url 메타 태그 업데이트 (카카오톡 크롤러가 읽을 수 있도록)
+		if($("meta[property='og:url']").length > 0) {
+			$("meta[property='og:url']").attr("content", kakaoPageUrl);
+		} else if($("meta[name='og:url']").length > 0) {
+			$("meta[name='og:url']").attr("content", kakaoPageUrl);
+		} else {
+			$("head").append('<meta name="og:url" property="og:url" content="' + kakaoPageUrl + '" />');
+		}
+		// 카카오톡 공유 (sendScrap 방식)
+		try {
+			Kakao.Link.sendScrap({
+				requestUrl: kakaoPageUrl
+			});
+		} catch (error) {
+// 			console.error('카카오톡 공유 오류:', error);
+			alert('카카오톡 공유 중 오류가 발생했습니다: ' + error.message);
+		}
+	}
+	
+	// 공고 상세
+	function goNewDetail(gubun, joNum, mthrYn, closeYn) {
+		if(gubun == "1"){ // 공채
+			window.location.href = "https://recruit.cj.net/recruit/ko/recruit/recruit/detail.fo?zz_jo_num=" + joNum + "&closeYn="+closeYn+"";
+		}else if(gubun == "2"){ // 타스
+			location.href = "https://recruit.cj.net/recruit/ko/recruit/recruit/bestDetail.fo?direct=N&zz_jo_num=" + joNum + "&closeYn="+closeYn+"";
+		}
+	}
+	
+	// 관심공고 등록 이벤트
+	function bookmarkGonggo(joNum, closeYn){
+
+		if(closeYn == "0"){
+			alert('해당공고는 마감되었습니다.');
+			return;
+		}else{
+			var g_user_seq = "";
+			
+			if(g_user_seq == ""){
+				
+				if(!confirm("로그인이 필요한서비스입니다. 로그인 하시겠습니까?")) { // 로그인이 필요한서비스입니다. 로그인 하시겠습니까?
+					return;
+				}
+				window.location.href = "https://recruit.cj.net/recruit/ko/member/login/login.fo?returnUrl=https://recruit.cj.net/recruit/ko/recruit/recruit/list.fo";
+				return;
+			}else{
+				// 북마크 등록
+				var options = {
+					    svcId : "saveBookmark",
+					    strUrl : "https://recruit.cj.net/recruit/ko/recruit/recruit/saveBookmark.fo?",
+					    param :{zz_jo_num : joNum, user_seq : g_user_seq}, //전송할 파라미터
+					    pCall : tranCallBack
+					};
+				transaction(options);
+			}
+		}
+	}
+	
+	function goPageMove(page){
+		if(page == "0"){
+			return;
+		}
+
+		$("#pageVal").val(page);
+		goRecGonggo('PAGE');
+
+	}
+	
+	// 최신순/마감순 이벤트
+	function onclk(){
+		var comVal = $("#selectOrder").val();
+		$("#orderDesc").val(comVal);
+		goRecGonggo('INIT');
+	}
+	
+	function pageCommonEvent(totCnt, pageIndex, pageVal, areaId, eventName){
+
+		var lastPage = 0;
+		var tmpVal = 0;//페이지 인덱스당 10페이조 환산하여 현제 몇번쨰 그룹의 페이지 인지
+		var tmpEventName = "goPageMove";
+
+		if(eventName != undefined && eventName != "undefined" && eventName != null && eventName != "null" && eventName != ""){
+			tmpEventName = eventName;
+		}
+
+		if(parseInt(totCnt % pageIndex) > 0){
+			lastPage = parseInt((totCnt/pageIndex)) + 1;
+		}else{
+			lastPage = parseInt(totCnt/pageIndex);
+		}
+
+		//현재 페이지가 10페이지당 몇번쨰 그룹인지 여부
+		tmpVal = parseInt(pageVal/10);
+		if(tmpVal == 0){
+			tmpVal = 1;
+		}else{
+			if(parseInt(pageVal % 10) == 0){
+				tmpVal = tmpVal;
+			}else{
+				tmpVal = tmpVal+1;
+			}
+		}
+
+		var pageHtmlStr= "";
+
+		if(pageVal == 1){
+			pageHtmlStr = pageHtmlStr + '<a href="javascript:'+tmpEventName+'(0);" class="first" title="처음">';
+			pageHtmlStr = pageHtmlStr + '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">';
+			pageHtmlStr = pageHtmlStr + ' <path fill-rule="evenodd" clip-rule="evenodd" d="M14.2929 16.7071C14.6834 17.0976 15.3166 17.0976 15.7071 16.7071C16.0976 16.3166 16.0976 15.6834 15.7071 15.2929L10.4142 10L15.7071 4.70711C16.0976 4.31658 16.0976 3.68342 15.7071 3.29289C15.3166 2.90237 14.6834 2.90237 14.2929 3.29289L8.29289 9.29289C7.90237 9.68342 7.90237 10.3166 8.29289 10.7071L14.2929 16.7071ZM9.29289 16.7071C9.68342 17.0976 10.3166 17.0976 10.7071 16.7071C11.0976 16.3166 11.0976 15.6834 10.7071 15.2929L5.41421 10L10.7071 4.70711C11.0976 4.31658 11.0976 3.68342 10.7071 3.29289C10.3166 2.90237 9.68342 2.90237 9.29289 3.29289L3.29289 9.29289C2.90237 9.68342 2.90237 10.3166 3.29289 10.7071L9.29289 16.7071Z" fill="#666666"/>';
+			pageHtmlStr = pageHtmlStr + '</svg>';
+			pageHtmlStr = pageHtmlStr + '</a>';
+		}else{
+			pageHtmlStr = pageHtmlStr + '<a href="javascript:'+tmpEventName+'(1);" class="first" title="처음">';
+			pageHtmlStr = pageHtmlStr + '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">';
+			pageHtmlStr = pageHtmlStr + ' <path fill-rule="evenodd" clip-rule="evenodd" d="M14.2929 16.7071C14.6834 17.0976 15.3166 17.0976 15.7071 16.7071C16.0976 16.3166 16.0976 15.6834 15.7071 15.2929L10.4142 10L15.7071 4.70711C16.0976 4.31658 16.0976 3.68342 15.7071 3.29289C15.3166 2.90237 14.6834 2.90237 14.2929 3.29289L8.29289 9.29289C7.90237 9.68342 7.90237 10.3166 8.29289 10.7071L14.2929 16.7071ZM9.29289 16.7071C9.68342 17.0976 10.3166 17.0976 10.7071 16.7071C11.0976 16.3166 11.0976 15.6834 10.7071 15.2929L5.41421 10L10.7071 4.70711C11.0976 4.31658 11.0976 3.68342 10.7071 3.29289C10.3166 2.90237 9.68342 2.90237 9.29289 3.29289L3.29289 9.29289C2.90237 9.68342 2.90237 10.3166 3.29289 10.7071L9.29289 16.7071Z" fill="#666666"/>';
+			pageHtmlStr = pageHtmlStr + '</svg>';
+			pageHtmlStr = pageHtmlStr + '</a>';
+		}
+
+		if(pageVal == 1){
+			pageHtmlStr = pageHtmlStr + '<a href="javascript:'+tmpEventName+'(0);" class="prev" title="이전">';
+			pageHtmlStr = pageHtmlStr + '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">';
+			pageHtmlStr = pageHtmlStr + '  <path d="M13 16L7 10L13 4" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+			pageHtmlStr = pageHtmlStr + '</svg>';
+			pageHtmlStr = pageHtmlStr + '</a>';
+
+		}else{
+			if(tmpVal == 1){
+				pageHtmlStr = pageHtmlStr + '<a href="javascript:'+tmpEventName+'(1);" class="prev" title="이전">';
+				pageHtmlStr = pageHtmlStr + '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">';
+				pageHtmlStr = pageHtmlStr + '  <path d="M13 16L7 10L13 4" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+				pageHtmlStr = pageHtmlStr + '</svg>';
+				pageHtmlStr = pageHtmlStr + '</a>';
+				
+			}else{
+				pageHtmlStr = pageHtmlStr + '<a href="javascript:'+tmpEventName+'('+((tmpVal-1)*10)+');" class="prev" title="이전">';
+				pageHtmlStr = pageHtmlStr + '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">';
+				pageHtmlStr = pageHtmlStr + '  <path d="M13 16L7 10L13 4" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+				pageHtmlStr = pageHtmlStr + '</svg>';
+				pageHtmlStr = pageHtmlStr + '</a>';
+				
+			}
+
+		}
+		
+		if(lastPage == 0){     
+			pageHtmlStr= pageHtmlStr+'<a class="num" title="현재 페이지" href="javascript:'+tmpEventName+'(0);"><em>1</em>';
+			
+		}else{
+			for(var i = ((tmpVal*10) - 10) ; i < (tmpVal*10); i++){
+				if((i+1) <= lastPage){
+					if((i+1) == pageVal){   
+						pageHtmlStr= pageHtmlStr+'<a class="num" title="현재 페이지" href="javascript:'+tmpEventName+'(0);"><em>'+(i+1)+'</em></a>';
+					}else{
+						pageHtmlStr= pageHtmlStr+'<a class="num" href="javascript:'+tmpEventName+'('+(i+1)+');">'+(i+1)+'</a>';
+					}
+				}
+			}
+		}
+
+
+		if(lastPage == 0 || lastPage == pageVal){
+			pageHtmlStr = pageHtmlStr + '  <a href="javascript:'+tmpEventName+'(0);" class="next" title="다음">';
+			pageHtmlStr = pageHtmlStr + '    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">';
+			pageHtmlStr = pageHtmlStr + '      <path d="M7 4L13 10L7 16" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+			pageHtmlStr = pageHtmlStr + '    </svg>';
+			pageHtmlStr = pageHtmlStr + '  </a>';
+
+		}else if(((tmpVal*10) + 1 )> lastPage ){
+			pageHtmlStr = pageHtmlStr + '  <a href="javascript:'+tmpEventName+'('+lastPage+');" class="next" title="다음">';
+			pageHtmlStr = pageHtmlStr + '    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">';
+			pageHtmlStr = pageHtmlStr + '      <path d="M7 4L13 10L7 16" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+			pageHtmlStr = pageHtmlStr + '    </svg>';
+			pageHtmlStr = pageHtmlStr + '  </a>';
+			
+		}else{
+			pageHtmlStr = pageHtmlStr + '  <a href="javascript:'+tmpEventName+'('+((tmpVal*10) + 1)+');" class="next" title="다음">';
+			pageHtmlStr = pageHtmlStr + '    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">';
+			pageHtmlStr = pageHtmlStr + '      <path d="M7 4L13 10L7 16" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+			pageHtmlStr = pageHtmlStr + '    </svg>';
+			pageHtmlStr = pageHtmlStr + '  </a>';
+		}
+
+		if(lastPage == 0 || lastPage == pageVal){
+			pageHtmlStr = pageHtmlStr + '   <a href="javascript:'+tmpEventName+'(0);" class="last" title="마지막">';
+			pageHtmlStr = pageHtmlStr + '    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">';
+			pageHtmlStr = pageHtmlStr + '      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.70711 3.29289C5.31658 2.90237 4.68342 2.90237 4.29289 3.29289C3.90237 3.68342 3.90237 4.31658 4.29289 4.70711L9.58579 10L4.29289 15.2929C3.90237 15.6834 3.90237 16.3166 4.29289 16.7071C4.68342 17.0976 5.31658 17.0976 5.70711 16.7071L11.7071 10.7071C12.0976 10.3166 12.0976 9.68342 11.7071 9.29289L5.70711 3.29289ZM10.7071 3.29289C10.3166 2.90237 9.68342 2.90237 9.29289 3.29289C8.90237 3.68342 8.90237 4.31658 9.29289 4.70711L14.5858 10L9.29289 15.2929C8.90237 15.6834 8.90237 16.3166 9.29289 16.7071C9.68342 17.0976 10.3166 17.0976 10.7071 16.7071L16.7071 10.7071C17.0976 10.3166 17.0976 9.68342 16.7071 9.29289L10.7071 3.29289Z" fill="#6F6F72"/>';
+			pageHtmlStr = pageHtmlStr + '    </svg>';
+			pageHtmlStr = pageHtmlStr + '  </a>';
+
+		}else{
+			pageHtmlStr = pageHtmlStr + '   <a href="javascript:'+tmpEventName+'('+lastPage+');" class="last" title="마지막">';
+			pageHtmlStr = pageHtmlStr + '    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">';
+			pageHtmlStr = pageHtmlStr + '      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.70711 3.29289C5.31658 2.90237 4.68342 2.90237 4.29289 3.29289C3.90237 3.68342 3.90237 4.31658 4.29289 4.70711L9.58579 10L4.29289 15.2929C3.90237 15.6834 3.90237 16.3166 4.29289 16.7071C4.68342 17.0976 5.31658 17.0976 5.70711 16.7071L11.7071 10.7071C12.0976 10.3166 12.0976 9.68342 11.7071 9.29289L5.70711 3.29289ZM10.7071 3.29289C10.3166 2.90237 9.68342 2.90237 9.29289 3.29289C8.90237 3.68342 8.90237 4.31658 9.29289 4.70711L14.5858 10L9.29289 15.2929C8.90237 15.6834 8.90237 16.3166 9.29289 16.7071C9.68342 17.0976 10.3166 17.0976 10.7071 16.7071L16.7071 10.7071C17.0976 10.3166 17.0976 9.68342 16.7071 9.29289L10.7071 3.29289Z" fill="#6F6F72"/>';
+			pageHtmlStr = pageHtmlStr + '    </svg>';
+			pageHtmlStr = pageHtmlStr + '  </a>';
+		}
+
+		$("#"+areaId).html(pageHtmlStr);
+	}	
+</script>
+
+	
+	<!-- 레이어 팝업   -->
+<style>
+/* 쿠키정책 Bottom sheet :: 231204  */
+.cookie_bar{position:fixed;right:60px;bottom:30px;z-index:60000;width:380px;padding:40px;border-radius:20px;box-sizing:border-box;font-family:'CJONLYONENEWbodyRegular';background:linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.85) 100%), rgba(255, 255, 255, 0.1);backdrop-filter:blur(10px);box-shadow:0 6px 10px 0 rgba(0, 0, 0, 0.5);color:#fff;animation: cookie .5s ease-out;}
+.cookie_bar .cookie_bar_wrap .cookie_bar_msg {font-size:16px;}
+.cookie_bar .cookie_bar_wrap .cookie_bar_msg h2 {font-family:'CJONLYONENEWtitleBold';font-size:inherit;margin-bottom:20px;}
+.cookie_bar .cookie_bar_wrap .cookie_bar_msg p {word-break:break-all;}
+.cookie_bar .cookie_bar_wrap .cookie_bar_msg p a {color:#006ecd;text-decoration: underline;}
+.cookie_bar .cookie_bar_wrap .btn_accept_cookie {margin-top:60px;padding:12px 30px;border-radius:30px;background:#fff;font-size:14px;font-family:inherit;line-height:1.4285714286;cursor:pointer;}
+@keyframes cookie {
+  0% {
+    transform: translateY(150%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+</style>
+
+	<script type="text/javascript">
+	    needPopup.init();
+	    
+	 	// 로그인 연장 팝업 직접 구현
+	    function showDelaySessionPopup() {
+	        $('#divDelaySession').show();
+	    }
+	    
+	    function hideDelaySessionPopup() {
+	        $('#divDelaySession').hide();
+	    }
+	    
+	 // 외부영역 클릭 시 팝업 닫기
+	    $(document).mouseup(function (e){
+	      var LayerPopup = $(".biz");
+	      if(LayerPopup.has(e.target).length === 0){
+	        LayerPopup.removeClass("active");
+	      }
+	    });
+	    
+	    $(document).ready(function(){
+	    	// 2023.07.25 :: 쿠키바 추가
+	    
+	    	var cookieHtml = '';
+	    	var cookieLngSet = '';
+	        var groupCookie = "https://www.cj.net"; 	
+	        
+	    	//if(document.cookie.indexOf("hide_cookie=Y")<0) {
+	 
+	    		
+	    		var cookieLng = "KOR";
+	    		
+	    		if(cookieLng == "KOR" && document.cookie.indexOf("hide_kr=Y")<0){
+	    			gtagReset();
+	    			cookieLngSet= 'hide_kr';
+	    			cookieHtml = '';
+	    			cookieHtml = "<div class='cookie_bar'>";
+	    			cookieHtml += "<div class='cookie_bar_wrap'>";
+	    			cookieHtml += "<div class='cookie_bar_msg'>";
+	    			cookieHtml += "<h2>쿠키 사용</h2>";                              
+	    			cookieHtml += "<p>당사는 귀하의 탐색 경험을 개선하고 개발에 도움을 얻기 위해 쿠키를 사용합니다. 당사의 웹사이트를 이용하시면 당사의 <a href='"+groupCookie+"/footer/cookie-notice'>쿠키 사용 고지</a>에 설명된 쿠키 사용에 동의하게 됩니다.</p>";
+	    			cookieHtml += "</div>";
+	    			cookieHtml += "<button type='button' class='btn_accept_cookie'>동의</button>";
+	    			cookieHtml += "</div>";
+	    			cookieHtml += "</div>";
+	    			
+	    		}
+	    		
+	    		//else 
+	    		if(cookieLng == "ENG" && document.cookie.indexOf("hide_en=Y")<0){
+	    	        gtagReset();
+	    			cookieLngSet= 'hide_en';
+	    			cookieHtml = '';
+	    			cookieHtml = '<div class="cookie_bar">';
+	    			cookieHtml += '<div class="cookie_bar_wrap">';
+	    			cookieHtml += '<div class="cookie_bar_msg">';
+	    			cookieHtml += '<h2>COOKIES</h2>';
+	    			cookieHtml += '<p>We use cookies to improve your browsing experience and help us develop. By using our website you agree to the use of cookies as described in our <a href="'+groupCookie+'/footer/cookie-notice">Cookies Notice</a>.</p>';
+	    			cookieHtml += '</div>';
+	    			cookieHtml += '<button type="button" class="btn_accept_cookie">OK</button>';
+	    			cookieHtml += '</div>';
+	    			cookieHtml += '</div>';
+	    		}
+	    		//else 
+	    		if(cookieLng == "ZHS" && document.cookie.indexOf("hide_ch=Y")<0){
+	    			gtagReset();
+	    			cookieLngSet= 'hide_ch';
+	    			cookieHtml = '';
+	    			cookieHtml = '<div class="cookie_bar">';
+	    			cookieHtml += '<div class="cookie_bar_wrap">';
+	    			cookieHtml += '<div class="cookie_bar_msg">';
+	    			cookieHtml += '<h2>COOKIE</h2>';
+	    			cookieHtml += '<p>公司使用cookie来提高用户的浏览体验并实现不断的自我改善。您同意在访问我们的网站时使用<a href="'+groupCookie+'/footer/cookie-notice">cookie声明</a>中所述的相关事项。</p>';
+	    			cookieHtml += '</div>';
+	    			cookieHtml += '<button type="button" class="btn_accept_cookie">确定</button>';
+	    			cookieHtml += '</div>';
+	    			cookieHtml += '</div>';
+	    		}
+	    		
+	    		$('body').append(cookieHtml);
+	    	/*
+	    	}else{
+	    	        cookieHtml = '';
+	    	        cookieLngSet= 'hide_en';
+	    			cookieHtml = "<div class='cookie_bar'>";
+	    			cookieHtml += '<div class="cookie_bar_wrap">';
+	    			cookieHtml += '<div class="cookie_bar_msg">';
+	    			cookieHtml += '<h2>COOKIES</h2>';
+	    			cookieHtml += '<p>We use cookies to improve your browsing experience and help us develop. By using our website you agree to the use of cookies as described in our <a href="https://english.cj.net/footer/cookieNotice.asp">Cookies Notice</a>.</p>';
+	    			cookieHtml += '</div>';
+	    			cookieHtml += '<button type="button" class="btn_accept_cookie">OK</button>';
+	    			cookieHtml += '</div>';
+	    			cookieHtml += '</div>';
+	    	}
+	    	*/
+	    	var $cookieBar = $(".cookie_bar");
+	        $cookieBar.find('.btn_accept_cookie').click(function(){
+	    		//$cookieBar.css('bottom',$cookieBar.height() * (-1) + 'px');
+	    		setTimeout(()=>{
+	    			$cookieBar.hide();
+	    		},310)
+             
+	    	 consentGranted(cookieLngSet);
+	    	    
+	    	})
+	    });
+	    
+	    function gtagReset() {
+	    	gtag('consent', 'default', {
+				  'ad_storage': 'denied',
+				  'analytics_storage': 'denied',
+				  'functionality_storage': 'denied',
+				  'personalization': 'denied',
+				  'security_storage': 'denied'
+			});
+	    }
+	    
+	</script>
+	<!-- AceCounter Log Gathering Script V.7.5.2013010701 -->
+<!-- 	<script language='javascript'> -->
+
+<!-- 	var isChatbot ="OFF"; -->
+<!-- 	var chatbotStatus = "B"; -->
+
+<!-- 	var chatbotDoamin = ""; -->
+
+<!-- 	$(document).ready(function() { -->
+
+<!-- 		var isChatbot ="OFF"; -->
+
+<!-- 		 /*var options = { -->
+<!-- 				svcId : status, -->
+
+<!-- 				pCall : callbackDisplay -->
+<!-- 		}; -->
+
+<!-- 		transaction(options);*/ -->
+
+<!-- 	}); -->
+
+
+<!-- 	    var _AceGID=(function(){var Inf=['gtp1.acecounter.com','8080','AB1A30905317205','AW','0','NaPm,Ncisy','ALL','0']; var _CI=(!_AceGID)?[]:_AceGID.val;var _N=0;var _T=new Image(0,0);if(_CI.join('.').indexOf(Inf[3])<0){ _T.src =( location.protocol=="https:"?"https://"+Inf[0]:"http://"+Inf[0]+":"+Inf[1]) +'/?cookie'; _CI.push(Inf);  _N=_CI.length; } return {o: _N,val:_CI}; })(); -->
+<!-- 		var _AceCounter=(function(){var G=_AceGID;if(G.o!=0){var _A=G.val[G.o-1];var _G=( _A[0]).substr(0,_A[0].indexOf('.'));var _C=(_A[7]!='0')?(_A[2]):_A[3];	var _U=( _A[5]).replace(/\,/g,'_');var _S=((['<scr','ipt','type="text/javascr','ipt"></scr','ipt>']).join('')).replace('tt','t src="'+location.protocol+ '//cr.acecounter.com/Web/AceCounter_'+_C+'.js?gc='+_A[2]+'&py='+_A[4]+'&gd='+_G+'&gp='+_A[1]+'&up='+_U+'&rd='+(new Date().getTime())+'" t');document.writeln(_S); return _S;} })(); -->
+
+
+
+<!-- 	     function callbackDisplay(svcId, data, errCd, msgTp, msgCd, msgText){ -->
+<!-- 			var chatbotStatus = data.chabot; -->
+<!-- 			    chatbotDoamin = data.chabot_domain; -->
+
+<!-- 			 if (chatbotStatus == 'A'){ -->
+<!-- 				$('#chatDisplay').show(); -->
+<!-- 			}else{ -->
+<!-- 				$('#chatDisplay').hide(); -->
+<!-- 			} -->
+<!-- 	    } -->
+
+<!-- 		function fncChatClick(){ -->
+
+
+
+<!-- 			//$('#chatbotframe').attr("src",src); -->
+
+
+<!-- 			 var options = { -->
+<!-- 				svcId : status, -->
+
+<!-- 				pCall : callbackConnect -->
+<!-- 		     }; -->
+
+<!-- 		     transaction(options); -->
+
+<!-- 		} -->
+
+<!-- 		function callbackConnect(svcId, data, errCd, msgTp, msgCd, msgText){ -->
+
+<!-- 		    var src = chatbotDoamin+"?tkn="+data.w_ko_g_chat; -->
+<!-- 			$('#chatbotframe').attr("src",src); -->
+<!-- 		 } -->
+
+
+
+<!-- 	</script> -->
+<!-- 	<noscript><img src='http://gtp1.acecounter.com:8080/?uid=AB1A30905317205&je=n&' border='0' width='0' height='0' alt=''></noscript> -->
+	<!-- AceCounter Log Gathering Script End -->
+	<!--// 레이어 팝업 -->
+
+		</div>
+	</div>
+	<hr>
+	<!-- // id="container" -->
+
+
+
+
+     <!--  <div id="chatbot" class="btn_top btn_chat" style="display:none;width:auto;height:auto;margin-left:-520px;">
+
+          <a href="javascript:close_layer();"  class="btn_chat" style="bottom: 0px;opacity: 1;z-index: 100000;position: absolute;top: 0;width: 48px;height: 46px;right: 0;left: auto;border: 1px solid #000;">
+	            <span class="arrow"  style="text-align: center;display: inline-block;position: absolute;left: 18px;top: 17px;">
+                       <img src="http://recdev.cj.net/recruit/ko/images/common/btn_close_chat.png" alt="Top"></span>
+	        </a>
+
+
+          <iframe name="chatbotframe" src="#" width="450" height="600" marginwidth="0" marginheight="0" frameborder="no" scrolling="auto" ></iframe>
+
+
+
+      </div> -->
+  
+
+	   
+	    <div id="footer">
+	    <p>
+			 
+<!-- 	        <a href="#" class="btn_top"> -->
+
+<!-- 	        </a> -->
+
+			<a href="#" class="btn_top" style="bottom: 0px; transform: translateY(0px); opacity: 1;">
+				<span class="arrow"><img src="https://imgrec.cj.net/recruit/ko/images/common/img_scroll_arrow.png" alt="Top"></span>
+			</a>
+        </p>
+		<div class="inner_wrap">
+		    <h1 class="logo">
+					<a href="https://www.cj.net">
+						<img src="https://imgrec.cj.net/recruit/ko/images/common/logo_b.svg" alt="CJ그룹 로고">
+					</a>
+			</h1> 
+		   
+			<div class="area_policy">
+					<ul>
+						<li class="on"><a href="https://www.cj.net/footer/privacy">개인정보처리방침</a></li>
+						<li><a href="https://www.cj.net/footer/use-info">이용약관</a></li>
+						<li><a href="https://www.cj.net/footer/cookie-notice">쿠키정책</a></li>
+						<li><a href="https://www.cj.net/footer/notice">공지사항</a></li>
+						<li><a href="https://ethics.cj.net/whistles/information" target="_blank" title="새 창 열림">온라인 제보
+							<span class="box-svg">
+								<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<g clip-path="url(#clip0_2460_12270)">
+											<path d="M1.72266 1.49219H10.6228V10.3923" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+											<path d="M10.279 1.60156L1.37891 10.5017" stroke="#060606" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+									</g>
+									<defs>
+											<clipPath id="clip0_2460_12270">
+													<rect width="12" height="11.7658" fill="white" transform="translate(0 0.113281)"/>
+											</clipPath>
+									</defs>
+							</svg>
+							</span>
+						</a></li>
+						<li><a href="https://www.cj.net/footer/contact-us">고객센터</a></li>
+						<li><a href="https://www.cj.net/footer/sitemap">사이트맵</a></li>
+					</ul>
+				</div>
+				<div class="area_copy">
+					<!-- 260109 수정 -->
+					<article>
+						<div class="biz">
+							<a href="#link_biz" class="biz_go" title="계열사 레이어 열기">
+								계열사 바로가기
+								<span class="box-svg">
+									<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M7 0C7.55228 0 8 0.447715 8 1V13C8 13.5523 7.55228 14 7 14C6.44772 14 6 13.5523 6 13V1C6 0.447715 6.44772 0 7 0Z" fill="black"></path>
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M-4.37114e-08 7C-6.78525e-08 6.44772 0.447715 6 1 6L13 6C13.5523 6 14 6.44771 14 7C14 7.55228 13.5523 8 13 8L1 8C0.447715 8 -1.95703e-08 7.55228 -4.37114e-08 7Z" fill="black"></path>
+								</svg>
+								</span>
+							</a>
+							<div class="link_biz" id="link_biz">
+								<div class="inner_link">
+									<ul>
+										<li class="item_1">
+											<dl>
+											<dt>식품 &amp; 식품서비스</dt>
+											<dd><a href="https://www.cj.co.kr/kr/index" target="_blank"><span class="txt">CJ제일제당 식품사업부문</span></a></dd>
+											<dd><a href="https://www.cjfoodville.co.kr/main.asp" target="_blank"><span class="txt">CJ푸드빌</span></a></dd>
+											<dd><a href="https://www.cjfreshway.com/index.jsp" target="_blank"><span class="txt">CJ프레시웨이</span></a></dd>
+											</dl>
+										</li>
+										<li class="item_2">
+											<dl>
+											<dt>생명공학</dt>
+											<dd><a href="https://www.cj.co.kr/kr/aboutus/business/bio" target="_blank"><span class="txt">CJ제일제당 BIO 사업부문</span></a></dd>
+											<dd><a href="https://www.cj.co.kr/kr/aboutus/business/cjfeedncare" target="_blank"><span class="txt">CJ Feed&amp;Care</span></a></dd>
+											</dl>
+										</li>
+										<li class="item_3">
+											<dl>
+											<dt>물류 &amp; 신유통</dt>
+											<dd><a href="https://www.cjlogistics.com/ko/main" target="_blank"><span class="txt">CJ대한통운</span></a></dd>
+											<dd><a href="http://www.cjenc.co.kr/kr/Default.asp" target="_blank"><span class="txt">CJ대한통운 건설부문</span></a></dd>
+											<dd><a href="http://www.cjenc.co.kr/kr/business/resort-club.asp" target="_blank"><span class="txt">CJ대한통운 리조트부문</span></a></dd>
+											<dd><a href="https://corp.oliveyoung.com/ko" target="_blank"><span class="txt">CJ올리브영</span></a></dd>
+											<dd><a href="https://www.cjolivenetworks.co.kr/" target="_blank"><span class="txt">CJ올리브네트웍스</span></a></dd>
+											<dd><a href="https://company.cjonstyle.com/index.asp" target="_blank"><span class="txt">CJ ENM 커머스 부문</span></a></dd>
+											</dl>
+										</li>
+										<li class="item_4">
+											<dl>
+											<dt>엔터테인먼트 &amp; 미디어</dt>
+											<dd><a href="https://www.cjenm.com/ko/" target="_blank"><span class="txt">CJ ENM 엔터테인먼트부문</span></a></dd>
+											<dd><a href="http://corp.cgv.co.kr/" target="_blank"><span class="txt">CJ CGV</span></a></dd>
+											<dd><a href="https://www.tving.com/" target="_blank"><span class="txt">TVING</span></a></dd>
+											<dd><a href="http://www.studiodragon.net/front/kr/main/main" target="_blank"><span class="txt">STUDIO DRAGON</span></a></dd>
+											</dl>
+										</li>
+<!-- 										<li class="item_5"> -->
+<!-- 											<dl> -->
+<!-- 											<dt>글로벌 법인</dt> -->
+<!-- 											<dd><a href="https://cjamerica.com/" target="_blank"><span class="txt">CJ America</span></a></dd> -->
+<!-- 											<dd><a href="http://www.cjchina.net/" target="_blank"><span class="txt">CJ China</span></a></dd> -->
+<!-- 											<dd><a href="http://www.cjjapan.net/" target="_blank"><span class="txt">CJ Japan</span></a></dd> -->
+<!-- 											<dd><a href="http://cjvietnam.vn/" target="_blank"><span class="txt">CJ Vietnam</span></a></dd> -->
+<!-- 											</dl> -->
+<!-- 										</li> -->
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="biz">
+							<a href="#link_languages" class="biz_go" title="계열사 레이어 열기">
+								<span>Korea<i></i>한국어</span>
+								<span class="box-svg">
+									<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M7 0C7.55228 0 8 0.447715 8 1V13C8 13.5523 7.55228 14 7 14C6.44772 14 6 13.5523 6 13V1C6 0.447715 6.44772 0 7 0Z" fill="black"></path>
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M-4.37114e-08 7C-6.78525e-08 6.44772 0.447715 6 1 6L13 6C13.5523 6 14 6.44771 14 7C14 7.55228 13.5523 8 13 8L1 8C0.447715 8 -1.95703e-08 7.55228 -4.37114e-08 7Z" fill="black"></path>
+								</svg>
+								</span>
+							</a>
+							<div class="link_biz" id="link_languages">
+								<div class="inner_link">
+									<ul>
+										<li class="item_1">
+											<dl>
+											<dt>Korea</dt>
+											
+											
+												
+												
+													
+														<dd><a href="javascript:fn_changeLocal('KOR');" class="lang-highlight"><span class="txt">한국어</span></a></dd>
+													
+													
+												
+											
+												
+												
+													
+													
+														<dd><a href="javascript:fn_changeLocal('ENG');" ><span class="txt">English</span></a></dd>
+													
+												
+											
+												
+												
+													
+													
+												
+											
+											</dl>
+										</li>
+										<li class="item_2">
+											<dl>
+											<dt>America</dt>
+											<dd><a href="https://www.cj.net/america" target="_blank"><span class="txt">English</span></a></dd>
+											<dd><a href="https://www.cj.net/america/es" target="_blank"><span class="txt">Español</span></a></dd>
+											</dl>
+										</li>
+										<li class="item_3">
+											<dl>
+											<dt>Japan</dt>
+											<dd><a href="https://www.cj.net/jp" target="_blank"><span class="txt">日本語</span></a></dd>
+											</dl>
+										</li>
+										<li class="item_4">
+											<dl>
+											<dt>China</dt>
+											<dd><a href="https://cjchina.net" target="_blank"><span class="txt">中文</span></a></dd>
+											</dl>
+										</li>
+										<li class="item_5">
+											<dl>
+											<dt>Vietnam</dt>
+											<dd><a href="https://cjvietnam.vn" target="_blank"><span class="txt">Tiếng Việt</span></a></dd>
+											</dl>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</article>
+					<!-- //260109 수정 -->
+					<div class="sns">
+						<a href="https://www.youtube.com/user/enjoyCJ" target="_blank" title="새창으로 이동">
+							<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+								<path d="M11.4507 15.3245L15.4764 12.9996L11.4507 10.6748V15.3245Z" fill="#666D7A" />
+								<path d="M18.941 0H7.059C3.17633 0 0 3.20233 0 7.11533V18.8847C0 22.7977 3.17633 26 7.059 26H18.941C22.8237 26 26 22.7977 26 18.8847V7.11533C26 3.20233 22.8237 0 18.941 0ZM20.4252 16.731C20.2475 17.3983 19.721 17.9227 19.0558 18.1003C17.8468 18.4232 13.0022 18.4232 13.0022 18.4232C13.0022 18.4232 8.15533 18.4232 6.9485 18.1003C6.28117 17.9227 5.75683 17.3962 5.57917 16.731C5.25633 15.522 5.25633 13 5.25633 13C5.25633 13 5.25633 10.478 5.57917 9.269C5.75683 8.60167 6.28333 8.07733 6.9485 7.89967C8.1575 7.57683 13.0022 7.57683 13.0022 7.57683C13.0022 7.57683 17.849 7.57683 19.0558 7.89967C19.7232 8.07733 20.2475 8.60383 20.4252 9.269C20.748 10.478 20.748 13 20.748 13C20.748 13 20.748 15.522 20.4252 16.731Z" fill="#666D7A" />
+							</svg>
+							<span class="txt-hidden">유튜브</span>
+						</a>
+						<a href="https://www.instagram.com/cjgroup.official/?igshid=MzRlODBiNWFlZA%3D%3D" target="_blank" title="새창으로 이동">
+							<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M18.6368 0.0136719H7.64543C3.50112 0.0136719 0.141113 3.37368 0.141113 7.51799V18.5094C0.141113 22.6537 3.50112 26.0137 7.64543 26.0137H18.6368C22.7811 26.0137 26.1411 22.6537 26.1411 18.5094V7.51799C26.143 3.37368 22.7829 0.0136719 18.6368 0.0136719ZM23.7477 18.7027C23.7477 21.4533 21.5181 23.6847 18.7657 23.6847H7.51656C4.76595 23.6847 2.53454 21.4551 2.53454 18.7027V7.45355C2.53454 4.70295 4.76411 2.47154 7.51656 2.47154H18.7657C21.5163 2.47154 23.7477 4.70111 23.7477 7.45355V18.7027Z" fill="#666D7A" />
+								<path d="M13.141 6.33205C9.41467 6.33205 6.39526 9.35329 6.39526 13.0778C6.39526 16.8024 9.41651 19.8236 13.141 19.8236C16.8656 19.8236 19.8868 16.8024 19.8868 13.0778C19.8868 9.35329 16.8656 6.33205 13.141 6.33205ZM13.141 17.4523C10.7255 17.4523 8.76844 15.4934 8.76844 13.0797C8.76844 10.666 10.7274 8.70706 13.141 8.70706C15.5547 8.70706 17.5137 10.666 17.5137 13.0797C17.5137 15.4934 15.5547 17.4523 13.141 17.4523Z" fill="#666D7A" />
+								<path d="M20.1129 7.65018C20.9817 7.65018 21.6861 6.94586 21.6861 6.07705C21.6861 5.20823 20.9817 4.50391 20.1129 4.50391C19.2441 4.50391 18.5398 5.20823 18.5398 6.07705C18.5398 6.94586 19.2441 7.65018 20.1129 7.65018Z" fill="#666D7A" />
+							</svg>
+							<span class="txt-hidden">인스타그램</span>
+						</a>
+						<a href="https://www.facebook.com/enjoyCJ/" target="_blank" title="새창으로 이동">
+							<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+								<path d="M18.941 0H7.059C3.17633 0 0 3.20233 0 7.11533V18.8847C0 22.7977 3.17633 26 7.059 26H18.941C22.8237 26 26 22.7977 26 18.8847V7.11533C26 3.20233 22.8237 0 18.941 0ZM17.2467 7.51183H15.7018C14.0032 7.51183 14.3108 8.91367 14.3108 8.91367V10.7813H17.2445L16.8588 13.8168H14.3108V21.2897H11.2212V13.8168H8.749V10.7813H11.2212V8.13367C11.2212 3.61833 17.2445 4.86417 17.2445 4.86417V7.51183H17.2467Z" fill="#666D7A" />
+							</svg>
+							<span class="txt-hidden">페이스북</span>
+						</a>
+					</div>
+					<p class="copyright">©씨제이㈜. ALL RIGHTS RESERVED.</p>
+				</div>
+
+		</div>
+	</div>
+	
+	
+    <!-- footer 영문 -->
+    
+<!-- footer 영문 -->
+ 
+<!-- footer 중문 -->
+    
+    <!-- footer 중문 -->
+
+
+	<!-- // id="footer" -->
+	<!-- 로그인 연장 팝업 -->
+    <a id="aDelaySession" href="#divDelaySession" onclick="showDelaySessionPopup(); return false" class="ly_link" style="display: none;" title="로그인연장 레이어 팝업으로 포커스 이동"><span class="spr ico_imp"></span>로그인 연장</a>
+    
+    <div id="divDelaySession" class="delay-session-popup">
+    	<div class="popup_inner">
+    		<h3 class="title">로그인 연장</h3>
+	    	<div class="btn-area">
+	    		<button type="button" class="btn-delay">
+	    			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+	    				<circle cx="10" cy="10" r="8" stroke="white" stroke-width="2"/>
+	    				<path d="M10 5.5V10L13 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+	    			</svg>
+	    			<span class="timer" id="yesDelaySession" onclick="delaySessionTime();">
+	    				<strong id="minute">03</strong>:<strong id="second">00</strong>
+	    			</span>
+	    		</button>
+	    	</div>
+	    </div>
+    </div>
+    
+    <!-- id="divDelaySession" 기존 로그인 연장 팝업 -->
+    <div class="popup popup_timeEx" style="width:504px;margin-left:-252px"><!-- [d] : 로그인 연장 전용 popup_timeEx --> <!-- id="divDelaySession" -->
+        <div class="popup_inner">
+            <div class="popup_header">
+                <div class="mod_title pop_title_type">
+                    <h1 class="title">로그인 상태 연장</h1><!-- 로그인 상태 연장 -->
+                </div>
+            </div>
+            <!-- popup_content-->
+            <div class="popup_content">
+                <div class="area_time">
+                	<dl class="time_cnt">
+                    <dt>로그인 유효시간</dt><!-- 로그인 유효시간 -->
+                    <dd><strong id="minute">03</strong>:<strong id="second">00</strong></dd>
+                    </dl>
+                    <div class="msg_time">
+                    	<p><strong>로그인 유지 시간이 초과 예정입니다.</strong></p><!-- 로그인 유지 시간이 초과 예정입니다 -->
+                        <p class="txt_msg">연장하시지 않는 경우 자동 로그아웃 처리됩니다.<br>로그인 상태를 연장하시겠습니까?</p>
+                        <!-- 연장하지 않는 경우 자동 로그아웃 처리됩니다. --><!-- 로그인 상태를 연장하시겠습니까? -->
+                    </div>
+                </div>
+                <!-- 버튼영역:type1 -->
+                <div class="sec_btns sec_btns_type">
+                    <span class="btn_pack btn_large btn_type"><button type="button" id="yesDelaySession" onclick="delaySessionTime();">예</button></span><!-- 예 -->
+                    <span class="btn_pack btn_large btn_type4"><button type="button" id="noDelaySession" onclick="delaySessionTimeEnd('no');">아니오</button></span><!-- 아니오 -->
+                </div>
+                <!-- // 버튼영역:type1 -->
+            </div>
+            <!-- // popup_content-->
+        </div>
+    </div>
+    <!-- // 로그인 연장 팝업 -->
+
+    <a id="a_recruit_usa" href="#div_recruit_usa" data-popup-show="#div_recruit_usa" class="ly_link" style="display: none;" title="인재채용 국가선택"><span class="spr ico_imp"></span>국가선택</a>
+
+    <!-- 국가 팝업 팝업 -->
+	<div id="div_recruit_usa" class="popup other_country_pop" style="width:720px;margin-left:-360px;">
+	    <div class="popup_inner ">
+	        <!-- popup_content-->
+	        <div class="popup_content">
+	            <p class="explain eng">
+	                Would you like to see USA Recruit Site?<br>
+	                Opened job lists are changed<br>
+	                to the selected local information.<br>
+	            </p>
+	            <p class="explain kor">
+	                인재채용 미국 사이트를 보시겠습니까?<br>
+					선택한 국가의 인재채용 사이트로 이동됩니다.
+	            </p>
+	            <div class="box_btns rows">
+	            	<ul class="list_country">
+	                	<li>
+	                    	<a href="https://cjamerica.applicantstack.com/x/openings" target="_blank">
+	                            <img src="https://imgrec.cj.net/recruit/ko/images/common/img_eng.jpg" alt="미국 국기" >
+	                            <div class="txt">
+	                                <span >USA</span>
+	                                <p>YES,  I will go find out more on the USA recruit information.<span class="btn_iconPack icon_more2"></span></p>
+	                            </div>
+	                         </a>
+	                    </li>
+	                	<li>
+	                    	<a href="http://recruit.cj.net/recruitko/main/main/main.fo" onclick="needPopup.hide();return false;">
+	                            <img src="https://imgrec.cj.net/recruit/ko/images/common/img_kor.jpg" alt="한국 국기" >
+	                            <div class="txt">
+	                                <span >Korea</span>
+	                                <p>No, I will keep stay in Korea’s recruit information.<span class="btn_iconPack icon_more2"></span></p>
+	                            </div>
+	                         </a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	        <!-- // popup_content-->
+	    </div>
+	</div>
+	<!-- // 국가 팝업 -->
+
+	<a id="a_recruit_chn" href="#div_recruit_chn" data-popup-show="#div_recruit_chn" class="ly_link" style="display: none;" title="인재채용 국가선택"><span class="spr ico_imp"></span>국가선택</a>
+
+	<!-- 국가 팝업 팝업 -->
+	<div id="div_recruit_chn" class="popup other_country_pop" style="width:720px;margin-left:-360px;">
+    <div class="popup_inner ">
+        <!-- popup_content-->
+        <div class="popup_content">
+            <p class="explain eng">
+				你想看看美国 招聘网站？<br>打开任务列表被变更为选择本地信息
+            </p>
+            <p class="explain kor">
+                인재채용 중국 사이트를 보시겠습니까?<br>
+				선택한 국가의 인재채용 사이트로 이동됩니다.
+            </p>
+            <div class="box_btns rows">
+            	<ul class="list_country">
+                	<li>
+                    	<a href="http://cjchina.zhiye.com/" target="_blank">
+                            <img src="https://imgrec.cj.net/recruit/ko/images/common/img_chn.jpg" alt="중국 국기" >
+                            <div class="txt">
+                                <span >中国</span>
+                                <p>是的，我会去了解更多关于中国的招聘信息。<span class="btn_iconPack icon_more2"></span></p>
+                            </div>
+                         </a>
+                    </li>
+                	<li>
+                    	<a href="http://recruit.cj.net/recruitko/main/main/main.fo" onclick="needPopup.hide();return false;">
+                            <img src="https://imgrec.cj.net/recruit/ko/images/common/img_kor.jpg" alt="한국 국기" >
+                            <div class="txt">
+                                <span >韩国</span>
+                                <p>不，我会继续留在韩国 招聘信息。<span class="btn_iconPack icon_more2"></span></p>
+                            </div>
+                         </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- // popup_content-->
+    </div>
+	</div>
+
+	<!-- // 국가 팝업 -->
+
+	<form name="hLogoutForm" action="https://recruit.cj.net/recruit/ko/member/login/logout.fo" target="hIframe">
+	<input type="hidden" name="isTimerLogout" value="1">
+	</form>
+	<iframe name="hIframe" style="height:0;width:0;display:none" title="로그아웃 프레임"></iframe>
+	<!-- <p align="center"><iframe name="chatbotframe" style="height:0;width:0;display:none"></iframe></p>  -->
+
+
+
+
+
+	<!-- <div id="chatbotframe" style="position:absolute; left:255px; top:300px; width:455px; height:334px; z-index:99; visibility: hidden;"> -->
+
+</div>
+
+
+
+	
+
+
+<script>
+var $iframe, iframe, iframeWin, iframeDoc;	//iframe을 참조하기 위한 전역변수 
+
+var clipIconUrl ;
+
+var gFile = {}; 
+
+/**
+* 	파일업로드를 위해 필요한 정보를 셋팅한다.
+*	페이지 로딩 직후 가능한 한 빠른 타이밍에 호출되어야 함.
+*/
+function setUploadInfo(o){
+
+	gFile['bizType'] = o.bizType; 
+	gFile['saveFunc'] = o.saveFunc; 
+	gFile['saveFuncArg'] = o.saveFuncArg; 
+	gFile['additionalParam'] = o.additionalParam; 	
+	//showFileBtns();	//파일추가/삭제 버튼 노출
+	//createIframe();	//파일전송용 iframe 생성
+}
+
+
+
+
+
+/**
+ * 	기존 등록된 파일정보를 얻어와서 파일등록 UI에 채워준다.
+ *	페이지 로딩 이후에야 FILE_NO를 얻을 수 있을 경우에 사용한다.
+ */
+function bindFileInfo(obj){
+
+ 	//트랜젝션 파라미터 설정
+ 	var param = {
+ 		svcId:"searchFileInfo", 
+ 		strUrl: "/recruit/ehr/syscommon/upload/searchFileInfo.fo", 
+ 		inDs : null,
+ 		param : {FILE_NO: obj.fileNo},
+ 		pCall : function(svcId, data, errCd, msgTp, msgCd, msgText){
+
+ 			//업로드UI에 fileNo 셋팅
+ 			$('#fileListDiv').attr('fileNo', obj.fileNo); 
+ 			
+ 			var uploadedFileArr = data['ds_file']['data'];
+ 			for(var i=0; i<uploadedFileArr.length; i++){
+ 				var fileInfo = uploadedFileArr[i];
+ 				var o = {
+ 					UIMode: obj.UIMode || 'RETRIEVE', //조회모드일 경우 파일업로드 UI에 대한 조정이 있다. 	
+ 					fileNo: obj.fileNo,
+ 					authUri: obj.authUri,
+					fileSeq: fileInfo['FILE_SEQ'],
+					fileName: fileInfo['SOURCE_FILE_NM']
+ 				}
+ 				addFileUI(o);
+ 			}
+ 			
+ 		},
+ 		pLoad : false  
+ 	};
+
+ 	//트랜젝션 실행
+ 	transaction(param);		
+}
+
+
+/**
+ * 	파일업로드 
+ *		- 파일업로드 후 업로드에 이상이 없으면 곧바로 업무 저장 함수를 실행한다. 
+ */
+function fileUpload(){
+	iframeWin.fileUpload();
+}
+
+
+/**
+ * 	파일 추가
+ */
+function addFile(){
+	var opInputId = iframeWin.getFileInput();
+
+	//chrome과 safari에서 click 한번에 파일브라우저가 열리지 않아서, file input의 렌더링을 기다리도록 setTimeout을 걸고 click을 trigger했다.
+	//그러나 이 작업을 해당 file input이 속한 iframe페이지에서 하니, IE에서는 file input에 부정한 접근을 하는 것으로 간주하여, form submit시에 
+	//'엑세스가 거부됨 (access denied)' 에러를 발생시켰다. 그래서 iframe창이 아닌 부모창에서 iframe의 file input에 접근하니 IE에서 엑세스를 
+	//거부하지 않는 것을 확인하였다.
+	picLoadCount = 5;
+	if(window.navigator.userAgent.indexOf("Chrome") > 0)
+	{
+		
+		//alert("크롬..");
+		
+			$iframe.contents().find('#'+opInputId).trigger('click');
+		//	$iframe.contents().find('#'+opInputId).trigger('click');
+		
+	}
+	else
+	{
+		setTimeout(function(){
+			$iframe.contents().find('#'+opInputId).trigger('click');
+		}, 0);		
+	}
+
+}
+
+
+/**
+ * 	선택된 파일 삭제
+ */	
+/* function deleteFiles(){
+
+	$fileListDiv = $('#fileListDiv');
+	var fileArr = $fileListDiv.data('fileArr');
+	var fileNo = $fileListDiv.attr('fileNo');
+	
+	$(':checkbox[name=deleteCheck]:checked', '#fileListDiv').each(function(){
+		var chkbx = this, $chkbx = $(chkbx)
+		      $fileInfoDiv = $chkbx.parents('.fileInfoDiv:first'); 
+		
+		//업로드되지 않은 파일일 경우 file input 삭제
+		var sourceFileName = $('.attachFileInfo', $chkbx.parents('tr:first')).attr('title');
+		iframeWin.delFileInputByVal(sourceFileName);
+		
+		//임시업로드상태의 파일일 경우(fileArr에 정보 존재) fileArr내에서 찾아 삭제로 수정 (savedTempFileName 등)
+		//이 경우에(DEL_TEMPFILE) 서버에서는 파일만 지운다
+		for(var i=0; i<fileArr.length; i++){
+			var fileInfo = fileArr[i];
+			if(fileInfo.status === 'ADD' && sourceFileName === fileInfo.sourceFileName){
+				fileInfo['status'] = 'DEL_TEMPFILE';
+				refreshUploadInfo();	//디버깅용
+			}
+		}
+		
+		//이전에 업로드 및 DB등록 완료된 파일일 경우 fileArr에 삭제정보 추가 (fileSeq가 td의 속성으로 존재한다고 가정하여 얻어와서 추가)
+		//이경우에 (DEL_DB_FILE) 서버에서는 파일/데이터를 함께 지운다.
+		var fileSeq = $fileInfoDiv.attr('fileSeq');
+		if(fileSeq != null && fileSeq !== 'undefined' && fileSeq.length > 0){
+			var fileInfo = {};
+			fileInfo['status'] = 'DEL_DB_FILE';
+			fileInfo['fileNo'] = fileNo; 
+			fileInfo['fileSeq'] = fileSeq; 
+			fileArr.push(fileInfo);
+		}
+				
+		//파일목록 화면에서 삭제
+		$fileInfoDiv.remove();
+		refreshUploadInfo();	//디버깅용
+	});
+	
+} */
+
+
+/**
+ * 	iframe의 준비가 완료되었을 때 초기화용으로 사용
+ */
+function initForIframe(){
+
+	$iframe = $('#hiddenFrame');
+	iframe = $iframe[0]; 
+	iframeDoc = iframe.document;
+	iframeWin = iframe.contentWindow;	//함수 호출 검증 완료 - IE7,8,9, Chrome, Firefox, Safari 
+}
+
+
+/**
+ * 	등록/삭제할 파일의 정보 노출 갱신 - 디버깅용
+ */
+function refreshUploadInfo(){
+	$('td:eq(0)', '#fileArrInfoBox').html(JSON.stringify($('#fileListDiv').data('fileArr')));
+}
+
+
+/**
+ * 	파일정보의 DB저장용 데이터 묶음 초기화
+ */
+function initFileDataset(dsName){
+	//alert('initFileDataset');
+	var $fileListDiv = $('#fileListDiv'); 
+	$fileListDiv.data(dsName, []);	//첨부파일 정보 배열
+}
+
+function deleteFiles(dsName)
+{
+	var $fileListDiv = $('#fileListDiv'); 
+	$fileListDiv.data(dsName, []);
+}
+
+
+/**
+ * 	파일정보의 DB저장용 데이터 추가
+ *		- dsName : 'fileArr'
+ */
+function pushFileArr(dsName, dataObj){
+	//alert(dsName);
+	var $fileListDiv = $('#fileListDiv'); 
+	$fileListDiv.data(dsName, []);	//첨부파일 정보 배열
+	//$fileListDiv.data(dsName).remove();
+	$fileListDiv.data(dsName).push(dataObj);
+}
+
+
+/**
+ * 	디버깅용 영역 노출
+ */
+function showDebug(){
+	$('#completedFileInfoBox').show();	//업로드/INSERT 완료된 파일 목록 노출
+	$('#fileArrInfoBox').show();	//서버로 전송하기 위한 파일의 추가/삭제정보 노출	
+	$('#hiddenFrame').show();		//iframe 노출
+}	
+	
+
+/**
+ * 	인수로 받은 fileNo를 전역객체 gFile의 프로퍼티로 설정한다.
+ *	transactionFile() 수행시 fileNo가 파라미터로 병합되어 처리된다.
+ */
+function setFileNo(fileNo){
+	gFile['fileNo'] = fileNo;
+}	
+	
+
+/**
+ * 	첨부파일 JSON정보도 트랜젝션에 실어 보내기 위해
+ *	트랜젝션 옵션에 첨부파일 정보를 셋팅한다.
+ */
+function setFileInfo(options){
+
+	if(options.param){
+		param = options.param;
+	}else{
+		param = {};
+		options.param = param;
+	}
+	var fileArrJSON = JSON.stringify($('#fileListDiv').data('fileArr'));
+	$.extend(param, {fileArrJSON:fileArrJSON}, {BIZ_TYPE:gFile['bizType']}, {FILE_NO:gFile['fileNo']});	
+}
+
+
+/**
+ * 	파일 임시 업로드 
+ *		- 성공시 업무정보/파일정보 트랜젝션을 수행한다. 
+ */
+function transactionFile(o){
+
+ 	gFile['saveFunc'] = tranFileAfterUPload;	
+ 	gFile['saveFuncArg'] = o;	
+ 	fileUpload();	//파일업로드가 성공하면 transaction을 호출한다.	
+}
+
+/**
+ * 	업무정보/파일정보 트랜젝션 수행
+ */
+function tranFileAfterUPload(){
+	//dc('call tranFileAfterUPload()');
+
+	var o = gFile['saveFuncArg']; 
+	
+	//업무 저장시 트랜젝션 옵션에 첨부파일정보도 병합.
+ 	setFileInfo(o);
+	
+	//트랜젝션 완료 후 파일업로드 콜백을 먼저 호출한 후, 업무페이지의 콜백을 호출하도록 한다.
+	gFile['custSvcId'] = o.svcId;
+	gFile['custCallback'] = o.pCall;
+	o.svcId = 'saveFile';
+	o.pCall = tranFileCallback;
+	
+	transaction(o);	
+}
+
+/**
+ * 	업무정보/파일정보 트랜젝션 콜백
+ */
+function tranFileCallback(svcId, data, errCd, msgTp, msgCd, msgText){
+
+	//dc('call tranFileCallback()');
+	initAllFiles(); //현재 모듈 화면에서 파일 관련 모든 데이터를 무조건 초기화한다.	
+	
+	//결과가 성공이 아닐 경우 
+	if(errCd != ERR_CD_SUCCESS){ 
+		return;
+	}
+	
+	if(svcId=="saveFile"){
+		
+		//업무단에서 정의한 transaction 콜백 수행
+		gFile.custCallback(gFile.custSvcId, data, errCd, msgTp, msgCd, msgText);		
+	}
+}
+
+
+/**
+ * 	파일등록 UI 영역을 숨긴다.
+ *	숨길 때에는 파일 정보를 초기화한다.
+ */
+function hideFileUI(){
+	initAllFiles(); //파일 관련 모든 데이터를 초기화
+	$('#fileUIWrap').hide();
+}
+
+
+/**
+ * 	파일등록 UI 영역을 노출한다.
+ */
+function showFileUI(){
+	$('#fileUIWrap').show();
+}
+
+
+/**
+ * 	현재 모듈 화면에서 파일 관련 모든 데이터를 초기화한다.
+ */
+function initAllFiles(){
+	$('#fileListDiv').empty();	//UI상의 파일추가 레코드들을 삭제한다.
+	if($iframe){	//iframe 로딩이 완료된 이후에만 수행
+		$iframe.contents().find('input:file').remove();	//파일 찾아보기 input들을 삭제한다.
+	}
+	initFileDataset();	//서버 전송용 파일정보 데이터셋 초기화
+}
+
+
+/**
+ * 	파일전송용 iframe을 동적으로 생성
+ */
+/* function createIframe(){
+	var $hiddenFrame = $('<iframe id="hiddenFrame" name="hiddenFrame" src="/recruit/frameone/syscommon/upload/iframe.fo?BIZ_TYPE='+ gFile.bizType +'" style="display:none; width:100%; height:100px; border:none"></iframe>');
+	$hiddenFrame.appendTo('body:eq(0)');
+}  */
+
+
+/**
+ * 파일을 수정하지 않는 모드에서 파일정보를 보여줄 경우 사용한다.  	
+ *		- 파일추가/삭제 버튼을 숨긴다. (조회 전용일 경우)
+ */
+function showFileBtns(){
+	
+	//파일추가/삭제 버튼
+	$('.fileInfoTd').attr('colspan', '1');	
+	$('.fileBtnTd').show();
+}
+
+
+//DOM init
+$(function(){
+	initFileDataset('file_up_areaA1');	//서버 전송용 파일정보 데이터셋 초기화
+
+});
+</script>
+
+
+
+
+
+
+<script>
+
+/**
+ * 	파일추가시 파일명 리스트 UI 추가
+ */
+function addFileUI(o){}
+
+
+</script>
+
+<div id="fileListDiv" fileNo=""></div>
+
+	
+
+
+
+
+
+
+
+
+<!-- <table id="fileArrInfoBox" style="width:600px; height:60px; border:1px solid #aaa; background-color:yellow; display:none">
+	<tr>
+		<td style="font-size:9pt"></td>
+	</tr>
+</table> -->
+
+
+
+</body>
+</html>
