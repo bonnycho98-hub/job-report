@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from typing import List
 from datetime import datetime
 import os
+import re
 
 from backend import models, schemas, crud
 from backend.database import engine, get_db
@@ -31,6 +32,11 @@ app.add_middleware(
 frontend_path = os.path.join(os.path.dirname(__file__), "..", "frontend")
 os.makedirs(frontend_path, exist_ok=True)
 app.mount("/static", StaticFiles(directory=frontend_path, html=True), name="static")
+
+# 리포트 정적 파일 서빙 (export_to_html이 생성한 HTML)
+reports_path = os.path.join(os.path.dirname(__file__), "..", "reports")
+os.makedirs(reports_path, exist_ok=True)
+app.mount("/reports", StaticFiles(directory=reports_path), name="reports")
 
 @app.get("/")
 def read_root():
@@ -67,13 +73,35 @@ async def trigger_crawl(db: Session = Depends(get_db)):
     week_num = now.isocalendar()[1]
     year = now.year
     
+    # 해외 공고 블랙리스트
+    FOREIGN_BLACKLIST = [
+        # 일본
+        "tokyo", "osaka", "japan", "日本", "東京", "大阪", "福岡",
+        # 동남아
+        "singapore", "vietnam", "hanoi", "ho chi minh",
+        "bangkok", "thailand", "jakarta", "indonesia", "manila", "philippines",
+        # 대만/중국
+        "taipei", "taiwan", "台北", "台灣", "beijing", "shanghai", "shenzhen",
+        # 미주/유럽
+        "new york", "san francisco", "seattle", "los angeles", "austin",
+        "london", "berlin", "amsterdam", "paris", "toronto", "vancouver",
+    ]
+
     for job_data in results.get("raw_jobs", []):
-        # 1. Job 등록: 중복 URL 방지
+        # 1. 중복 URL 방지
         source_url = job_data.get("source_url", "")
         existing_job = db.query(models.JobPosting).filter(models.JobPosting.source_url == source_url).first()
         if existing_job:
             continue
 
+        # 2. 필터링: 인턴 및 해외 공고 제외 (DB 저장 전에 걸러냄)
+        text_to_eval = f"{job_data.get('title', '')} {job_data.get('position', '')} {job_data.get('company', '')}".lower()
+        if "인턴" in text_to_eval or re.search(r'\bintern\b', text_to_eval):
+            continue
+        if any(kw in text_to_eval for kw in FOREIGN_BLACKLIST):
+            continue
+
+        # 3. 필터 통과 → DB 저장
         db_job = models.JobPosting(
             site_id=job_data.get("site_id", 0),
             title=job_data.get("title", "Unknown"),
@@ -83,12 +111,7 @@ async def trigger_crawl(db: Session = Depends(get_db)):
             deadline=job_data.get("deadline", "")
         )
         db.add(db_job)
-        db.flush() # id 할당
-        
-        # 2. 인턴 공고 제외 (사용자 요청)
-        text_to_eval = f"{db_job.title} {db_job.position} {db_job.company}".lower()
-        if "인턴" in text_to_eval or "intern" in text_to_eval:
-            continue
+        db.flush()
 
         # 3. 매칭 수행
         match_scores = matcher_engine.evaluate(text_to_eval)
