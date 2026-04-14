@@ -4,11 +4,13 @@ services:
     runtime: python
     buildCommand: |
       pip install -r requirements.txt
-      playwright install chromium
-      playwright install-deps chromium
+      PLAYWRIGHT_BROWSERS_PATH=/opt/render/project/src/.playwright playwright install chromium
+      PLAYWRIGHT_BROWSERS_PATH=/opt/render/project/src/.playwright playwright install-deps chromium
     startCommand: uvicorn backend.main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: DATABASE_URL
         sync: false  # Render 대시보드에서 직접 입력
+      - key: PLAYWRIGHT_BROWSERS_PATH
+        value: /opt/render/project/src/.playwright
       - key: PYTHON_VERSION
         value: "3.11"
