@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Depends, BackgroundTasks, HTTPException
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
@@ -7,6 +8,7 @@ from typing import List
 from datetime import datetime
 import os
 import re
+import logging
 
 from backend import models, schemas, crud
 from backend.database import engine, get_db
@@ -14,10 +16,20 @@ from backend.crawler.engine import CrawlerEngine
 from backend.matcher.engine import matcher_engine
 from backend.exporter import export_to_html
 
-# 테이블 자동 생성 (실제 운영환경에서는 Alembic 권장)
-models.Base.metadata.create_all(bind=engine)
+logger = logging.getLogger(__name__)
 
-app = FastAPI(title="Job Crawler Service")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # 테이블 자동 생성
+    try:
+        models.Base.metadata.create_all(bind=engine)
+        logger.info("DB 테이블 초기화 완료")
+    except Exception as e:
+        logger.error(f"DB 초기화 실패: {e}")
+        raise
+    yield
+
+app = FastAPI(title="Job Crawler Service", lifespan=lifespan)
 
 # CORS 적용
 app.add_middleware(
