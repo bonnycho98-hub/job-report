@@ -114,14 +114,21 @@ class CrawlerEngine:
                     parser = self.parsers[site.id]
                 try:
                     response = await page.goto(parser.target_url, wait_until="networkidle", timeout=30000)
-                    
+
+                    # wait_selector가 있으면 해당 요소가 DOM에 나타날 때까지 추가 대기
+                    if parser.wait_selector:
+                        try:
+                            await page.wait_for_selector(parser.wait_selector, timeout=15000)
+                        except Exception:
+                            logger.warning(f"wait_selector '{parser.wait_selector}' not found for {site.name}")
+
                     # API 파서인 경우 JSON 전용 처리가 필요할 수 있음
                     content_type = response.headers.get("content-type", "")
                     if "application/json" in content_type:
                         content = await response.text()
                     else:
                         # 브라우저가 JSON을 <pre> 태그 등으로 감싸는 경우 대비
-                        if any(x in site.url for x in ["greenhouse.io", "api.lever.co", "api.ninehire.com"]):
+                        if any(x in parser.target_url for x in ["greenhouse.io", "api.lever.co", "api.ninehire.com", "api-public.toss.im"]):
                             content = await page.evaluate("() => document.body.innerText")
                         else:
                             content = await page.content()

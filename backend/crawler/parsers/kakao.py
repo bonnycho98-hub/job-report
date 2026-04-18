@@ -10,8 +10,11 @@ class KakaoParser(BaseParser):
 
     @property
     def target_url(self) -> str:
-        # 사용자가 제공한 TECHNOLOGY 파트, KAKAO 컴퍼니 필터링된 URL
         return "https://careers.kakao.com/jobs?skillSet=&page=1&company=KAKAO&part=TECHNOLOGY&employeeType=&keyword="
+
+    @property
+    def wait_selector(self) -> str:
+        return "ul.list_jobs"
 
     def parse(self, html_content: str) -> List[Dict[str, Any]]:
         soup = BeautifulSoup(html_content, 'html.parser')
