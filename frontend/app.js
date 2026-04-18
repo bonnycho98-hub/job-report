@@ -147,6 +147,7 @@ function toggleSiteStats() {
 
 function renderCards(data, profile) {
     const listContainer = document.getElementById('results-list');
+    listContainer.innerHTML = '';
 
     if (data.length === 0) {
         listContainer.innerHTML = `
