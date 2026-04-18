@@ -65,6 +65,13 @@ def read_sites(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 def get_site_statistics(db: Session = Depends(get_db)):
     return crud.get_site_stats(db)
 
+@app.delete("/api/sites/{site_id}")
+def delete_site(site_id: int, db: Session = Depends(get_db)):
+    success = crud.delete_site(db, site_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Site not found")
+    return {"message": "deleted"}
+
 @app.post("/api/sites", response_model=schemas.Site)
 def create_site(site: schemas.SiteCreate, db: Session = Depends(get_db)):
     return crud.create_site(db, site)
@@ -153,7 +160,7 @@ async def trigger_crawl(db: Session = Depends(get_db)):
 @app.get("/api/results")
 def get_results(profile: str = "웅키", week: int = None, year: int = None, db: Session = Depends(get_db)):
     query = db.query(models.MatchResult).join(models.JobPosting)
-    if profile == "웅키":
+    if profile in ("웅키", "A"):
         query = query.filter(models.MatchResult.profile_id == 1)
     else:
         query = query.filter(models.MatchResult.profile_id == 2)

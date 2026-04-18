@@ -7,9 +7,11 @@ function switchTab(view) {
     document.getElementById('view-settings').classList.toggle('hidden', view !== 'settings');
 
     document.getElementById('nav-dashboard').className = view === 'dashboard'
-        ? 'text-blue-600 font-semibold focus:outline-none' : 'text-gray-500 hover:text-gray-800 focus:outline-none';
+        ? 'px-3 py-1.5 rounded-md text-sm font-medium bg-white text-gray-900 shadow-sm transition-all'
+        : 'px-3 py-1.5 rounded-md text-sm font-medium text-gray-500 hover:text-gray-800 transition-all';
     document.getElementById('nav-settings').className = view === 'settings'
-        ? 'text-blue-600 font-semibold focus:outline-none' : 'text-gray-500 hover:text-gray-800 focus:outline-none';
+        ? 'px-3 py-1.5 rounded-md text-sm font-medium bg-white text-gray-900 shadow-sm transition-all'
+        : 'px-3 py-1.5 rounded-md text-sm font-medium text-gray-500 hover:text-gray-800 transition-all';
 
     if (view === 'settings') {
         fetchSites();
@@ -71,20 +73,12 @@ function renderSiteStats(data) {
     container.innerHTML = '';
 
     data.forEach(site => {
-        const dotColor = site.status === 'active' ? 'bg-green-500' : 'bg-red-500';
+        const dotColor = site.status === 'active' ? 'bg-green-400' : 'bg-red-400';
         container.innerHTML += `
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center hover:shadow-md transition-all relative overflow-hidden group">
-            <div class="absolute top-2 right-2">
-                <span class="flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full ${dotColor} opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 ${dotColor}"></span>
-                </span>
-            </div>
-            <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 group-hover:text-blue-500 transition-colors">${site.name}</span>
-            <div class="flex items-baseline gap-1">
-                <span class="text-2xl font-black text-gray-800 group-hover:text-blue-600 transition-colors">${site.job_count}</span>
-                <span class="text-xs font-bold text-gray-400">건</span>
-            </div>
+        <div class="flex items-center gap-1.5 bg-gray-50 border border-gray-200 rounded-full px-3 py-1 text-sm hover:border-blue-300 hover:bg-blue-50 transition-all cursor-default">
+            <span class="h-1.5 w-1.5 rounded-full ${dotColor} flex-shrink-0"></span>
+            <span class="text-gray-600 font-medium">${site.name}</span>
+            <span class="text-gray-900 font-bold">${site.job_count}<span class="text-xs font-normal text-gray-400 ml-0.5">건</span></span>
         </div>
         `;
     });
@@ -115,34 +109,33 @@ function renderCards(data, profile) {
         const accentBorder = profile === 'A' ? 'border-l-pink-400' : 'border-l-blue-500';
 
         listContainer.innerHTML += `
-        <div class="bg-white rounded-lg shadow hover:shadow-md transition-shadow duration-200 border-y border-r border-l-4 border-gray-100 ${accentBorder} p-5 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            
+        <div class="bg-white rounded-lg border border-gray-100 border-l-4 ${accentBorder} px-5 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-l-4 hover:shadow-sm transition-all duration-150">
+
             <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-3 mb-2">
-                    <span class="text-xs font-bold px-2.5 py-1 rounded border ${badgeColor}">${item.sub_group || 'Keyword Match'} (점수: ${item.score})</span>
-                    <span class="text-sm text-gray-500 font-semibold">${item.company}</span>
+                <div class="flex items-center gap-2 mb-1.5">
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded-full border ${badgeColor}">${item.sub_group || 'Keyword Match'}</span>
+                    <span class="text-xs text-gray-400">점수 ${item.score}</span>
+                    <span class="text-sm text-gray-500 font-medium">${item.company}</span>
                 </div>
-                <h3 class="text-xl font-extrabold text-gray-900 truncate" title="${item.title}">
+                <h3 class="text-base font-bold text-gray-900 truncate" title="${item.title}">
                     <a href="${item.url}" target="_blank" class="hover:text-blue-600 transition-colors">${item.title}</a>
                 </h3>
-                <div class="text-sm text-gray-600 truncate mt-1.5 flex items-center">
-                    <i class="fa-solid fa-briefcase mr-2 text-gray-400"></i> ${item.position}
+                <div class="text-xs text-gray-500 truncate mt-1 flex items-center gap-1">
+                    <i class="fa-solid fa-briefcase text-gray-300"></i>${item.position}
                 </div>
             </div>
 
-            <div class="flex flex-col md:items-end justify-center min-w-[240px]">
-                <div class="flex flex-wrap gap-1.5 mb-3 justify-start md:justify-end">
+            <div class="flex flex-col md:items-end justify-center gap-2 shrink-0">
+                <div class="flex flex-wrap gap-1 justify-start md:justify-end">
                     ${keywordTags}
-                    ${keywords.length > 3 ? `<span class="text-xs text-gray-400 font-medium px-1 flex items-center">+${keywords.length - 3}</span>` : ''}
+                    ${keywords.length > 3 ? `<span class="text-xs text-gray-400 px-1">+${keywords.length - 3}</span>` : ''}
                 </div>
-                <div class="flex items-center gap-4 text-sm font-medium">
-                    <span class="text-gray-400 flex items-center" title="수집 시간">
-                        <i class="fa-solid fa-clock mr-1.5 text-gray-300"></i> ${dateStr}
-                    </span>
-                    <span class="text-red-500 bg-red-50 px-2.5 py-1 rounded border border-red-100 whitespace-nowrap">${item.deadline ? item.deadline : '상시/미정'}</span>
+                <div class="flex items-center gap-3 text-xs text-gray-400">
+                    <span title="수집 시간"><i class="fa-solid fa-clock mr-1"></i>${dateStr}</span>
+                    <span class="text-red-500 bg-red-50 px-2 py-0.5 rounded-full border border-red-100 whitespace-nowrap">${item.deadline ? item.deadline : '상시/미정'}</span>
                 </div>
             </div>
-            
+
         </div>
         `;
     });
@@ -182,16 +175,29 @@ async function exportHtml() {
     }
 }
 
+async function deleteSite(siteId, siteName) {
+    if (!confirm(`"${siteName}" 사이트와 관련된 모든 공고/매칭 데이터를 삭제합니다. 계속하시겠습니까?`)) return;
+    try {
+        const res = await fetch(`${API_BASE}/sites/${siteId}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error();
+        showToast(`"${siteName}" 삭제 완료`);
+        fetchSites();
+        fetchSiteStats();
+    } catch (e) {
+        showToast("삭제 중 오류가 발생했습니다.", true);
+    }
+}
+
 // --- Settings ---
 async function fetchSites() {
     const tbody = document.getElementById('sites-table-body');
-    tbody.innerHTML = '<tr><td colspan="4" class="text-center py-6 border border-dashed border-gray-200 text-gray-500 rounded-lg">데이터 불어오는 중...</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-6 border border-dashed border-gray-200 text-gray-500 rounded-lg">데이터 불어오는 중...</td></tr>';
 
     try {
         const res = await fetch(`${API_BASE}/sites`);
         const data = await res.json();
 
-        tbody.innerHTML = data.length ? '' : '<tr><td colspan="4" class="text-center py-8 text-gray-500 bg-gray-50">등록된 사이트가 아직 없습니다.</td></tr>';
+        tbody.innerHTML = data.length ? '' : '<tr><td colspan="5" class="text-center py-8 text-gray-500 bg-gray-50">등록된 사이트가 아직 없습니다.</td></tr>';
 
         data.forEach(site => {
             const statusColor = site.status === 'active' ? 'bg-green-100 text-green-800 border-green-200' :
@@ -209,11 +215,16 @@ async function fetchSites() {
                     (site.status === 'parse_error' ? '<i class="fa-solid fa-circle-xmark mr-1"></i>오류' : site.status)}
                     </span>
                 </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm">
+                    <button onclick="deleteSite(${site.id}, '${site.name}')" class="text-red-500 hover:text-red-700 font-medium text-xs px-2 py-1 rounded border border-red-200 hover:bg-red-50 transition-colors">
+                        <i class="fa-solid fa-trash mr-1"></i>삭제
+                    </button>
+                </td>
             </tr>
             `;
         });
     } catch (e) {
-        tbody.innerHTML = '<tr><td colspan="4" class="text-center py-8 text-red-500 bg-red-50">데이터 로딩 에러</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-red-500 bg-red-50">데이터 로딩 에러</td></tr>';
     }
 }
 
