@@ -1,5 +1,7 @@
 const API_BASE = '/api';
 let currentProfile = 'A';
+let allResults = [];        // 전체 결과 캐시
+let currentCompany = null;  // 현재 선택된 회사 필터
 
 // ─── Navigation ────────────────────────────────────────────────
 function switchTab(view) {
@@ -37,6 +39,9 @@ async function fetchResults(profile) {
         const res = await fetch(`${API_BASE}/results?profile=${profile}`);
         const data = await res.json();
         loading.classList.add('hidden');
+        allResults = data;
+        currentCompany = null;
+        renderCompanyFilter(data, profile);
         renderCards(data, profile);
     } catch (e) {
         loading.classList.add('hidden');
@@ -54,6 +59,65 @@ async function fetchSiteStats() {
     } catch (e) {
         console.error('Failed to fetch site stats', e);
     }
+}
+
+function renderCompanyFilter(data, profile) {
+    const bar = document.getElementById('company-filter-bar');
+    const btns = document.getElementById('company-filter-btns');
+    if (!bar || !btns) return;
+
+    // 회사별 건수 집계
+    const counts = {};
+    data.forEach(item => {
+        counts[item.company] = (counts[item.company] || 0) + 1;
+    });
+    const companies = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+    if (companies.length === 0) {
+        bar.classList.add('hidden');
+        return;
+    }
+
+    bar.classList.remove('hidden');
+    btns.innerHTML = '';
+
+    const accentColor = profile === 'A' ? 'bg-pink-500 text-white' : 'bg-blue-600 text-white';
+
+    companies.forEach(([company, count]) => {
+        btns.innerHTML += `
+        <button onclick="filterByCompany('${company.replace(/'/g, "\\'")}')"
+            id="filter-${CSS.escape(company)}"
+            class="company-filter-btn text-xs font-medium px-2.5 py-1 rounded-md bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors">
+            ${company} <span class="text-gray-400 font-normal">${count}</span>
+        </button>`;
+    });
+
+    // 전체 버튼 색상 보정 (profile에 따라)
+    document.getElementById('filter-all').className =
+        `text-xs font-medium px-2.5 py-1 rounded-md ${accentColor} transition-colors`;
+}
+
+function filterByCompany(company) {
+    currentCompany = company;
+
+    // 전체 버튼 스타일
+    const profile = currentProfile;
+    const accentColor = profile === 'A' ? 'bg-pink-500 text-white' : 'bg-blue-600 text-white';
+    const allBtn = document.getElementById('filter-all');
+    allBtn.className = `text-xs font-medium px-2.5 py-1 rounded-md ${company === null ? accentColor : 'bg-gray-100 text-gray-600 hover:bg-gray-200'} transition-colors`;
+
+    // 회사 버튼 스타일
+    document.querySelectorAll('.company-filter-btn').forEach(btn => {
+        const isActive = btn.textContent.trim().startsWith(company || '');
+        // onclick 속성에서 회사명 추출해서 비교
+        const btnCompany = btn.getAttribute('onclick')?.match(/filterByCompany\('(.+?)'\)/)?.[1];
+        btn.className = `company-filter-btn text-xs font-medium px-2.5 py-1 rounded-md transition-colors ${
+            btnCompany === company ? accentColor : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+        }`;
+    });
+
+    const filtered = company ? allResults.filter(item => item.company === company) : allResults;
+    renderCards(filtered, profile);
 }
 
 function renderSiteStats(data) {

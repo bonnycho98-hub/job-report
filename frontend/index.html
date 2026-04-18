@@ -61,6 +61,15 @@
                 </div>
             </div>
 
+            <!-- Company filter -->
+            <div id="company-filter-bar" class="hidden bg-white border-b border-gray-100">
+                <div class="max-w-4xl mx-auto px-6 py-2 flex gap-1.5 flex-wrap items-center">
+                    <button onclick="filterByCompany(null)" id="filter-all"
+                        class="text-xs font-medium px-2.5 py-1 rounded-md bg-gray-900 text-white transition-colors">전체</button>
+                    <div id="company-filter-btns" class="flex gap-1.5 flex-wrap"></div>
+                </div>
+            </div>
+
             <!-- Loading spinner -->
             <div id="loading" class="hidden flex justify-center py-16">
                 <div class="animate-spin rounded-full h-5 w-5 border-2 border-gray-200 border-t-gray-500"></div>
