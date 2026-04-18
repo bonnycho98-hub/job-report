@@ -9,6 +9,10 @@ from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# 모든 로그를 stderr로 → stdout에는 JSON 결과만 출력
+import logging
+logging.basicConfig(stream=sys.stderr, level=logging.INFO)
+
 from backend.database import engine, get_db
 from backend import models
 from backend.crawler.engine import CrawlerEngine
