@@ -96,12 +96,18 @@ class CrawlerEngine:
                     elif "coupang.jobs" in site.url:
                         from backend.crawler.parsers.coupang import CoupangParser
                         parser = CoupangParser(site.id)
+                    elif "corp.banksalad.com" in site.url:
+                        from backend.crawler.parsers.banksalad import BankSaladParser
+                        parser = BankSaladParser(site.id)
                     elif "krafton.com" in site.url:
                         from backend.crawler.parsers.krafton import KraftonParser
                         parser = KraftonParser(site.id)
                     elif "skcareers.com" in site.url:
                         from backend.crawler.parsers.skcareers import SkCareersParser
                         parser = SkCareersParser(site.id, base_url=site.url)
+                    elif "channel.io" in site.url:
+                        from backend.crawler.parsers.channelio import ChannelIOParser
+                        parser = ChannelIOParser(site.id)
                     else:
                         from backend.crawler.base import BaseParser
                         class MockParser(BaseParser):
@@ -131,7 +137,7 @@ class CrawlerEngine:
                         content = await response.text()
                     else:
                         # 브라우저가 JSON을 <pre> 태그 등으로 감싸는 경우 대비
-                        if any(x in parser.target_url for x in ["greenhouse.io", "api.lever.co", "api.ninehire.com", "api-public.toss.im"]):
+                        if any(x in parser.target_url for x in ["greenhouse.io", "api.lever.co", "api.ninehire.com", "api-public.toss.im", "career.woowahan.com/w1"]):
                             content = await page.evaluate("() => document.body.innerText")
                         else:
                             content = await page.content()

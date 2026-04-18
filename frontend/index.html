@@ -25,6 +25,8 @@
                     class="h-full px-3 text-xs font-medium text-gray-900 border-b-2 border-gray-900 transition-colors focus:outline-none">대시보드</button>
                 <button onclick="switchTab('settings')" id="nav-settings"
                     class="h-full px-3 text-xs font-medium text-gray-400 border-b-2 border-transparent hover:text-gray-600 transition-colors focus:outline-none">설정</button>
+                <button onclick="switchTab('logs')" id="nav-logs"
+                    class="h-full px-3 text-xs font-medium text-gray-400 border-b-2 border-transparent hover:text-gray-600 transition-colors focus:outline-none">로그</button>
             </div>
         </div>
     </nav>
@@ -92,6 +94,13 @@
             <!-- Results list -->
             <div class="max-w-4xl mx-auto px-6 py-5">
                 <div id="results-list" class="bg-white border border-gray-100 rounded-lg overflow-hidden"></div>
+            </div>
+        </div>
+
+        <!-- ─── Logs View ─────────────────────────────────────── -->
+        <div id="view-logs" class="hidden">
+            <div class="max-w-4xl mx-auto px-6 py-5">
+                <div id="crawl-history" class="space-y-2"></div>
             </div>
         </div>
 

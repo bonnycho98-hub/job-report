@@ -8,6 +8,7 @@ from typing import List
 from datetime import datetime
 import os
 import re
+import json
 import logging
 
 from backend import models, schemas, crud
@@ -79,19 +80,20 @@ def create_site(site: schemas.SiteCreate, db: Session = Depends(get_db)):
 @app.post("/api/crawl")
 async def trigger_crawl(db: Session = Depends(get_db)):
     """크롤링 실행 및 데이터베이스 매칭 적용 엔드포인트"""
-    crawler = CrawlerEngine(db)
-    
-    # v1 예시: DB에 등록된 사이트를 순회하며 임의의 샘플 파서 등록 (추후 동적 매핑 대체)
-    # 실제로는 parser 모듈들을 여기서 register 해줍니다.
-    # crawler.register_parser(site.id, WantedParser(site.id))
-    
-    results = await crawler.run()
-    
-    matched_results_summary = {"웅키": 0, "쵸키": 0}
     now = datetime.utcnow()
+
+    # 크롤링 세션 생성
+    session = models.CrawlSession(started_at=now)
+    db.add(session)
+    db.flush()
+
+    crawler = CrawlerEngine(db)
+    results = await crawler.run()
+
+    matched_results_summary = {"웅키": 0, "쵸키": 0}
     week_num = now.isocalendar()[1]
     year = now.year
-    
+
     # 해외 공고 블랙리스트
     FOREIGN_BLACKLIST = [
         # 일본
@@ -105,6 +107,10 @@ async def trigger_crawl(db: Session = Depends(get_db)):
         "new york", "san francisco", "seattle", "los angeles", "austin",
         "london", "berlin", "amsterdam", "paris", "toronto", "vancouver",
     ]
+
+    # 사이트별 수집 공고 수 집계 (site_id → count)
+    site_job_counts: dict[int, int] = {}
+    new_jobs_count = 0
 
     for job_data in results.get("raw_jobs", []):
         # 1. 중복 URL 방지
@@ -121,8 +127,9 @@ async def trigger_crawl(db: Session = Depends(get_db)):
             continue
 
         # 3. 필터 통과 → DB 저장
+        site_id = job_data.get("site_id", 0)
         db_job = models.JobPosting(
-            site_id=job_data.get("site_id", 0),
+            site_id=site_id,
             title=job_data.get("title", "Unknown"),
             company=job_data.get("company", "Unknown"),
             position=job_data.get("position", ""),
@@ -131,13 +138,15 @@ async def trigger_crawl(db: Session = Depends(get_db)):
         )
         db.add(db_job)
         db.flush()
+        new_jobs_count += 1
+        site_job_counts[site_id] = site_job_counts.get(site_id, 0) + 1
 
-        # 3. 매칭 수행
+        # 4. 매칭 수행
         match_scores = matcher_engine.evaluate(text_to_eval)
-        
+
         for match in match_scores:
             profile_id = 1 if match["profile_id"] == "웅키" else 2
-            
+
             db_match = models.MatchResult(
                 job_posting_id=db_job.id,
                 profile_id=profile_id,
@@ -152,10 +161,65 @@ async def trigger_crawl(db: Session = Depends(get_db)):
                 matched_results_summary["웅키"] += 1
             else:
                 matched_results_summary["쵸키"] += 1
-                
+
+    # 사이트별 결과 구성
+    site_map = {s.id: s.name for s in db.query(models.Site).all()}
+    error_map = {e["site_id"]: e["error"] for e in results.get("errors", [])}
+    failed_ids = {e["site_id"] for e in results.get("errors", [])}
+
+    site_results = []
+    for site_id, site_name in site_map.items():
+        status = "failed" if site_id in failed_ids else "success"
+        site_results.append({
+            "name": site_name,
+            "status": status,
+            "jobs_found": site_job_counts.get(site_id, 0),
+            "error": error_map.get(site_id),
+        })
+
+    # 크롤링 세션 업데이트
+    session.finished_at = datetime.utcnow()
+    session.total_sites = results.get("total_sites", 0)
+    session.success = results.get("success", 0)
+    session.failed = results.get("failed", 0)
+    session.new_jobs = new_jobs_count
+    session.matched_a = matched_results_summary["웅키"]
+    session.matched_b = matched_results_summary["쵸키"]
+    session.site_results = json.dumps(site_results, ensure_ascii=False)
+
     db.commit()
     results["matched_summary"] = matched_results_summary
     return {"message": "success", "details": results}
+
+
+@app.get("/api/crawl/history")
+def get_crawl_history(limit: int = 20, db: Session = Depends(get_db)):
+    """최근 크롤링 세션 이력 조회"""
+    sessions = (
+        db.query(models.CrawlSession)
+        .order_by(models.CrawlSession.started_at.desc())
+        .limit(limit)
+        .all()
+    )
+    result = []
+    for s in sessions:
+        duration_sec = None
+        if s.finished_at and s.started_at:
+            duration_sec = int((s.finished_at - s.started_at).total_seconds())
+        result.append({
+            "id": s.id,
+            "started_at": s.started_at.isoformat() if s.started_at else None,
+            "finished_at": s.finished_at.isoformat() if s.finished_at else None,
+            "duration_sec": duration_sec,
+            "total_sites": s.total_sites,
+            "success": s.success,
+            "failed": s.failed,
+            "new_jobs": s.new_jobs,
+            "matched_a": s.matched_a,
+            "matched_b": s.matched_b,
+            "site_results": json.loads(s.site_results) if s.site_results else [],
+        })
+    return result
 
 @app.get("/api/results")
 def get_results(profile: str = "웅키", week: int = None, year: int = None, db: Session = Depends(get_db)):

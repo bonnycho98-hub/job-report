@@ -7,14 +7,18 @@ let currentCompany = null;  // 현재 선택된 회사 필터
 function switchTab(view) {
     document.getElementById('view-dashboard').classList.toggle('hidden', view !== 'dashboard');
     document.getElementById('view-settings').classList.toggle('hidden', view !== 'settings');
+    document.getElementById('view-logs').classList.toggle('hidden', view !== 'logs');
 
     const activeNav = 'h-full px-3 text-xs font-medium text-gray-900 border-b-2 border-gray-900 transition-colors focus:outline-none';
     const inactiveNav = 'h-full px-3 text-xs font-medium text-gray-400 border-b-2 border-transparent hover:text-gray-600 transition-colors focus:outline-none';
     document.getElementById('nav-dashboard').className = view === 'dashboard' ? activeNav : inactiveNav;
     document.getElementById('nav-settings').className = view === 'settings' ? activeNav : inactiveNav;
+    document.getElementById('nav-logs').className = view === 'logs' ? activeNav : inactiveNav;
 
     if (view === 'settings') {
         fetchSites();
+    } else if (view === 'logs') {
+        fetchCrawlHistory();
     } else {
         fetchResults(currentProfile);
         fetchSiteStats();
@@ -319,6 +323,91 @@ function showToast(message, isError = false) {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-4', 'opacity-0');
     }, 4000);
+}
+
+// ─── Crawl History (Logs) ──────────────────────────────────────
+async function fetchCrawlHistory() {
+    const container = document.getElementById('crawl-history');
+    container.innerHTML = '<div class="text-center py-10 text-xs text-gray-400">불러오는 중...</div>';
+    try {
+        const res = await fetch(`${API_BASE}/crawl/history`);
+        const data = await res.json();
+        renderCrawlHistory(data);
+    } catch (e) {
+        container.innerHTML = '<div class="text-center py-10 text-xs text-red-400">로딩 오류</div>';
+    }
+}
+
+function formatDuration(sec) {
+    if (sec == null) return '';
+    if (sec < 60) return `${sec}초`;
+    return `${Math.floor(sec / 60)}분 ${sec % 60}초`;
+}
+
+function formatDatetime(iso) {
+    if (!iso) return '-';
+    const d = new Date(iso);
+    const pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}.${pad(d.getMonth()+1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
+function renderCrawlHistory(data) {
+    const container = document.getElementById('crawl-history');
+    if (!data.length) {
+        container.innerHTML = `
+        <div class="text-center py-16 px-6">
+            <i class="fa-solid fa-clock-rotate-left text-2xl text-gray-200 mb-3 block"></i>
+            <p class="text-sm text-gray-400">크롤링 이력이 없습니다</p>
+            <p class="text-xs text-gray-300 mt-1">크롤링을 실행하면 여기에 기록됩니다</p>
+        </div>`;
+        return;
+    }
+
+    container.innerHTML = data.map(s => {
+        const siteRows = (s.site_results || []).map(r => {
+            const dot = r.status === 'success' ? 'bg-green-500' : 'bg-red-400';
+            const jobText = r.jobs_found > 0 ? `<span class="font-medium text-gray-700">+${r.jobs_found}건</span>` : '<span class="text-gray-300">0건</span>';
+            const errText = r.error ? `<span class="text-red-400 truncate ml-2" title="${r.error}">${r.error}</span>` : '';
+            return `<div class="flex items-center gap-2 py-1 text-xs text-gray-500">
+                <span class="w-1.5 h-1.5 rounded-full ${dot} flex-shrink-0 ml-1"></span>
+                <span class="w-24 truncate">${r.name}</span>
+                ${jobText}
+                ${errText}
+            </div>`;
+        }).join('');
+
+        const failedBadge = s.failed > 0
+            ? `<span class="text-red-500">${s.failed}실패</span>`
+            : `<span class="text-gray-400">${s.failed}실패</span>`;
+
+        return `
+        <div class="bg-white border border-gray-100 rounded-lg overflow-hidden">
+            <button onclick="toggleSessionDetail(${s.id})"
+                class="w-full px-5 py-3.5 flex items-center gap-3 hover:bg-gray-50 transition-colors text-left">
+                <i id="chevron-${s.id}" class="fa-solid fa-chevron-right text-xs text-gray-300 transition-transform duration-200 flex-shrink-0"></i>
+                <div class="flex-1 min-w-0 flex flex-wrap items-center gap-x-4 gap-y-1">
+                    <span class="text-xs font-medium text-gray-700 whitespace-nowrap">${formatDatetime(s.started_at)}</span>
+                    <span class="text-xs text-gray-400">${s.total_sites}사이트</span>
+                    <span class="text-xs text-green-600">${s.success}성공</span>
+                    ${failedBadge}
+                    <span class="text-xs font-semibold text-gray-800">+${s.new_jobs}건</span>
+                    <span class="text-xs text-gray-400">A:${s.matched_a} B:${s.matched_b}</span>
+                    ${s.duration_sec != null ? `<span class="text-xs text-gray-300">${formatDuration(s.duration_sec)}</span>` : ''}
+                </div>
+            </button>
+            <div id="detail-${s.id}" class="hidden border-t border-gray-50 px-5 py-2">
+                ${siteRows}
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function toggleSessionDetail(id) {
+    const detail = document.getElementById(`detail-${id}`);
+    const chevron = document.getElementById(`chevron-${id}`);
+    const isHidden = detail.classList.contains('hidden');
+    detail.classList.toggle('hidden', !isHidden);
+    chevron.style.transform = isHidden ? 'rotate(90deg)' : '';
 }
 
 // ─── Init ───────────────────────────────────────────────────────

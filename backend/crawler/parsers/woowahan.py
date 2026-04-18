@@ -1,64 +1,65 @@
+import json
 from typing import List, Dict, Any
-from bs4 import BeautifulSoup
 from backend.crawler.base import BaseParser
 
 class WoowahanParser(BaseParser):
     """
     우아한형제들(배달의민족) 채용공고 파서
-    URL: https://career.woowahan.com
+    공개 API를 직접 사용해 전체 공고를 한 번에 수집.
     """
-    
-    def __init__(self, site_id: int):
-        super().__init__(site_id)
-        self.base_url = "https://career.woowahan.com"
-        
+
     @property
     def target_url(self) -> str:
-        return self.base_url
+        return "https://career.woowahan.com/w1/recruits?category=all%3Aall&recruitCampaignSeq=0&all=all&page=0&size=200&sort=updateDate%2Cdesc"
 
-    def parse(self, html_content: str) -> List[Dict[str, Any]]:
-        soup = BeautifulSoup(html_content, 'html.parser')
+    def parse(self, content: str) -> List[Dict[str, Any]]:
         jobs = []
+        try:
+            data = json.loads(content)
+            items = data.get("data", {}).get("list", [])
 
-        # The subagent found: div.recruit-list ul.recruit-type-list li
-        job_cards = soup.select("div.recruit-list ul.recruit-type-list li")
-        
-        for card in job_cards:
-            try:
-                link_elem = card.select_one("a.title")
-                if not link_elem:
+            for item in items:
+                try:
+                    title = item.get("recruitName", "").strip()
+                    if not title:
+                        continue
+
+                    recruit_number = item.get("recruitNumber", "")
+                    source_url = f"https://career.woowahan.com/recruitment/{recruit_number}/detail" if recruit_number else "https://career.woowahan.com/recruitment/"
+
+                    end_date = item.get("recruitEndDate", "")
+                    deadline = "상시채용" if not end_date or end_date.startswith("9999") or end_date.startswith("2999") else end_date[:10]
+
+                    career_code = (item.get("careerType") or {}).get("recruitItemCode", "")
+                    career_map = {
+                        "BA003001": "신입", "BA003002": "경력",
+                        "BA003003": "경력무관", "BA003004": "신입/경력",
+                    }
+                    career = career_map.get(career_code, "")
+
+                    emp_code = (item.get("employmentType") or {}).get("recruitItemCode", "")
+                    emp_map = {
+                        "BA002001": "정규직", "BA002002": "계약직",
+                        "BA002003": "인턴", "BA002004": "파견직",
+                    }
+                    emp_type = emp_map.get(emp_code, "")
+
+                    position_parts = [p for p in [career, emp_type] if p]
+                    position = " / ".join(position_parts) if position_parts else "상세 내용 참고"
+
+                    jobs.append({
+                        "site_id": self.site_id,
+                        "title": title,
+                        "company": "우아한형제들 (배달의민족)",
+                        "position": position,
+                        "source_url": source_url,
+                        "deadline": deadline,
+                    })
+                except Exception as e:
+                    print(f"[WoowahanParser] item 파싱 오류: {e}")
                     continue
-                
-                path = link_elem.get("href", "")
-                source_url = f"{self.base_url}{path}" if path.startswith("/") else path
-                
-                title_elem = link_elem.select_one(".title-wrap p")
-                if not title_elem:
-                    title_elem = link_elem.select_one("span:not(.flag-career)")
-                
-                title = title_elem.text.strip() if title_elem else "우아한형제들 채용"
-                
-                career_elem = link_elem.select_one(".flag-career")
-                career = career_elem.text.strip() if career_elem else ""
-                
-                type_elems = card.select(".flag-type span")
-                emp_type = type_elems[0].text.strip() if len(type_elems) > 0 else ""
-                deadline = type_elems[1].text.strip() if len(type_elems) > 1 else "상시채용"
 
-                position_parts = []
-                if career: position_parts.append(career)
-                if emp_type: position_parts.append(emp_type)
-                position = " / ".join(position_parts) if position_parts else "상세 내용 참고"
+        except Exception as e:
+            print(f"[WoowahanParser] JSON 파싱 오류: {e}")
 
-                jobs.append({
-                    "site_id": self.site_id,
-                    "title": title,
-                    "company": "우아한형제들 (배달의민족)",
-                    "position": position,
-                    "source_url": source_url,
-                    "deadline": deadline
-                })
-            except Exception as e:
-                print(f"[WoowahanParser] Error parsing card: {e}")
-                
         return jobs

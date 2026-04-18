@@ -49,7 +49,7 @@ class Profile(Base):
 
 class MatchResult(Base):
     __tablename__ = "match_results"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     job_posting_id = Column(Integer, ForeignKey("job_postings.id"))
     profile_id = Column(Integer, ForeignKey("profiles.id"))
@@ -62,3 +62,18 @@ class MatchResult(Base):
 
     job_posting = relationship("JobPosting", back_populates="match_results")
     profile = relationship("Profile")
+
+
+class CrawlSession(Base):
+    __tablename__ = "crawl_sessions"
+
+    id = Column(Integer, primary_key=True, index=True)
+    started_at = Column(DateTime, default=datetime.utcnow)
+    finished_at = Column(DateTime, nullable=True)
+    total_sites = Column(Integer, default=0)
+    success = Column(Integer, default=0)
+    failed = Column(Integer, default=0)
+    new_jobs = Column(Integer, default=0)
+    matched_a = Column(Integer, default=0)
+    matched_b = Column(Integer, default=0)
+    site_results = Column(Text, nullable=True)  # JSON: [{name, status, jobs_found, error}]
