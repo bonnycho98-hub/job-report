@@ -1,3 +1,4 @@
+import re
 from typing import List, Dict, Any
 from bs4 import BeautifulSoup
 from backend.crawler.base import BaseParser
@@ -7,14 +8,31 @@ class CoupangParser(BaseParser):
     쿠팡(Coupang) 채용공고 파서
     URL: https://www.coupang.jobs/kr/jobs/
     """
-    
+
     def __init__(self, site_id: int):
         super().__init__(site_id)
         self.base_url = "https://www.coupang.jobs"
-        
+
     @property
     def target_url(self) -> str:
-        return f"{self.base_url}/kr/jobs/?search=&location=Seoul%2C+South+Korea&origin=global"
+        return f"{self.base_url}/kr/jobs/?page=1&location=Seoul%2C+South+Korea&origin=global"
+
+    @property
+    def wait_selector(self) -> str:
+        return ".card.card-job"
+
+    def page_count(self, html_content: str) -> int:
+        soup = BeautifulSoup(html_content, 'html.parser')
+        count_elem = soup.select_one('.job-count')
+        if count_elem:
+            match = re.search(r'총 ([\d,]+)건', count_elem.text)
+            if match:
+                total = int(match.group(1).replace(',', ''))
+                return (total + 19) // 20  # 페이지당 20건
+        return 1
+
+    def get_page_url(self, page: int) -> str:
+        return f"{self.base_url}/kr/jobs/?page={page}&location=Seoul%2C+South+Korea&origin=global"
 
     def parse(self, html_content: str) -> List[Dict[str, Any]]:
         soup = BeautifulSoup(html_content, 'html.parser')

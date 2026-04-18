@@ -20,6 +20,14 @@ class BaseParser(ABC):
         """페이지 로드 후 추가로 대기할 CSS 셀렉터 (None이면 생략)"""
         return None
 
+    def page_count(self, html_content: str) -> int:
+        """첫 페이지 HTML을 받아 전체 페이지 수를 반환 (기본 1)"""
+        return 1
+
+    def get_page_url(self, page: int) -> str:
+        """페이지 번호를 받아 해당 페이지 URL 반환 (기본: target_url 그대로)"""
+        return self.target_url
+
     @abstractmethod
     def parse(self, html_content: str) -> List[Dict[str, Any]]:
         """

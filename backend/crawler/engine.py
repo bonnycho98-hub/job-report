@@ -133,11 +133,25 @@ class CrawlerEngine:
                         else:
                             content = await page.content()
                     
-                    # 커스텀 파서로 파싱
+                    # 1페이지 파싱
                     parsed_jobs = parser.parse(content)
                     results["raw_jobs"].extend(parsed_jobs)
+
+                    # 추가 페이지 순회 (page_count > 1인 파서)
+                    total_pages = parser.page_count(content)
+                    for page_num in range(2, total_pages + 1):
+                        try:
+                            await page.goto(parser.get_page_url(page_num), wait_until="networkidle", timeout=30000)
+                            if parser.wait_selector:
+                                await page.wait_for_selector(parser.wait_selector, timeout=15000)
+                            extra_content = await page.content()
+                            results["raw_jobs"].extend(parser.parse(extra_content))
+                        except Exception as pe:
+                            logger.warning(f"[{site.name}] page {page_num} 실패: {pe}")
+                            break
+
                     results["success"] += 1
-                    
+
                     # 성공 상태 업데이트
                     crud.update_site_status(self.db, site.id, "active")
 
