@@ -99,6 +99,9 @@ class CrawlerEngine:
                     elif "krafton.com" in site.url:
                         from backend.crawler.parsers.krafton import KraftonParser
                         parser = KraftonParser(site.id)
+                    elif "skcareers.com" in site.url:
+                        from backend.crawler.parsers.skcareers import SkCareersParser
+                        parser = SkCareersParser(site.id, base_url=site.url)
                     else:
                         from backend.crawler.base import BaseParser
                         class MockParser(BaseParser):

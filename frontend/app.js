@@ -1,17 +1,15 @@
 const API_BASE = '/api';
 let currentProfile = 'A';
 
-// --- UI Navigation ---
+// ─── Navigation ────────────────────────────────────────────────
 function switchTab(view) {
     document.getElementById('view-dashboard').classList.toggle('hidden', view !== 'dashboard');
     document.getElementById('view-settings').classList.toggle('hidden', view !== 'settings');
 
-    document.getElementById('nav-dashboard').className = view === 'dashboard'
-        ? 'px-3 py-1.5 rounded-md text-sm font-medium bg-white text-gray-900 shadow-sm transition-all'
-        : 'px-3 py-1.5 rounded-md text-sm font-medium text-gray-500 hover:text-gray-800 transition-all';
-    document.getElementById('nav-settings').className = view === 'settings'
-        ? 'px-3 py-1.5 rounded-md text-sm font-medium bg-white text-gray-900 shadow-sm transition-all'
-        : 'px-3 py-1.5 rounded-md text-sm font-medium text-gray-500 hover:text-gray-800 transition-all';
+    const activeNav = 'h-full px-3 text-xs font-medium text-gray-900 border-b-2 border-gray-900 transition-colors focus:outline-none';
+    const inactiveNav = 'h-full px-3 text-xs font-medium text-gray-400 border-b-2 border-transparent hover:text-gray-600 transition-colors focus:outline-none';
+    document.getElementById('nav-dashboard').className = view === 'dashboard' ? activeNav : inactiveNav;
+    document.getElementById('nav-settings').className = view === 'settings' ? activeNav : inactiveNav;
 
     if (view === 'settings') {
         fetchSites();
@@ -21,49 +19,40 @@ function switchTab(view) {
     }
 }
 
-// --- Dashboard ---
+// ─── Dashboard ─────────────────────────────────────────────────
 async function fetchResults(profile) {
     currentProfile = profile;
 
-    // Update Tab UI
-    const tabA = document.getElementById('tab-A');
-    const tabB = document.getElementById('tab-B');
-    if (profile === 'A') {
-        tabA.className = "px-6 py-2 rounded-t-lg bg-pink-50 text-pink-700 font-semibold border-b-2 border-pink-500 focus:outline-none transition-colors";
-        tabB.className = "px-6 py-2 rounded-t-lg text-gray-500 hover:bg-gray-100 font-medium border-b-2 border-transparent focus:outline-none transition-colors";
-    } else {
-        tabB.className = "px-6 py-2 rounded-t-lg bg-blue-50 text-blue-700 font-semibold border-b-2 border-blue-500 focus:outline-none transition-colors";
-        tabA.className = "px-6 py-2 rounded-t-lg text-gray-500 hover:bg-gray-100 font-medium border-b-2 border-transparent focus:outline-none transition-colors";
-    }
+    const activeTab = 'h-full text-xs font-semibold text-gray-900 border-b-2 border-gray-900 transition-colors focus:outline-none';
+    const inactiveTab = 'h-full text-xs font-medium text-gray-400 border-b-2 border-transparent hover:text-gray-600 transition-colors focus:outline-none';
+    document.getElementById('tab-A').className = profile === 'A' ? activeTab : inactiveTab;
+    document.getElementById('tab-B').className = profile === 'B' ? activeTab : inactiveTab;
 
     const listContainer = document.getElementById('results-list');
     const loading = document.getElementById('loading');
-
     listContainer.innerHTML = '';
     loading.classList.remove('hidden');
 
     try {
         const res = await fetch(`${API_BASE}/results?profile=${profile}`);
         const data = await res.json();
-
         loading.classList.add('hidden');
         renderCards(data, profile);
     } catch (e) {
         loading.classList.add('hidden');
-        showToast("결과를 불러오는 중 오류가 발생했습니다.", true);
+        showToast('결과를 불러오는 중 오류가 발생했습니다.', true);
     }
 }
 
 async function fetchSiteStats() {
-    const summaryContainer = document.getElementById('site-summary');
-    if (!summaryContainer) return;
-
+    const container = document.getElementById('site-summary');
+    if (!container) return;
     try {
         const res = await fetch(`${API_BASE}/stats/sites`);
         const data = await res.json();
         renderSiteStats(data);
     } catch (e) {
-        console.error("Failed to fetch site stats", e);
+        console.error('Failed to fetch site stats', e);
     }
 }
 
@@ -73,95 +62,79 @@ function renderSiteStats(data) {
     container.innerHTML = '';
 
     data.forEach(site => {
-        const dotColor = site.status === 'active' ? 'bg-green-400' : 'bg-red-400';
+        const dotColor = site.status === 'active' ? 'bg-green-500' : 'bg-red-400';
         container.innerHTML += `
-        <div class="flex items-center gap-1.5 bg-gray-50 border border-gray-200 rounded-full px-3 py-1 text-sm hover:border-blue-300 hover:bg-blue-50 transition-all cursor-default">
-            <span class="h-1.5 w-1.5 rounded-full ${dotColor} flex-shrink-0"></span>
-            <span class="text-gray-600 font-medium">${site.name}</span>
-            <span class="text-gray-900 font-bold">${site.job_count}<span class="text-xs font-normal text-gray-400 ml-0.5">건</span></span>
-        </div>
-        `;
+        <div class="flex items-center gap-1.5 text-xs text-gray-500 cursor-default select-none">
+            <span class="w-1.5 h-1.5 rounded-full ${dotColor} flex-shrink-0"></span>
+            <span>${site.name}</span>
+            <span class="font-semibold text-gray-900">${site.job_count}</span>
+        </div>`;
     });
 }
 
-
 function renderCards(data, profile) {
     const listContainer = document.getElementById('results-list');
+
     if (data.length === 0) {
-        listContainer.innerHTML = `<div class="col-span-full text-center py-16 text-gray-500 bg-white rounded-xl shadow border border-dashed border-gray-300">
-            <i class="fa-solid fa-folder-open text-5xl mb-4 text-gray-300"></i><br>
-            <span class="font-medium text-lg">조건에 맞는 채용공고가 아직 없습니다.</span><br>우측 상단의 크롤링 버튼을 눌러 새로고침해보세요.
+        listContainer.innerHTML = `
+        <div class="text-center py-16 px-6">
+            <i class="fa-solid fa-folder-open text-2xl text-gray-200 mb-3 block"></i>
+            <p class="text-sm text-gray-400">조건에 맞는 채용공고가 없습니다</p>
+            <p class="text-xs text-gray-300 mt-1">크롤링 버튼을 눌러 새로 수집해보세요</p>
         </div>`;
         return;
     }
 
-    const badgeColor = profile === 'A' ? 'bg-pink-100 text-pink-800 border-pink-200' : 'bg-blue-100 text-blue-800 border-blue-200';
-    const topBarColor = profile === 'A' ? 'bg-pink-400' : 'bg-blue-500';
+    const badgeColor = profile === 'A'
+        ? 'bg-pink-50 text-pink-600 border-pink-100'
+        : 'bg-blue-50 text-blue-600 border-blue-100';
 
     data.forEach(item => {
-        const keywords = item.matched_keywords ? item.matched_keywords.split(',') : [];
-        const keywordTags = keywords.slice(0, 3).map(k => `<span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded shadow-sm border border-gray-200">${k}</span>`).join('');
-
-        // 날짜 포맷
-        const dateObj = new Date(item.crawled_at);
-        const dateStr = `${dateObj.getMonth() + 1}/${dateObj.getDate()} ${dateObj.getHours()}:${String(dateObj.getMinutes()).padStart(2, '0')}`;
-
-        const accentBorder = profile === 'A' ? 'border-l-pink-400' : 'border-l-blue-500';
+        const keywords = item.matched_keywords
+            ? item.matched_keywords.split(',').map(k => k.trim()).filter(Boolean)
+            : [];
+        const keywordText = keywords.slice(0, 5).join(' · ');
+        const moreCount = keywords.length > 5 ? ` +${keywords.length - 5}` : '';
+        const deadline = item.deadline || '상시';
 
         listContainer.innerHTML += `
-        <div class="bg-white rounded-lg border border-gray-100 border-l-4 ${accentBorder} px-5 py-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:border-l-4 hover:shadow-sm transition-all duration-150">
-
-            <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 mb-1.5">
-                    <span class="text-xs font-semibold px-2 py-0.5 rounded-full border ${badgeColor}">${item.sub_group || 'Keyword Match'}</span>
-                    <span class="text-xs text-gray-400">점수 ${item.score}</span>
-                    <span class="text-sm text-gray-500 font-medium">${item.company}</span>
-                </div>
-                <h3 class="text-base font-bold text-gray-900 truncate" title="${item.title}">
-                    <a href="${item.url}" target="_blank" class="hover:text-blue-600 transition-colors">${item.title}</a>
-                </h3>
-                <div class="text-xs text-gray-500 truncate mt-1 flex items-center gap-1">
-                    <i class="fa-solid fa-briefcase text-gray-300"></i>${item.position}
-                </div>
+        <div class="px-5 py-4 border-b border-gray-50 last:border-b-0 hover:bg-gray-50/60 transition-colors">
+            <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs font-medium text-gray-400">${item.company}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded border ${badgeColor} leading-tight">${item.sub_group || 'Match'}</span>
             </div>
-
-            <div class="flex flex-col md:items-end justify-center gap-2 shrink-0">
-                <div class="flex flex-wrap gap-1 justify-start md:justify-end">
-                    ${keywordTags}
-                    ${keywords.length > 3 ? `<span class="text-xs text-gray-400 px-1">+${keywords.length - 3}</span>` : ''}
-                </div>
-                <div class="flex items-center gap-3 text-xs text-gray-400">
-                    <span title="수집 시간"><i class="fa-solid fa-clock mr-1"></i>${dateStr}</span>
-                    <span class="text-red-500 bg-red-50 px-2 py-0.5 rounded-full border border-red-100 whitespace-nowrap">${item.deadline ? item.deadline : '상시/미정'}</span>
-                </div>
+            <h3 class="text-sm font-semibold text-gray-900 truncate mb-1.5" title="${item.title}">
+                <a href="${item.url}" target="_blank" class="hover:text-blue-600 transition-colors">${item.title}</a>
+            </h3>
+            <div class="flex items-center justify-between gap-4">
+                <span class="text-xs text-gray-400 truncate">${keywordText}${moreCount}</span>
+                <span class="text-xs text-gray-400 whitespace-nowrap shrink-0">${deadline}</span>
             </div>
-
-        </div>
-        `;
+        </div>`;
     });
 }
 
 async function triggerCrawl() {
     const btn = document.getElementById('btn-crawl');
-    const originalContent = btn.innerHTML;
-    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin mr-2"></i>수집 및 매칭 중...';
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-[10px]"></i>수집 중...';
     btn.disabled = true;
-    btn.classList.add('opacity-80', 'cursor-not-allowed');
+    btn.classList.add('opacity-70', 'cursor-not-allowed');
 
     try {
         const res = await fetch(`${API_BASE}/crawl`, { method: 'POST' });
-        if (!res.ok) throw new Error(`서버 응답 오류 (HTTP ${res.status})`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
-        const msg = `크롤링 완료! 새로 매칭된 공고: A ${data.details.matched_summary.A}건, B ${data.details.matched_summary.B}건`;
+        const msg = `완료 — A ${data.details.matched_summary.A}건, B ${data.details.matched_summary.B}건 매칭`;
         showToast(msg);
         fetchResults(currentProfile);
         fetchSiteStats();
     } catch (e) {
-        showToast("크롤링 실행 중 네트워크 오류가 발생했습니다.", true);
+        showToast('크롤링 중 오류가 발생했습니다.', true);
     } finally {
-        btn.innerHTML = originalContent;
+        btn.innerHTML = originalHTML;
         btn.disabled = false;
-        btn.classList.remove('opacity-80', 'cursor-not-allowed');
+        btn.classList.remove('opacity-70', 'cursor-not-allowed');
     }
 }
 
@@ -169,14 +142,14 @@ async function exportHtml() {
     try {
         const res = await fetch(`${API_BASE}/export`, { method: 'POST' });
         const data = await res.json();
-        showToast(`보고서 저장 완료: ${data.file_path}`);
+        showToast(`보고서 저장: ${data.file_path}`);
     } catch (e) {
-        showToast("내보내기 실패했습니다.", true);
+        showToast('내보내기 실패', true);
     }
 }
 
 async function deleteSite(siteId, siteName) {
-    if (!confirm(`"${siteName}" 사이트와 관련된 모든 공고/매칭 데이터를 삭제합니다. 계속하시겠습니까?`)) return;
+    if (!confirm(`"${siteName}" 사이트와 관련 데이터를 모두 삭제합니다.`)) return;
     try {
         const res = await fetch(`${API_BASE}/sites/${siteId}`, { method: 'DELETE' });
         if (!res.ok) throw new Error();
@@ -184,79 +157,78 @@ async function deleteSite(siteId, siteName) {
         fetchSites();
         fetchSiteStats();
     } catch (e) {
-        showToast("삭제 중 오류가 발생했습니다.", true);
+        showToast('삭제 중 오류가 발생했습니다.', true);
     }
 }
 
-// --- Settings ---
+// ─── Settings ──────────────────────────────────────────────────
 async function fetchSites() {
-    const tbody = document.getElementById('sites-table-body');
-    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-6 border border-dashed border-gray-200 text-gray-500 rounded-lg">데이터 불어오는 중...</td></tr>';
+    const container = document.getElementById('sites-list');
+    container.innerHTML = '<div class="px-5 py-8 text-center text-xs text-gray-400">불러오는 중...</div>';
 
     try {
         const res = await fetch(`${API_BASE}/sites`);
         const data = await res.json();
 
-        tbody.innerHTML = data.length ? '' : '<tr><td colspan="5" class="text-center py-8 text-gray-500 bg-gray-50">등록된 사이트가 아직 없습니다.</td></tr>';
+        if (!data.length) {
+            container.innerHTML = '<div class="px-5 py-10 text-center text-xs text-gray-400">등록된 사이트가 없습니다</div>';
+            return;
+        }
 
+        container.innerHTML = '';
         data.forEach(site => {
-            const statusColor = site.status === 'active' ? 'bg-green-100 text-green-800 border-green-200' :
-                (site.status === 'parse_error' ? 'bg-red-100 text-red-800 border-red-200' : 'bg-gray-100 text-gray-800 border-gray-200');
-            tbody.innerHTML += `
-            <tr class="hover:bg-blue-50 transition-colors">
-                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-700">${site.id}</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">${site.name}</td>
-                <td class="px-3 py-4 text-sm text-gray-500 max-w-xs truncate" title="${site.url}">
-                    <a href="${site.url}" target="_blank" class="hover:text-blue-600 underline decoration-blue-300 underline-offset-2">${site.url}</a>
-                </td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm">
-                    <span class="inline-flex items-center rounded-md px-2.5 py-1 text-xs font-bold border ${statusColor} shadow-sm">
-                        ${site.status === 'active' ? '<i class="fa-solid fa-circle-check mr-1"></i>정상' :
-                    (site.status === 'parse_error' ? '<i class="fa-solid fa-circle-xmark mr-1"></i>오류' : site.status)}
-                    </span>
-                </td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm">
-                    <button onclick="deleteSite(${site.id}, '${site.name}')" class="text-red-500 hover:text-red-700 font-medium text-xs px-2 py-1 rounded border border-red-200 hover:bg-red-50 transition-colors">
-                        <i class="fa-solid fa-trash mr-1"></i>삭제
-                    </button>
-                </td>
-            </tr>
-            `;
+            const isActive = site.status === 'active';
+            const isError = site.status === 'parse_error';
+            const dotColor = isActive ? 'bg-green-500' : isError ? 'bg-red-400' : 'bg-gray-300';
+            const statusText = isActive ? '정상' : isError ? '오류' : site.status;
+            const statusColor = isActive ? 'text-green-600' : isError ? 'text-red-500' : 'text-gray-400';
+
+            container.innerHTML += `
+            <div class="flex items-center gap-3 px-5 py-3.5 border-b border-gray-50 last:border-b-0 hover:bg-gray-50/50 transition-colors">
+                <span class="w-1.5 h-1.5 rounded-full ${dotColor} flex-shrink-0"></span>
+                <div class="flex-1 min-w-0">
+                    <div class="text-sm font-medium text-gray-800 truncate">${site.name}</div>
+                    <a href="${site.url}" target="_blank" class="text-xs text-gray-400 hover:text-blue-500 transition-colors truncate block">${site.url}</a>
+                </div>
+                <span class="text-xs ${statusColor} whitespace-nowrap">${statusText}</span>
+                <button onclick="deleteSite(${site.id}, '${site.name.replace(/'/g, "\\'")}')"
+                    class="text-gray-300 hover:text-red-400 transition-colors ml-1 flex-shrink-0" title="삭제">
+                    <i class="fa-solid fa-trash text-xs"></i>
+                </button>
+            </div>`;
         });
     } catch (e) {
-        tbody.innerHTML = '<tr><td colspan="5" class="text-center py-8 text-red-500 bg-red-50">데이터 로딩 에러</td></tr>';
+        container.innerHTML = '<div class="px-5 py-8 text-center text-xs text-red-400">로딩 오류</div>';
     }
 }
 
 document.getElementById('site-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = e.target.querySelector('button');
+    const btn = e.target.querySelector('button[type="submit"]');
     btn.disabled = true;
-    btn.innerHTML = '추가 중...';
-
-    const siteData = {
-        name: document.getElementById('site-name').value,
-        url: document.getElementById('site-url').value
-    };
+    btn.textContent = '추가 중...';
 
     try {
         await fetch(`${API_BASE}/sites`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(siteData)
+            body: JSON.stringify({
+                name: document.getElementById('site-name').value,
+                url: document.getElementById('site-url').value,
+            }),
         });
-        showToast("사이트가 성공적으로 추가되었습니다.");
+        showToast('사이트가 추가되었습니다.');
         document.getElementById('site-form').reset();
         fetchSites();
-    } catch (error) {
-        showToast("추가 중 오류가 발생했습니다.", true);
+    } catch (err) {
+        showToast('추가 중 오류가 발생했습니다.', true);
     } finally {
         btn.disabled = false;
-        btn.innerHTML = 'URL 추가';
+        btn.textContent = '추가';
     }
 });
 
-// --- Utils ---
+// ─── Toast ─────────────────────────────────────────────────────
 let toastTimeout;
 function showToast(message, isError = false) {
     const toast = document.getElementById('toast');
@@ -266,21 +238,21 @@ function showToast(message, isError = false) {
     msgEl.textContent = message;
 
     if (isError) {
-        toast.className = 'fixed bottom-5 right-5 transform transition-all duration-300 translate-y-0 opacity-100 bg-red-600 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 z-50 ring-4 ring-red-400 ring-opacity-30';
-        icon.className = 'fa-solid fa-triangle-exclamation text-white text-xl';
+        toast.className = 'fixed bottom-5 right-5 transform transition-all duration-200 translate-y-0 opacity-100 bg-red-600 text-white text-xs px-4 py-2.5 rounded-lg shadow-lg flex items-center gap-2 z-50';
+        icon.className = 'fa-solid fa-triangle-exclamation text-xs';
     } else {
-        toast.className = 'fixed bottom-5 right-5 transform transition-all duration-300 translate-y-0 opacity-100 bg-gray-800 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 z-50 ring-4 ring-gray-900 ring-opacity-20';
-        icon.className = 'fa-solid fa-circle-check text-green-400 text-xl';
+        toast.className = 'fixed bottom-5 right-5 transform transition-all duration-200 translate-y-0 opacity-100 bg-gray-900 text-white text-xs px-4 py-2.5 rounded-lg shadow-lg flex items-center gap-2 z-50';
+        icon.className = 'fa-solid fa-circle-check text-green-400 text-xs';
     }
 
     clearTimeout(toastTimeout);
     toastTimeout = setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-20', 'opacity-0');
+        toast.classList.add('translate-y-4', 'opacity-0');
     }, 4000);
 }
 
-// Initial load
+// ─── Init ───────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     fetchResults('A');
     fetchSiteStats();
