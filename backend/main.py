@@ -108,8 +108,12 @@ async def trigger_crawl(db: Session = Depends(get_db)):
         "london", "berlin", "amsterdam", "paris", "toronto", "vancouver",
     ]
 
-    # 사이트별 수집 공고 수 집계 (site_id → count)
+    # 사이트별 원시 수집 공고 수 집계 (필터/중복 제거 전)
     site_job_counts: dict[int, int] = {}
+    for job_data in results.get("raw_jobs", []):
+        sid = job_data.get("site_id", 0)
+        site_job_counts[sid] = site_job_counts.get(sid, 0) + 1
+
     new_jobs_count = 0
 
     for job_data in results.get("raw_jobs", []):
@@ -139,7 +143,6 @@ async def trigger_crawl(db: Session = Depends(get_db)):
         db.add(db_job)
         db.flush()
         new_jobs_count += 1
-        site_job_counts[site_id] = site_job_counts.get(site_id, 0) + 1
 
         # 4. 매칭 수행
         match_scores = matcher_engine.evaluate(text_to_eval)
