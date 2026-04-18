@@ -149,10 +149,6 @@ function renderCards(data, profile) {
         return;
     }
 
-    const badgeColor = profile === 'A'
-        ? 'bg-pink-50 text-pink-600 border-pink-100'
-        : 'bg-blue-50 text-blue-600 border-blue-100';
-
     data.forEach(item => {
         const keywords = item.matched_keywords
             ? item.matched_keywords.split(',').map(k => k.trim()).filter(Boolean)
@@ -165,7 +161,6 @@ function renderCards(data, profile) {
         <div class="px-5 py-4 border-b border-gray-50 last:border-b-0 hover:bg-gray-50 transition-colors">
             <div class="flex items-center gap-2 mb-1">
                 <span class="text-xs font-medium text-gray-400">${item.company}</span>
-                <span class="text-xs px-1.5 py-0.5 rounded border ${badgeColor} leading-tight">${item.sub_group || 'Match'}</span>
             </div>
             <h3 class="text-sm font-semibold text-gray-900 truncate mb-1.5" title="${item.title}">
                 <a href="${item.url}" target="_blank" class="hover:text-blue-600 transition-colors">${item.title}</a>
