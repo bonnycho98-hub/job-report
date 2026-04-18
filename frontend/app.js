@@ -98,10 +98,10 @@ function renderCards(data, profile) {
         const deadline = item.deadline || '상시';
 
         listContainer.innerHTML += `
-        <div class="px-5 py-4 border-b border-gray-50 last:border-b-0 hover:bg-gray-50/60 transition-colors">
+        <div class="px-5 py-4 border-b border-gray-50 last:border-b-0 hover:bg-gray-50 transition-colors">
             <div class="flex items-center gap-2 mb-1">
                 <span class="text-xs font-medium text-gray-400">${item.company}</span>
-                <span class="text-[10px] px-1.5 py-0.5 rounded border ${badgeColor} leading-tight">${item.sub_group || 'Match'}</span>
+                <span class="text-xs px-1.5 py-0.5 rounded border ${badgeColor} leading-tight">${item.sub_group || 'Match'}</span>
             </div>
             <h3 class="text-sm font-semibold text-gray-900 truncate mb-1.5" title="${item.title}">
                 <a href="${item.url}" target="_blank" class="hover:text-blue-600 transition-colors">${item.title}</a>
@@ -117,7 +117,7 @@ function renderCards(data, profile) {
 async function triggerCrawl() {
     const btn = document.getElementById('btn-crawl');
     const originalHTML = btn.innerHTML;
-    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-[10px]"></i>수집 중...';
+    btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-xs"></i>수집 중...';
     btn.disabled = true;
     btn.classList.add('opacity-70', 'cursor-not-allowed');
 
