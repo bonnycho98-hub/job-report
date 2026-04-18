@@ -11,14 +11,40 @@ jobs:
     timeout-minutes: 30
 
     steps:
+      - name: 서버 웨이크업 (Render cold start 대기)
+        run: |
+          echo "서버 깨우는 중..."
+          for i in $(seq 1 10); do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 \
+              https://job-report-3bfg.onrender.com/api/sites)
+            echo "시도 $i: HTTP $STATUS"
+            if [ "$STATUS" = "200" ]; then
+              echo "서버 준비 완료"
+              break
+            fi
+            sleep 15
+          done
+
       - name: 크롤링 실행
         id: crawl
         run: |
           RESPONSE=$(curl -s -X POST \
             --max-time 900 \
+            -H "Content-Type: application/json" \
             https://job-report-3bfg.onrender.com/api/crawl)
 
           echo "크롤링 응답: $RESPONSE"
+
+          # 응답이 JSON인지 확인
+          echo "$RESPONSE" | python3 -c "import sys,json; json.load(sys.stdin)" 2>/dev/null || {
+            echo "❌ JSON이 아닌 응답 수신 (서버 미준비 또는 오류)"
+            echo "ungki=오류" >> $GITHUB_OUTPUT
+            echo "choki=오류" >> $GITHUB_OUTPUT
+            echo "success=0" >> $GITHUB_OUTPUT
+            echo "failed=0" >> $GITHUB_OUTPUT
+            echo "raw=0" >> $GITHUB_OUTPUT
+            exit 1
+          }
 
           UNGKI=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('matched_summary',{}).get('웅키',0))")
           CHOKI=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('matched_summary',{}).get('쵸키',0))")
@@ -42,6 +68,7 @@ jobs:
           SUCCESS: ${{ steps.crawl.outputs.success }}
           FAILED: ${{ steps.crawl.outputs.failed }}
           RAW: ${{ steps.crawl.outputs.raw }}
+          JOB_STATUS: ${{ job.status }}
         run: |
           python3 << 'EOF'
           import os, requests
@@ -49,9 +76,11 @@ jobs:
 
           now = datetime.now()
           year, week = now.isocalendar()[:2]
+          ok = os.environ.get('JOB_STATUS') == 'success'
+          header = "완료" if ok else "실패 ⚠️"
 
           text = (
-              f"📋 <b>{year}년 {week}주차 채용공고 크롤링 완료</b>\n\n"
+              f"📋 <b>{year}년 {week}주차 채용공고 크롤링 {header}</b>\n\n"
               f"✅ 성공: {os.environ.get('SUCCESS', '?')}개 사이트\n"
               f"❌ 실패: {os.environ.get('FAILED', '?')}개 사이트\n"
               f"📊 수집: {os.environ.get('RAW', '?')}건\n\n"
