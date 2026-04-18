@@ -34,11 +34,19 @@
         <!-- ─── Dashboard View ─────────────────────────────────── -->
         <div id="view-dashboard">
 
-            <!-- Top bar: site stats + action buttons (one line) -->
+            <!-- Top bar -->
             <div class="bg-white border-b border-gray-100">
                 <div class="max-w-4xl mx-auto px-6 py-2.5 flex items-center justify-between gap-4">
-                    <div id="site-summary" class="flex flex-wrap gap-3 items-center"></div>
-                    <div class="flex gap-2 shrink-0">
+                    <!-- 데스크탑: 통계 인라인 표시 / 모바일: 토글 버튼 -->
+                    <div class="flex-1 min-w-0 flex items-center">
+                        <div id="site-summary" class="hidden sm:flex flex-wrap gap-3 items-center"></div>
+                        <button onclick="toggleSiteStats()" class="sm:hidden flex items-center gap-1.5 text-xs text-gray-500 focus:outline-none">
+                            수집 현황
+                            <i class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-200" id="stats-chevron"></i>
+                        </button>
+                    </div>
+                    <!-- 데스크탑 전용 액션 버튼 -->
+                    <div class="hidden sm:flex gap-2 shrink-0">
                         <button onclick="triggerCrawl()" id="btn-crawl"
                             class="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors">
                             <i class="fa-solid fa-rotate text-xs"></i>크롤링
@@ -47,6 +55,12 @@
                             class="flex items-center gap-1.5 text-gray-500 hover:text-gray-700 text-xs font-medium px-3 py-1.5 rounded-md border border-gray-200 hover:border-gray-300 bg-white transition-colors">
                             <i class="fa-solid fa-download text-xs"></i>내보내기
                         </button>
+                    </div>
+                </div>
+                <!-- 모바일 전용 펼침 패널 -->
+                <div id="site-stats-panel" class="sm:hidden hidden border-t border-gray-50">
+                    <div class="max-w-4xl mx-auto px-6 py-2.5">
+                        <div id="site-summary-mobile" class="flex flex-wrap gap-3"></div>
                     </div>
                 </div>
             </div>

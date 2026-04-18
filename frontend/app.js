@@ -121,19 +121,28 @@ function filterByCompany(company) {
 }
 
 function renderSiteStats(data) {
-    const container = document.getElementById('site-summary');
-    if (!container) return;
-    container.innerHTML = '';
-
-    data.forEach(site => {
+    const html = data.map(site => {
         const dotColor = site.status === 'active' ? 'bg-green-500' : 'bg-red-400';
-        container.innerHTML += `
+        return `
         <div class="flex items-center gap-1.5 text-xs text-gray-500 cursor-default select-none">
             <span class="w-1.5 h-1.5 rounded-full ${dotColor} flex-shrink-0"></span>
             <span>${site.name}</span>
             <span class="font-semibold text-gray-900">${site.job_count}</span>
         </div>`;
-    });
+    }).join('');
+
+    const desktop = document.getElementById('site-summary');
+    const mobile = document.getElementById('site-summary-mobile');
+    if (desktop) desktop.innerHTML = html;
+    if (mobile) mobile.innerHTML = html;
+}
+
+function toggleSiteStats() {
+    const panel = document.getElementById('site-stats-panel');
+    const chevron = document.getElementById('stats-chevron');
+    const isHidden = panel.classList.contains('hidden');
+    panel.classList.toggle('hidden', !isHidden);
+    chevron.style.transform = isHidden ? 'rotate(180deg)' : '';
 }
 
 function renderCards(data, profile) {
