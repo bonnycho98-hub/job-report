@@ -3,7 +3,7 @@ from fastapi import FastAPI, Depends, BackgroundTasks, HTTPException
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from typing import List
 from datetime import datetime
 import os
@@ -226,7 +226,7 @@ def get_crawl_history(limit: int = 20, db: Session = Depends(get_db)):
 
 @app.get("/api/results")
 def get_results(profile: str = "웅키", week: int = None, year: int = None, db: Session = Depends(get_db)):
-    query = db.query(models.MatchResult).join(models.JobPosting)
+    query = db.query(models.MatchResult).options(joinedload(models.MatchResult.job_posting)).join(models.JobPosting)
     if profile in ("웅키", "A"):
         query = query.filter(models.MatchResult.profile_id == 1)
     else:
