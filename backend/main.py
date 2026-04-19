@@ -224,6 +224,38 @@ def get_crawl_history(limit: int = 20, db: Session = Depends(get_db)):
         })
     return result
 
+@app.get("/api/results/ai")
+def get_ai_results(db: Session = Depends(get_db)):
+    """제목에 'AI' 또는 '인공지능'이 포함된 채용공고 조회"""
+    jobs = (
+        db.query(models.JobPosting)
+        .filter(
+            models.JobPosting.title.ilike('%AI%') |
+            models.JobPosting.title.ilike('%인공지능%') |
+            models.JobPosting.title.ilike('%머신러닝%') |
+            models.JobPosting.title.ilike('%machine learning%') |
+            models.JobPosting.title.ilike('%LLM%') |
+            models.JobPosting.title.ilike('%생성형%')
+        )
+        .order_by(models.JobPosting.crawled_at.desc())
+        .all()
+    )
+    return [
+        {
+            "id": j.id,
+            "company": j.company,
+            "title": j.title,
+            "position": j.position,
+            "url": j.source_url,
+            "deadline": j.deadline,
+            "score": None,
+            "sub_group": None,
+            "matched_keywords": None,
+            "crawled_at": j.crawled_at,
+        }
+        for j in jobs
+    ]
+
 @app.get("/api/results")
 def get_results(profile: str = "웅키", week: int = None, year: int = None, db: Session = Depends(get_db)):
     query = db.query(models.MatchResult).options(joinedload(models.MatchResult.job_posting)).join(models.JobPosting)

@@ -33,6 +33,7 @@ async function fetchResults(profile) {
     const inactiveTab = 'h-full text-xs font-medium text-gray-400 border-b-2 border-transparent hover:text-gray-600 transition-colors focus:outline-none';
     document.getElementById('tab-A').className = profile === 'A' ? activeTab : inactiveTab;
     document.getElementById('tab-B').className = profile === 'B' ? activeTab : inactiveTab;
+    document.getElementById('tab-AI').className = profile === 'AI' ? activeTab : inactiveTab;
 
     const listContainer = document.getElementById('results-list');
     const loading = document.getElementById('loading');
@@ -40,7 +41,8 @@ async function fetchResults(profile) {
     loading.classList.remove('hidden');
 
     try {
-        const res = await fetch(`${API_BASE}/results?profile=${profile}`);
+        const url = profile === 'AI' ? `${API_BASE}/results/ai` : `${API_BASE}/results?profile=${profile}`;
+        const res = await fetch(url);
         const data = await res.json();
         loading.classList.add('hidden');
         allResults = data;
@@ -85,7 +87,7 @@ function renderCompanyFilter(data, profile) {
     bar.classList.remove('hidden');
     btns.innerHTML = '';
 
-    const accentColor = profile === 'A' ? 'bg-pink-500 text-white' : 'bg-blue-600 text-white';
+    const accentColor = profile === 'A' ? 'bg-pink-500 text-white' : profile === 'AI' ? 'bg-violet-600 text-white' : 'bg-blue-600 text-white';
 
     companies.forEach(([company, count]) => {
         btns.innerHTML += `
@@ -106,7 +108,7 @@ function filterByCompany(company) {
 
     // 전체 버튼 스타일
     const profile = currentProfile;
-    const accentColor = profile === 'A' ? 'bg-pink-500 text-white' : 'bg-blue-600 text-white';
+    const accentColor = profile === 'A' ? 'bg-pink-500 text-white' : profile === 'AI' ? 'bg-violet-600 text-white' : 'bg-blue-600 text-white';
     const allBtn = document.getElementById('filter-all');
     allBtn.className = `text-xs font-medium px-2.5 py-1 rounded-md ${company === null ? accentColor : 'bg-gray-100 text-gray-600 hover:bg-gray-200'} transition-colors`;
 
