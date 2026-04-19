@@ -44,12 +44,15 @@ async function fetchResults(profile) {
         const url = profile === 'AI' ? `${API_BASE}/results/ai` : `${API_BASE}/results?profile=${profile}`;
         const res = await fetch(url);
         const data = await res.json();
+        // fetch 완료 전에 다른 탭으로 전환됐으면 무시
+        if (currentProfile !== profile) return;
         loading.classList.add('hidden');
         allResults = data;
         currentCompany = null;
         renderCompanyFilter(data, profile);
         renderCards(data, profile);
     } catch (e) {
+        if (currentProfile !== profile) return;
         loading.classList.add('hidden');
         showToast('결과를 불러오는 중 오류가 발생했습니다.', true);
     }
