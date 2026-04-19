@@ -47,10 +47,12 @@ class GreetingParser(BaseParser):
             re.DOTALL,
         )
         if not m:
+            print(f"[GreetingParser] __NEXT_DATA__ not found for {self.origin}")
             return None
         try:
             data = json.loads(m.group(1))
         except json.JSONDecodeError:
+            print(f"[GreetingParser] __NEXT_DATA__ JSON parse error for {self.origin}")
             return None
 
         queries = (
@@ -63,6 +65,7 @@ class GreetingParser(BaseParser):
             (q for q in queries if q.get("queryKey") == ["openings"]), None
         )
         if openings_query is None:
+            print(f"[GreetingParser] 'openings' query key not found for {self.origin}, keys={[q.get('queryKey') for q in queries[:5]]}")
             return None
 
         openings = openings_query.get("state", {}).get("data", [])

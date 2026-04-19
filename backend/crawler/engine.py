@@ -127,7 +127,7 @@ class CrawlerEngine:
                     # wait_selector가 있으면 해당 요소가 DOM에 나타날 때까지 추가 대기
                     if parser.wait_selector:
                         try:
-                            await page.wait_for_selector(parser.wait_selector, timeout=15000)
+                            await page.wait_for_selector(parser.wait_selector, timeout=30000)
                         except Exception:
                             logger.warning(f"wait_selector '{parser.wait_selector}' not found for {site.name}")
 
