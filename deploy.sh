@@ -36,7 +36,7 @@ if [ "$SKIP_CRAWL" = true ]; then
 else
     echo -e "${YELLOW}[1/4]${NC} 🕷️  채용공고 크롤링 중..."
     source venv/bin/activate
-    PYTHONPATH=. python3 backend/main.py --trigger
+    PYTHONPATH=. python3 scripts/crawl_job.py
     echo -e "  ✅ 크롤링 및 매칭 완료"
 fi
 
