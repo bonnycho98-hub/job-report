@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from backend.exporter import _get_pages_url
+
 
 ROOT = Path(__file__).parent
 
@@ -17,3 +19,10 @@ def test_deploy_script_uses_standalone_crawl_job():
 
     assert "python3 scripts/crawl_job.py" in deploy_script
     assert "backend/main.py --trigger" not in deploy_script
+
+
+def test_pages_url_uses_environment_when_dotenv_config_is_absent(monkeypatch):
+    monkeypatch.setenv("GITHUB_USERNAME", "bonnycho98-hub")
+    monkeypatch.setenv("GITHUB_REPO_NAME", "job-report")
+
+    assert _get_pages_url({}) == "https://bonnycho98-hub.github.io/job-report"

@@ -23,8 +23,8 @@ def _load_env():
 
 def _get_pages_url(config):
     """GitHub Pages URL을 생성합니다."""
-    username = config.get("GITHUB_USERNAME", "your_github_username")
-    repo = config.get("GITHUB_REPO_NAME", "job-report")
+    username = config.get("GITHUB_USERNAME") or os.getenv("GITHUB_USERNAME", "your_github_username")
+    repo = config.get("GITHUB_REPO_NAME") or os.getenv("GITHUB_REPO_NAME", "job-report")
     return f"https://{username}.github.io/{repo}"
 
 
